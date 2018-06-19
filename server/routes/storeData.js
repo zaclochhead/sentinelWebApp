@@ -48,7 +48,7 @@ router.get('/', function (req, res) {
             res.send(recordset); 
         });
    // });
-    io.emit('message',JSON.parse('{"message": '+level+'}'));
+    io.emit('message',JSON.parse('{"message": '+req.query.level+'}'));
     if(i>10){
     io.emit('temperature', JSON.parse('{"temperature": ' + temperature + '}')); 
     i=0;
