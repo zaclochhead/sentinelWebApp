@@ -2565,7 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _posts_posts_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./posts/posts.component */ "./src/app/posts/posts.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _nebular_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @nebular/auth */ "./node_modules/@nebular/auth/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2579,8 +2579,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var routes = [
     {
-        path: 'posts',
-        component: _posts_posts_component__WEBPACK_IMPORTED_MODULE_2__["PostsComponent"]
+        path: 'loginPage',
+        component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"]
     },
     { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
     {
@@ -2613,8 +2613,8 @@ var routes = [
             },
         ],
     },
-    { path: '', redirectTo: 'posts', pathMatch: 'full' },
-    { path: '**', redirectTo: 'posts' },
+    { path: '', redirectTo: 'loginPage', pathMatch: 'full' },
+    { path: '**', redirectTo: 'loginPage' },
 ];
 /*
 const config: ExtraOptions = {
@@ -2709,6 +2709,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 /* harmony import */ var _posts_posts_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./posts/posts.component */ "./src/app/posts/posts.component.ts");
 /* harmony import */ var _posts_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./posts.service */ "./src/app/posts.service.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2734,12 +2735,13 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _posts_posts_component__WEBPACK_IMPORTED_MODULE_12__["PostsComponent"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _posts_posts_component__WEBPACK_IMPORTED_MODULE_12__["PostsComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"],
@@ -2764,6 +2766,69 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/login/login.component.html":
+/*!********************************************!*\
+  !*** ./src/app/login/login.component.html ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  login works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/login/login.component.scss":
+/*!********************************************!*\
+  !*** ./src/app/login/login.component.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/login/login.component.ts":
+/*!******************************************!*\
+  !*** ./src/app/login/login.component.ts ***!
+  \******************************************/
+/*! exports provided: LoginComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var LoginComponent = /** @class */ (function () {
+    function LoginComponent() {
+    }
+    LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'login',
+            template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
+            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], LoginComponent);
+    return LoginComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/posts.service.ts":
 /*!**********************************!*\
   !*** ./src/app/posts.service.ts ***!
@@ -2777,6 +2842,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm5/Observable.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2789,13 +2857,52 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+var SERVER_URL = 'localhost:1337'; ///'sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
     }
+    PostsService.prototype.initSocket = function () {
+        this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(SERVER_URL);
+    };
+    PostsService.prototype.send = function (message) {
+        this.socket.emit('message', message);
+    };
+    PostsService.prototype.onMessage = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('message', function (data) { return observer.next(data); });
+        });
+    };
+    PostsService.prototype.onTemperature = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('temperature', function (data) { return observer.next(data); });
+        });
+    };
+    PostsService.prototype.onEvent = function (event) {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on(event, function () { return observer.next(); });
+        });
+    };
     // Get all posts from the API
     PostsService.prototype.getAllPosts = function () {
         return this.http.get('/api/posts')
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.updateElectricity = function () {
+        return this.http.get('/api/electricity')
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getData = function () {
+        return this.http.get('/api/get')
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.storeData = function (level) {
+        return this.http.get('/api/store', { params: { level: level } })
             .map(function (res) { return res.json(); });
     };
     PostsService = __decorate([
@@ -2816,7 +2923,7 @@ var PostsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\" *ngFor=\"let post of posts\">\n    <div class=\"card card-block\">\n      <h4 class=\"card-title\">{{ post.title }}</h4>\n      <p class=\"card-text\">{{post.body}}</p>\n      <a href=\"#\" class=\"card-link\">Card link</a>\n      <a href=\"#\" class=\"card-link\">Another link</a>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n  <div class=\"row\" *ngFor=\"let post of posts\">\n    <div class=\"card card-block\">        \n      <h4 class=\"card-title\">{{ post.title }}</h4>\n      <p class=\"card-text\">{{post.body}}</p>\n      <a href=\"#\" class=\"card-link\">Card link</a>\n      <a href=\"#\" class=\"card-link\">Another link</a>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2864,8 +2971,12 @@ var PostsComponent = /** @class */ (function () {
         var _this = this;
         // Retrieve posts from the API
         this.postsService.getAllPosts().subscribe(function (posts) {
+            console.log(posts);
             _this.posts = posts;
         });
+        /*     this.postsService.updateElectricity().subscribe(posts => {
+              this.value = posts;
+            }); */
     };
     PostsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2948,6 +3059,17 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 
 module.exports = __webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\src\main.ts */"./src/main.ts");
 
+
+/***/ }),
+
+/***/ 1:
+/*!********************!*\
+  !*** ws (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 
