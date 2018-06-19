@@ -20,9 +20,11 @@ var config = {
 };
 
 router.get('/', function (req, res) {
+    console.log("request")
+    console.log(req.query.level)
+    console.log("end req");
     i++;
     currentTime = new Date().getTime()/1000; 
-    ID++; 
     level = Math.random() * 200;
     temperature = Math.random() * 30;
     temperature = Math.ceil(temperature); 
@@ -38,7 +40,7 @@ router.get('/', function (req, res) {
        var request = new sql.Request();
 */
         // query to the database and get the records
-        request.query(`INSERT into test (level,timeID, dateID, ID) values (`+level+`, '2018-06-13 13:48:10', '2018-06-13',` + currentTime + ')', function (err, recordset) {
+        request.query(`INSERT into test (level,timeID, dateID, ID) values (`+req.query.level+`, '2018-06-13 13:48:10', '2018-06-13',` + currentTime + ')', function (err, recordset) {
             //I added these 2 lines
             if (err) res.send(err);
            // sql.close();

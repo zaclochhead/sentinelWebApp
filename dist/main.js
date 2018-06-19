@@ -2798,6 +2798,7 @@ var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
+        this.user = { id: 1, name: 'Hello' };
     }
     PostsService.prototype.initSocket = function () {
         this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(SERVER_URL);
@@ -2836,8 +2837,8 @@ var PostsService = /** @class */ (function () {
         return this.http.get('/api/get')
             .map(function (res) { return res.json(); });
     };
-    PostsService.prototype.storeData = function () {
-        return this.http.get('/api/store')
+    PostsService.prototype.storeData = function (level) {
+        return this.http.get('/api/store', { params: { level: level } })
             .map(function (res) { return res.json(); });
     };
     PostsService = __decorate([

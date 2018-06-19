@@ -564,7 +564,7 @@ var ElectricityComponent = /** @class */ (function () {
         var _this = this;
         this.initIoConnection();
         var j;
-        this.postsService.storeData().subscribe(function (value) {
+        this.postsService.storeData(10).subscribe(function (value) {
             _this.kiloWatts = value.level;
         });
     };
@@ -577,7 +577,7 @@ var ElectricityComponent = /** @class */ (function () {
         this.themeSubscription.unsubscribe();
     };
     ElectricityComponent.prototype.refreshData = function () {
-        this.postsService.storeData().subscribe(function (value) {
+        this.postsService.storeData(10).subscribe(function (value) {
             var value = value;
         });
     };
@@ -586,9 +586,9 @@ var ElectricityComponent = /** @class */ (function () {
         this.postsService.initSocket();
         this.ioConnection = this.postsService.onMessage()
             .subscribe(function (message) {
-            console.log(message);
+            //console.log(message)
             _this.kiloWatts = message.message;
-            console.log(_this.messages);
+            // console.log(this.messages);
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
             .subscribe(function () {
