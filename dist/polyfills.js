@@ -10598,6 +10598,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+window.global = window;
 if (typeof SVGElement.prototype.contains === 'undefined') {
     SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
 }
@@ -10605,7 +10606,7 @@ if (typeof SVGElement.prototype.contains === 'undefined') {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!********************************!*\
   !*** multi ./src/polyfills.ts ***!
   \********************************/
@@ -10617,5 +10618,5 @@ module.exports = __webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentin
 
 /***/ })
 
-},[[1,"runtime"]]]);
+},[[2,"runtime"]]]);
 //# sourceMappingURL=polyfills.js.map
