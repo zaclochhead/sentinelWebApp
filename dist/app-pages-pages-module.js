@@ -1,24 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["app-pages-pages-module"],{
 
-/***/ "./src/app/event.ts":
-/*!**************************!*\
-  !*** ./src/app/event.ts ***!
-  \**************************/
-/*! exports provided: Event */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Event", function() { return Event; });
-var Event;
-(function (Event) {
-    Event["CONNECT"] = "connect";
-    Event["DISCONNECT"] = "disconnect";
-})(Event || (Event = {}));
-
-
-/***/ }),
-
 /***/ "./src/app/pages/dashboard/contacts/contacts.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/pages/dashboard/contacts/contacts.component.html ***!
@@ -497,7 +478,7 @@ var ElectricityChartComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nb-card size=\"large\">\n  <div class=\"consumption-table\">\n    <div class=\"table-header\">\n      <div>Electricity</div>\n      <div class=\"subtitle\">Consumption</div>\n    </div>\n\n    <nb-tabset fullWidth>\n      <nb-tab *ngFor=\"let year of data\" [tabTitle]=\"year.title\" [active]=\"year.active\">\n        <div class=\"stats-month\" *ngFor=\"let month of year.months\">\n          <div>\n            <span class=\"month\">{{ month.month }}</span>\n            <span class=\"delta\" [ngClass]=\"{ 'down': month.down }\">{{ month.delta }}</span>\n          </div>\n          <div class=\"results\">\n            <b>{{ month.kWatts }}</b> kWh / <b>{{ month.cost }}</b> USD\n          </div>\n        </div>\n      </nb-tab>\n    </nb-tabset>\n  </div>\n\n  <div class=\"chart-container\">\n    <div class=\"chart-header\">\n      <div class=\"header-stats\">\n        <div class=\"stats-block\">\n          <div class=\"subtitle\">Consumed</div>\n          <div>\n            <span class=\"value\">{{kiloWatts}}</span>\n            <span class=\"unit\">kWh</span>\n          </div>\n        </div>\n\n        <div class=\"stats-block\">\n          <div class=\"subtitle\">Spent</div>\n          <div>\n            <span class=\"value\">291</span>\n            <span class=\"unit\">USD</span>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"dropdown\" ngbDropdown>\n        <button type=\"button\" ngbDropdownToggle class=\"btn\"\n                [ngClass]=\"{ 'btn-outline-success': currentTheme == 'default', 'btn-primary': currentTheme != 'default'}\">\n          {{ type }}\n        </button>\n        <ul class=\"dropdown-menu\" ngbDropdownMenu>\n          <li class=\"dropdown-item\" *ngFor=\"let t of types\" (click)=\"type = t\">{{ t }}</li>\n        </ul>\n      </div>\n\n    </div>\n    <ngx-electricity-chart></ngx-electricity-chart>\n  </div>\n</nb-card>\n"
+module.exports = "<nb-card size=\"large\">\n  <div class=\"consumption-table\">\n    <div class=\"table-header\">\n      <div>Electricity</div>\n      <div class=\"subtitle\">Consumption</div>\n    </div>\n\n    <nb-tabset fullWidth>\n      <nb-tab *ngFor=\"let year of data\" [tabTitle]=\"year.title\" [active]=\"year.active\">\n        <div class=\"stats-month\" *ngFor=\"let month of year.months\">\n          <div>\n            <span class=\"month\">{{ month.month }}</span>\n            <span class=\"delta\" [ngClass]=\"{ 'down': month.down }\">{{ month.delta }}</span>\n          </div>\n          <div class=\"results\">\n            <b>{{ month.kWatts }}</b> kWh / <b>{{ month.cost }}</b> USD\n          </div>\n        </div>\n      </nb-tab>\n    </nb-tabset>\n  </div>\n\n  <div class=\"chart-container\">\n    <div class=\"chart-header\">\n      <div class=\"header-stats\">\n        <div class=\"stats-block\">\n          <div class=\"subtitle\">Consumed</div>\n          <div>\n            <span class=\"value\">816</span>\n            <span class=\"unit\">kWh</span>\n          </div>\n        </div>\n\n        <div class=\"stats-block\">\n          <div class=\"subtitle\">Spent</div>\n          <div>\n            <span class=\"value\">291</span>\n            <span class=\"unit\">USD</span>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"dropdown\" ngbDropdown>\n        <button type=\"button\" ngbDropdownToggle class=\"btn\"\n                [ngClass]=\"{ 'btn-outline-success': currentTheme == 'default', 'btn-primary': currentTheme != 'default'}\">\n          {{ type }}\n        </button>\n        <ul class=\"dropdown-menu\" ngbDropdownMenu>\n          <li class=\"dropdown-item\" *ngFor=\"let t of types\" (click)=\"type = t\">{{ t }}</li>\n        </ul>\n      </div>\n\n    </div>\n    <ngx-electricity-chart></ngx-electricity-chart>\n  </div>\n</nb-card>\n"
 
 /***/ }),
 
@@ -524,9 +505,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ElectricityComponent", function() { return ElectricityComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
-/* harmony import */ var _app_posts_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../app/posts.service */ "./src/app/posts.service.ts");
-/* harmony import */ var _app_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../app/event */ "./src/app/event.ts");
-/* harmony import */ var _core_data_electricity_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../@core/data/electricity.service */ "./src/app/@core/data/electricity.service.ts");
+/* harmony import */ var _core_data_electricity_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../@core/data/electricity.service */ "./src/app/@core/data/electricity.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -539,74 +518,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
 var ElectricityComponent = /** @class */ (function () {
-    function ElectricityComponent(eService, themeService, postsService) {
+    function ElectricityComponent(eService, themeService) {
         var _this = this;
         this.eService = eService;
         this.themeService = themeService;
-        this.postsService = postsService;
-        this.messages = [];
-        this.kiloWatts = 84;
         this.type = 'week';
         this.types = ['week', 'month', 'year'];
         this.data = this.eService.getData();
         this.themeSubscription = this.themeService.getJsTheme().subscribe(function (theme) {
             _this.currentTheme = theme.name;
-            _this.refreshData();
-            _this.interval = setInterval(function () {
-                _this.refreshData();
-            }, 100);
         });
     }
-    ElectricityComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.initIoConnection();
-        var j;
-        this.postsService.storeData(10).subscribe(function (value) {
-            _this.kiloWatts = value.level;
-        });
-    };
-    /*   ngOnChanges(){
-        this.postsService.getData().subscribe(value => {
-          this.kiloWatts = value;
-       });
-      } */
     ElectricityComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
-    };
-    ElectricityComponent.prototype.refreshData = function () {
-        this.postsService.storeData(10).subscribe(function (value) {
-            var value = value;
-        });
-    };
-    ElectricityComponent.prototype.initIoConnection = function () {
-        var _this = this;
-        this.postsService.initSocket();
-        this.ioConnection = this.postsService.onMessage()
-            .subscribe(function (message) {
-            //console.log(message)
-            _this.kiloWatts = message.message;
-            // console.log(this.messages);
-        });
-        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
-            .subscribe(function () {
-            console.log('connected');
-        });
-        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].DISCONNECT)
-            .subscribe(function () {
-            console.log('disconnected');
-        });
-    };
-    ElectricityComponent.prototype.sendMessage = function (message) {
-        if (!message) {
-            return;
-        }
-        this.postsService.send({
-            message: message
-        });
-        this.messageContent = null;
     };
     ElectricityComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -614,7 +539,7 @@ var ElectricityComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./electricity.component.scss */ "./src/app/pages/dashboard/electricity/electricity.component.scss")],
             template: __webpack_require__(/*! ./electricity.component.html */ "./src/app/pages/dashboard/electricity/electricity.component.html"),
         }),
-        __metadata("design:paramtypes", [_core_data_electricity_service__WEBPACK_IMPORTED_MODULE_4__["ElectricityService"], _nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_2__["PostsService"]])
+        __metadata("design:paramtypes", [_core_data_electricity_service__WEBPACK_IMPORTED_MODULE_2__["ElectricityService"], _nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"]])
     ], ElectricityComponent);
     return ElectricityComponent;
 }());
@@ -1906,8 +1831,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TemperatureComponent", function() { return TemperatureComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
-/* harmony import */ var _app_posts_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../app/posts.service */ "./src/app/posts.service.ts");
-/* harmony import */ var _app_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../app/event */ "./src/app/event.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1919,13 +1842,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
-
 var TemperatureComponent = /** @class */ (function () {
-    function TemperatureComponent(theme, postsService) {
+    function TemperatureComponent(theme) {
         var _this = this;
         this.theme = theme;
-        this.postsService = postsService;
         this.temperature = 24;
         this.temperatureOff = false;
         this.temperatureMode = 'cool';
@@ -1934,36 +1854,8 @@ var TemperatureComponent = /** @class */ (function () {
         this.humidityMode = 'heat';
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             _this.colors = config.variables;
-            _this.initIoConnection();
         });
-        /*     this.refreshData();
-            this.interval = setInterval(() => {
-                this.refreshData();
-            }, 100); */
     }
-    /*
-      refreshData(){
-        this.postsService.storeData().subscribe(value => {
-          var value = value;
-       });
-      } */
-    TemperatureComponent.prototype.initIoConnection = function () {
-        var _this = this;
-        this.postsService.initSocket();
-        this.ioConnection = this.postsService.onTemperature()
-            .subscribe(function (message) {
-            console.log("temperature", message.temperature);
-            _this.temperature = message.temperature;
-        });
-        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
-            .subscribe(function () {
-            console.log('connected');
-        });
-        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].DISCONNECT)
-            .subscribe(function () {
-            console.log('disconnected');
-        });
-    };
     TemperatureComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
     };
@@ -1973,7 +1865,7 @@ var TemperatureComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./temperature.component.scss */ "./src/app/pages/dashboard/temperature/temperature.component.scss")],
             template: __webpack_require__(/*! ./temperature.component.html */ "./src/app/pages/dashboard/temperature/temperature.component.html"),
         }),
-        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_2__["PostsService"]])
+        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"]])
     ], TemperatureComponent);
     return TemperatureComponent;
 }());
