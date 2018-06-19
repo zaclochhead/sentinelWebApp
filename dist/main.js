@@ -2773,7 +2773,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-container\">\n  <h2>Sentinel Login</h2>\n\n  <span class=\"error\" *ngIf=\"error\">{{ error }}</span>\n\n  <form #formData='ngForm' (ngSubmit)=\"onSubmit(formData)\">\n\n    <input type=\"text\" placeholder=\"Email address..\" (ngModel)=\"email\" name=\"email\" class=\"txt\" required>\n    <input type=\"password\" placeholder=\"Password\" (ngModel)=\"password\" name=\"password\" class=\"txt\" required>\n\n    <button type=\"submit\" [disabled]=\"!formData.valid\" class=\"basic-btn\">Log in</button>\n</form>\n</div>\n"
+module.exports = "<div class = \"background-color:red\"> \n  <div class=\"form-container\">\n    <h2>Sentinel Login</h2>\n\n    <span class=\"error\" *ngIf=\"error\">{{ error }}</span>\n\n    <form #formData='ngForm' (ngSubmit)=\"onSubmit(formData)\">\n\n      <input type=\"text\" placeholder=\"Email address..\" (ngModel)=\"email\" name=\"email\" class=\"txt\" required>\n      <input type=\"password\" placeholder=\"Password\" (ngModel)=\"password\" name=\"password\" class=\"txt\" required>\n\n      <button type=\"submit\" [disabled]=\"!formData.valid\" class=\"basic-btn\">Log in</button>\n  </form>\n  </div>\n</div> \n"
 
 /***/ }),
 
@@ -2784,7 +2784,7 @@ module.exports = "<div class=\"form-container\">\n  <h2>Sentinel Login</h2>\n\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".basic-btn {\n  background: #3B8598;\n  color: white; }\n\n.form-container {\n  background: white;\n  padding: 3.5em;\n  width: 500px;\n  position: fixed;\n  left: 50%;\n  margin-left: -250px; }\n\n.error {\n  background: #f1f0ef;\n  padding: 1em;\n  width: 100%;\n  display: block;\n  margin-bottom: 20px; }\n\n/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background: #E2E4E6;\n  padding-top: 4em; }\n\n.form-container {\n  background: white;\n  padding: 3.5em;\n  width: 500px;\n  position: fixed;\n  left: 50%;\n  margin-left: -250px; }\n\nbutton {\n  padding: 1.2em;\n  width: 100%;\n  cursor: pointer;\n  margin-bottom: 15px;\n  font-size: 1.3em; }\n\ninput.txt {\n  background: #fff !important;\n  padding: 1.3em 1em;\n  font-size: 1.3em;\n  border: 1px solid #BBBBBB; }\n\nh2 {\n  margin: 1.7em 0 .9em 0; }\n"
+module.exports = ".basic-btn {\n  background: #3B8598;\n  color: white; }\n\n.form-container {\n  background: white;\n  padding: 3.5em;\n  width: 500px;\n  position: fixed;\n  left: 50%;\n  margin-left: -250px; }\n\n.error {\n  background: #f1f0ef;\n  padding: 1em;\n  width: 100%;\n  display: block;\n  margin-bottom: 20px; }\n\n/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background: red;\n  padding-top: 4em; }\n\n.form-container {\n  background: white;\n  padding: 3.5em;\n  width: 500px;\n  position: fixed;\n  left: 50%;\n  margin-left: -250px; }\n\nbutton {\n  padding: 1.2em;\n  line-height: 1;\n  width: 100%;\n  cursor: pointer;\n  margin-bottom: 15px;\n  font-size: 1.3em; }\n\ninput.txt {\n  background: #fff !important;\n  padding: 1.3em 1em;\n  font-size: 1.3em;\n  border: 1px solid #BBBBBB;\n  width: 100%;\n  margin: 0 0 1rem;\n  height: 2.4375rem; }\n\nh2 {\n  margin: 1.7em 0 .9em 0; }\n"
 
 /***/ }),
 
@@ -2814,10 +2814,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(router) {
         this.router = router;
-        this.error = "Incorrect login";
     }
-    LoginComponent.prototype.onSubmit = function () {
-        this.router.navigate(['/pages/dashboard']);
+    LoginComponent.prototype.onSubmit = function (formData) {
+        if (formData.value.email === "sentinelwater@outlook.com" && formData.value.password === "Imagine18") {
+            this.router.navigate(['/pages/dashboard']);
+        }
+        else {
+            this.error = "Incorrect login";
+        }
     };
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -2866,7 +2870,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
+var SERVER_URL = 'localhost:1337'; //'https://sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
