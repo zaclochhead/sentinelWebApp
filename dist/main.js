@@ -2773,7 +2773,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  login works!\n</p>\n"
+module.exports = "<div class=\"form-container\">\n  <h2>Sentinel Login</h2>\n\n  <span class=\"error\" *ngIf=\"error\">{{ error }}</span>\n\n  <form #formData='ngForm' (ngSubmit)=\"onSubmit(formData)\">\n\n    <input type=\"text\" placeholder=\"Email address..\" (ngModel)=\"email\" name=\"email\" class=\"txt\" required>\n    <input type=\"password\" placeholder=\"Password\" (ngModel)=\"password\" name=\"password\" class=\"txt\" required>\n\n    <button type=\"submit\" [disabled]=\"!formData.valid\" class=\"basic-btn\">Log in</button>\n</form>\n</div>\n"
 
 /***/ }),
 
@@ -2784,7 +2784,7 @@ module.exports = "<p>\n  login works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".basic-btn {\n  background: #3B8598;\n  color: white; }\n\n.form-container {\n  background: white;\n  padding: 3.5em;\n  width: 500px;\n  position: fixed;\n  left: 50%;\n  margin-left: -250px; }\n\n.error {\n  background: #f1f0ef;\n  padding: 1em;\n  width: 100%;\n  display: block;\n  margin-bottom: 20px; }\n\n/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background: #E2E4E6;\n  padding-top: 4em; }\n\n.form-container {\n  background: white;\n  padding: 3.5em;\n  width: 500px;\n  position: fixed;\n  left: 50%;\n  margin-left: -250px; }\n\nbutton {\n  padding: 1.2em;\n  width: 100%;\n  cursor: pointer;\n  margin-bottom: 15px;\n  font-size: 1.3em; }\n\ninput.txt {\n  background: #fff !important;\n  padding: 1.3em 1em;\n  font-size: 1.3em;\n  border: 1px solid #BBBBBB; }\n\nh2 {\n  margin: 1.7em 0 .9em 0; }\n"
 
 /***/ }),
 
@@ -2799,6 +2799,7 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2809,18 +2810,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
+    function LoginComponent(router) {
+        this.router = router;
+        this.error = "Incorrect login";
     }
+    LoginComponent.prototype.onSubmit = function () {
+        this.router.navigate(['/pages/dashboard']);
+    };
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'login',
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
-            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
+            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")],
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -2859,7 +2866,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SERVER_URL = 'localhost:1337'; ///'sentinelbeta.azurewebsites.net';
+var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
