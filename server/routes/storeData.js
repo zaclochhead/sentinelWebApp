@@ -8,20 +8,27 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
-/*     console.log("request")
-    console.log(req.query.level)
-    console.log("end req"); */
     currentTime = new Date().getTime()/1000; 
-    level = req.query.level;//Math.random() * 200;
-    //temperature = req.query.temperature;//Math.random() * 30;
-    //temperature = Math.ceil(temperature); 
-    //level = Math.ceil(level);
+    year = new Date().getFullYear();
+    month = new Date().getMonth()+1;
+    month = (("0" + month).slice(-2));
+    date = new Date().getDate();
+    date = (("0" + date).slice(-2));
+    hours = new Date().getHours();
+    hours = (("0" + hours).slice(-2));
+    minutes = new Date().getMinutes();
+    minutes = (("0" + minutes).slice(-2));
+    seconds = new Date().getSeconds();
+    seconds = (("0" + seconds).slice(-2));
+    time = hours + ':' + minutes + ':' + seconds;
+    dateID = (year + "-" + month + "-" + date);
+    timeID = dateID + " " + time; 
+    level = req.query.level;
     io.emit('message',JSON.parse('{"message": '+level+'}'));
-    //if(i>10){
     io.emit('temperature', JSON.parse('{"temperature": ' + level + '}')); 
 
     // query to the database and get the records
-    request.query(`INSERT into test (level,timeID, dateID, ID) values (`+level+`, '2018-06-13 13:48:10', '2018-06-13',` + currentTime + ')', function (err, recordset) {
+    request.query(`INSERT into test (level,timeID, dateID, ID) values (`+level+`,'`+timeID+`','`+ dateID + `',` + currentTime + ')', function (err, recordset) {
         //I added these 2 lines
         if (err) res.send(err);
         // sql.close();

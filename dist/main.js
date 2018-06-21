@@ -10,6 +10,7 @@
 var map = {
 	"./charts/charts.module": [
 		"./src/app/pages/charts/charts.module.ts",
+		"app-pages-pages-module~charts-charts-module",
 		"common",
 		"charts-charts-module"
 	],
@@ -46,6 +47,7 @@ var map = {
 	],
 	"app/pages/pages.module": [
 		"./src/app/pages/pages.module.ts",
+		"app-pages-pages-module~charts-charts-module",
 		"common",
 		"app-pages-pages-module"
 	]
@@ -1198,7 +1200,7 @@ var FooterComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-footer',
             styles: [__webpack_require__(/*! ./footer.component.scss */ "./src/app/@theme/components/footer/footer.component.scss")],
-            template: "\n    <span class=\"created-by\">Created with \u2665 by <b><a href=\"https://akveo.com\" target=\"_blank\">Akveo</a></b> 2017</span>\n    <div class=\"socials\">\n      <a href=\"#\" target=\"_blank\" class=\"ion ion-social-github\"></a>\n      <a href=\"#\" target=\"_blank\" class=\"ion ion-social-facebook\"></a>\n      <a href=\"#\" target=\"_blank\" class=\"ion ion-social-twitter\"></a>\n      <a href=\"#\" target=\"_blank\" class=\"ion ion-social-linkedin\"></a>\n    </div>\n  ",
+            template: "\n    <span class=\"created-by\">Sentinel Water 2018</span>\n    <div class=\"socials\">\n      <a href=\"#\" target=\"_blank\" class=\"ion ion-social-facebook\"></a>\n      <a href=\"#\" target=\"_blank\" class=\"ion ion-social-linkedin\"></a>\n    </div>\n  ",
         })
     ], FooterComponent);
     return FooterComponent;
@@ -1215,7 +1217,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-container\"\n     [class.left]=\"position === 'normal'\"\n     [class.right]=\"position === 'inverse'\">\n  <div class=\"logo-containter\">\n    <a (click)=\"toggleSidebar()\" href=\"#\" class=\"navigation\"><i class=\"nb-menu\"></i></a>\n    <div class=\"logo\" (click)=\"goToHome()\">ngx-<span>admin</span></div>\n  </div>\n  <ngx-theme-switcher></ngx-theme-switcher>\n  <ngx-layout-direction-switcher></ngx-layout-direction-switcher>\n</div>\n\n<nb-actions\n  size=\"medium\"\n  class=\"header-container\"\n  [class.right]=\"position === 'normal'\"\n  [class.left]=\"position === 'inverse'\">\n  <nb-action icon=\"nb-gear\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n  <nb-action *nbIsGranted=\"['view', 'user']\" >\n    <nb-user [nbContextMenu]=\"userMenu\" [name]=\"user?.name\" [picture]=\"user?.picture\"></nb-user>\n  </nb-action>\n  <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action>\n  <nb-action class=\"control-item\" icon=\"nb-email\"></nb-action>\n  <nb-action class=\"control-item\">\n    <nb-search type=\"rotate-layout\" (click)=\"startSearch()\"></nb-search>\n  </nb-action>\n</nb-actions>\n"
+module.exports = "<div class=\"header-container\"\n     [class.left]=\"position === 'normal'\"\n     [class.right]=\"position === 'inverse'\">\n  <div class=\"logo-containter\">\n    <a (click)=\"toggleSidebar()\" href=\"#\" class=\"navigation\"><i class=\"nb-menu\"></i></a>\n    <div class=\"logo\" (click)=\"goToHome()\">sentinel<span>water</span></div>\n  </div>\n</div>\n\n<nb-actions\n  size=\"medium\"\n  class=\"header-container\"\n  [class.right]=\"position === 'normal'\"\n  [class.left]=\"position === 'inverse'\">\n  <nb-action icon=\"nb-gear\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n  <nb-action *nbIsGranted=\"['view', 'user']\" >\n  </nb-action>\n  <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action>\n  <nb-action class=\"control-item\" icon=\"nb-email\"></nb-action>\n  <nb-action class=\"control-item\">\n    <nb-search type=\"rotate-layout\" (click)=\"startSearch()\"></nb-search>\n  </nb-action>\n</nb-actions>\n"
 
 /***/ }),
 
@@ -1526,8 +1528,8 @@ var SwitcherComponent = /** @class */ (function () {
     };
     SwitcherComponent.prototype.currentValueLabel = function () {
         return this.isFirstValue()
-            ? this.firstValueLabel
-            : this.secondValueLabel;
+            ? this.secondValueLabel
+            : this.firstValueLabel;
     };
     SwitcherComponent.prototype.changeValue = function () {
         this.value = this.isFirstValue()
@@ -1685,7 +1687,7 @@ var ThemeSwitcherComponent = /** @class */ (function () {
         this.themeService = themeService;
         this.analyticsService = analyticsService;
         this.firstTheme = 'default';
-        this.secondTheme = 'cosmic';
+        this.secondTheme = 'default';
         this.vertical = false;
     }
     ThemeSwitcherComponent.prototype.ngOnInit = function () {
@@ -1854,7 +1856,7 @@ var OneColumnLayoutComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-one-column-layout',
             styles: [__webpack_require__(/*! ./one-column.layout.scss */ "./src/app/@theme/layouts/one-column/one-column.layout.scss")],
-            template: "\n    <nb-layout>\n      <nb-layout-header fixed>\n        <ngx-header></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\" tag=\"menu-sidebar\" responsive>\n        <nb-sidebar-header>\n          <a href=\"#\" class=\"btn btn-hero-success main-btn\">\n            <i class=\"ion ion-social-github\"></i> <span>Support Us</span>\n          </a>\n        </nb-sidebar-header>\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column>\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n    </nb-layout>\n  ",
+            template: "\n    <nb-layout>\n      <nb-layout-header fixed>\n        <ngx-header></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\" tag=\"menu-sidebar\" responsive>\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column>\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n    </nb-layout>\n  ",
         })
     ], OneColumnLayoutComponent);
     return OneColumnLayoutComponent;
@@ -1979,7 +1981,7 @@ var SampleLayoutComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-sample-layout',
             styles: [__webpack_require__(/*! ./sample.layout.scss */ "./src/app/@theme/layouts/sample/sample.layout.scss")],
-            template: "\n    <nb-layout [center]=\"layout.id === 'center-column'\" windowMode>\n      <nb-layout-header fixed>\n        <ngx-header [position]=\"sidebar.id === 'start' ? 'normal': 'inverse'\"></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\"\n                   tag=\"menu-sidebar\"\n                   responsive\n                   [end]=\"sidebar.id === 'end'\">\n        <nb-sidebar-header>\n          <a href=\"#\" class=\"btn btn-hero-success main-btn\">\n            <i class=\"ion ion-social-github\"></i> <span>Support Us</span>\n          </a>\n        </nb-sidebar-header>\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column class=\"main-content\">\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-column start class=\"small\" *ngIf=\"layout.id === 'two-column' || layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-column class=\"small\" *ngIf=\"layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n\n      <nb-sidebar class=\"settings-sidebar\"\n                   tag=\"settings-sidebar\"\n                   state=\"collapsed\"\n                   fixed\n                   [end]=\"sidebar.id !== 'end'\">\n        <ngx-theme-settings></ngx-theme-settings>\n      </nb-sidebar>\n    </nb-layout>\n  ",
+            template: "\n    <nb-layout [center]=\"layout.id === 'center-column'\" windowMode>\n      <nb-layout-header fixed>\n        <ngx-header [position]=\"sidebar.id === 'start' ? 'normal': 'inverse'\"></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\"\n                   tag=\"menu-sidebar\"\n                   responsive\n                   [end]=\"sidebar.id === 'end'\">\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column class=\"main-content\">\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-column start class=\"small\" *ngIf=\"layout.id === 'two-column' || layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-column class=\"small\" *ngIf=\"layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n\n      <nb-sidebar class=\"settings-sidebar\"\n                   tag=\"settings-sidebar\"\n                   state=\"collapsed\"\n                   fixed\n                   [end]=\"sidebar.id !== 'end'\">\n        <ngx-theme-settings></ngx-theme-settings>\n      </nb-sidebar>\n    </nb-layout>\n  ",
         }),
         __metadata("design:paramtypes", [_core_data_state_service__WEBPACK_IMPORTED_MODULE_3__["StateService"],
             _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbMenuService"],
@@ -2031,7 +2033,7 @@ var ThreeColumnsLayoutComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-three-columns-layout',
             styles: [__webpack_require__(/*! ./three-columns.layout.scss */ "./src/app/@theme/layouts/three-columns/three-columns.layout.scss")],
-            template: "\n    <nb-layout>\n      <nb-layout-header fixed>\n        <ngx-header></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\" tag=\"menu-sidebar\" responsive >\n        <nb-sidebar-header>\n          <a href=\"#\" class=\"btn btn-hero-success main-btn\">\n            <i class=\"ion ion-social-github\"></i> <span>Support Us</span>\n          </a>\n        </nb-sidebar-header>\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column class=\"small\">\n      </nb-layout-column>\n\n      <nb-layout-column>\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-column class=\"small\">\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n    </nb-layout>\n  ",
+            template: "\n    <nb-layout>\n      <nb-layout-header fixed>\n        <ngx-header></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\" tag=\"menu-sidebar\" responsive >\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column class=\"small\">\n      </nb-layout-column>\n\n      <nb-layout-column>\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-column class=\"small\">\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n    </nb-layout>\n  ",
         })
     ], ThreeColumnsLayoutComponent);
     return ThreeColumnsLayoutComponent;
@@ -2078,7 +2080,7 @@ var TwoColumnsLayoutComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-two-columns-layout',
             styles: [__webpack_require__(/*! ./two-columns.layout.scss */ "./src/app/@theme/layouts/two-columns/two-columns.layout.scss")],
-            template: "\n    <nb-layout>\n      <nb-layout-header fixed>\n        <ngx-header></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\" tag=\"menu-sidebar\" responsive >\n        <nb-sidebar-header>\n          <a href=\"#\" class=\"btn btn-hero-success main-btn\">\n            <i class=\"ion ion-social-github\"></i> <span>Support Us</span>\n          </a>\n        </nb-sidebar-header>\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column class=\"small\">\n      </nb-layout-column>\n\n      <nb-layout-column>\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n\n    </nb-layout>\n  ",
+            template: "\n    <nb-layout>\n      <nb-layout-header fixed>\n        <ngx-header></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\" tag=\"menu-sidebar\" responsive >\n        <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n      <nb-layout-column class=\"small\">\n      </nb-layout-column>\n\n      <nb-layout-column>\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n\n    </nb-layout>\n  ",
         })
     ], TwoColumnsLayoutComponent);
     return TwoColumnsLayoutComponent;
@@ -2269,96 +2271,6 @@ var TimingPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/@theme/styles/theme.cosmic.ts":
-/*!***********************************************!*\
-  !*** ./src/app/@theme/styles/theme.cosmic.ts ***!
-  \***********************************************/
-/*! exports provided: COSMIC_THEME */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COSMIC_THEME", function() { return COSMIC_THEME; });
-var COSMIC_THEME = {
-    name: 'cosmic',
-    base: 'default',
-    variables: {
-        temperature: [
-            '#2ec7fe',
-            '#31ffad',
-            '#7bff24',
-            '#fff024',
-            '#f7bd59',
-        ],
-        solar: {
-            gradientLeft: '#7bff24',
-            gradientRight: '#2ec7fe',
-            shadowColor: '#19977E',
-            radius: ['70%', '90%'],
-        },
-        traffic: {
-            colorBlack: '#000000',
-            tooltipBg: 'rgba(0, 255, 170, 0.35)',
-            tooltipBorderColor: '#00d977',
-            tooltipExtraCss: 'box-shadow: 0px 2px 46px 0 rgba(0, 255, 170, 0.35); border-radius: 10px; padding: 4px 16px;',
-            tooltipTextColor: '#ffffff',
-            tooltipFontWeight: 'normal',
-            lineBg: '#d1d1ff',
-            lineShadowBlur: '14',
-            itemColor: '#BEBBFF',
-            itemBorderColor: '#ffffff',
-            itemEmphasisBorderColor: '#ffffff',
-            shadowLineDarkBg: '#655ABD',
-            shadowLineShadow: 'rgba(33, 7, 77, 0.5)',
-            gradFrom: 'rgba(118, 89, 255, 0.4)',
-            gradTo: 'rgba(164, 84, 255, 0.5)',
-        },
-        electricity: {
-            tooltipBg: 'rgba(0, 255, 170, 0.35)',
-            tooltipLineColor: 'rgba(255, 255, 255, 0.1)',
-            tooltipLineWidth: '1',
-            tooltipBorderColor: '#00d977',
-            tooltipExtraCss: 'box-shadow: 0px 2px 46px 0 rgba(0, 255, 170, 0.35); border-radius: 10px; padding: 8px 24px;',
-            tooltipTextColor: '#ffffff',
-            tooltipFontWeight: 'normal',
-            axisLineColor: 'rgba(161, 161 ,229, 0.3)',
-            xAxisTextColor: '#a1a1e5',
-            yAxisSplitLine: 'rgba(161, 161 ,229, 0.2)',
-            itemBorderColor: '#ffffff',
-            lineStyle: 'dotted',
-            lineWidth: '6',
-            lineGradFrom: '#00ffaa',
-            lineGradTo: '#fff835',
-            lineShadow: 'rgba(14, 16, 48, 0.4)',
-            areaGradFrom: 'rgba(188, 92, 255, 0.5)',
-            areaGradTo: 'rgba(188, 92, 255, 0)',
-            shadowLineDarkBg: '#a695ff',
-        },
-        bubbleMap: {
-            titleColor: '#ffffff',
-            areaColor: '#2c2961',
-            areaHoverColor: '#a1a1e5',
-            areaBorderColor: '#654ddb',
-        },
-        echarts: {
-            bg: '#3d3780',
-            textColor: '#ffffff',
-            axisLineColor: '#a1a1e5',
-            splitLineColor: '#342e73',
-            itemHoverShadowColor: 'rgba(0, 0, 0, 0.5)',
-            tooltipBackgroundColor: '#6a7985',
-            areaOpacity: '1',
-        },
-        chartjs: {
-            axisLineColor: '#a1a1e5',
-            textColor: '#ffffff',
-        },
-    },
-};
-
-
-/***/ }),
-
 /***/ "./src/app/@theme/styles/theme.default.ts":
 /*!************************************************!*\
   !*** ./src/app/@theme/styles/theme.default.ts ***!
@@ -2470,14 +2382,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pipes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pipes */ "./src/app/@theme/pipes/index.ts");
 /* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./layouts */ "./src/app/@theme/layouts/index.ts");
 /* harmony import */ var _styles_theme_default__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./styles/theme.default */ "./src/app/@theme/styles/theme.default.ts");
-/* harmony import */ var _styles_theme_cosmic__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./styles/theme.cosmic */ "./src/app/@theme/styles/theme.cosmic.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -2526,8 +2436,8 @@ var PIPES = [
     _pipes__WEBPACK_IMPORTED_MODULE_7__["TimingPipe"],
 ];
 var NB_THEME_PROVIDERS = _nebular_theme__WEBPACK_IMPORTED_MODULE_4__["NbThemeModule"].forRoot({
-    name: 'cosmic',
-}, [_styles_theme_default__WEBPACK_IMPORTED_MODULE_9__["DEFAULT_THEME"], _styles_theme_cosmic__WEBPACK_IMPORTED_MODULE_10__["COSMIC_THEME"]]).providers.concat(_nebular_theme__WEBPACK_IMPORTED_MODULE_4__["NbSidebarModule"].forRoot().providers, _nebular_theme__WEBPACK_IMPORTED_MODULE_4__["NbMenuModule"].forRoot().providers);
+    name: 'default',
+}, [_styles_theme_default__WEBPACK_IMPORTED_MODULE_9__["DEFAULT_THEME"], _styles_theme_default__WEBPACK_IMPORTED_MODULE_9__["DEFAULT_THEME"]]).providers.concat(_nebular_theme__WEBPACK_IMPORTED_MODULE_4__["NbSidebarModule"].forRoot().providers, _nebular_theme__WEBPACK_IMPORTED_MODULE_4__["NbMenuModule"].forRoot().providers);
 var ThemeModule = /** @class */ (function () {
     function ThemeModule() {
     }
@@ -2870,7 +2780,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
+var SERVER_URL = 'localhost:1337'; //'https://sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
@@ -2914,6 +2824,10 @@ var PostsService = /** @class */ (function () {
     };
     PostsService.prototype.storeData = function (level) {
         return this.http.get('/api/store', { params: { level: level } })
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getDays = function () {
+        return this.http.get('/api/getDays')
             .map(function (res) { return res.json(); });
     };
     PostsService = __decorate([
