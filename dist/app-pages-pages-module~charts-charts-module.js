@@ -67230,18 +67230,18 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             var colors = config.variables;
             var chartjs = config.variables.chartjs;
-            var currentDayIndex = new Date().getDay() - 1;
-            var currentDay = _this.weekdays[currentDayIndex];
+            _this.currentDayIndex = new Date().getDay() - 1;
+            var currentDay = _this.weekdays[_this.currentDayIndex];
             _this.postsService.getDays().subscribe(function (value) {
-                _this.mapData(value, currentDayIndex);
+                _this.mapData(value, _this.currentDayIndex);
             });
             _this.data = {
                 labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                 datasets: [{
                         label: 'Litres Used',
-                        data: [_this.random(), _this.random(), _this.random(), _this.random(), _this.random(), _this.random(), _this.random()],
-                        borderColor: colors.info,
-                        backgroundColor: colors.info,
+                        data: [2, 100, 70, 60, 30, 12, 150],
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
@@ -67298,10 +67298,12 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         this.initIoConnection();
     }
     ChartjsMultipleXaxisComponent.prototype.initIoConnection = function () {
+        var _this = this;
         this.postsService.initSocket();
         this.ioConnection = this.postsService.onTemperature()
             .subscribe(function (message) {
             var waterLevel = message.temperature;
+            _this.updateWaterLevel(waterLevel);
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
             .subscribe(function () {
@@ -67312,6 +67314,22 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
     };
     ChartjsMultipleXaxisComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
+    };
+    ChartjsMultipleXaxisComponent.prototype.updateWaterLevel = function (waterLevel) {
+        var weeklyData = [2, 100, 70, 60, 30, 12, 150];
+        weeklyData[this.currentDayIndex] = waterLevel;
+        this.data = {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                    label: 'Litres Used',
+                    data: weeklyData,
+                    borderColor: "#27CFC3",
+                    backgroundColor: "#27CFC3",
+                    fill: false,
+                    pointRadius: 8,
+                    pointHoverRadius: 10,
+                }],
+        };
     };
     ChartjsMultipleXaxisComponent.prototype.mapData = function (object, currentDayIndex) {
         console.log(object.recordset);
@@ -67377,7 +67395,7 @@ var D3BarComponent = /** @class */ (function () {
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             var colors = config.variables;
             _this.colorScheme = {
-                domain: [colors.infoLight, colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
+                domain: ["#27CFC3", colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
             };
         });
         this.initIoConnection();
