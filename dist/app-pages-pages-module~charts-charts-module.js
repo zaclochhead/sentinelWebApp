@@ -67386,6 +67386,7 @@ var D3BarComponent = /** @class */ (function () {
         this.postsService = postsService;
         this.results = [
             { name: '', value: 100 },
+            { name: "bar", value: 100 }
         ];
         //results = Immutable.Map({ name: '', value:100 });
         this.showLegend = false;
@@ -67395,7 +67396,7 @@ var D3BarComponent = /** @class */ (function () {
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             var colors = config.variables;
             _this.colorScheme = {
-                domain: ["#27CFC3", colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
+                domain: ["#27CFC3", "white", colors.successLight, colors.warningLight, colors.dangerLight],
             };
         });
         this.initIoConnection();
@@ -67418,6 +67419,7 @@ var D3BarComponent = /** @class */ (function () {
     D3BarComponent.prototype.updateResults = function (waterLevel) {
         this.results = [
             { name: '', value: waterLevel },
+            { name: "bar", value: 100 }
         ];
     };
     D3BarComponent.prototype.ngOnDestroy = function () {
