@@ -9,6 +9,9 @@ const api = require('./server/routes/api');
 const electricity = require('./server/routes/electricity');
 const getData = require('./server/routes/getData');
 const storeData = require('./server/routes/storeData');
+const getDay = require('./server/routes/getDay');
+const getWeek = require('./server/routes/getWeek');
+const getYear = require('./server/routes/getYear');
 const app = express();
 var sql = require('mssql'); // MS Sql Server client
 
@@ -23,6 +26,9 @@ app.use('/api', api);
 app.use('/api/electricity', electricity);
 app.use('/api/get', getData);
 app.use('/api/store', storeData);
+app.use('/api/getWeek', getWeek);
+app.use('/api/getYear', getYear);
+app.use('/api/getDay', getDay);
 
 
 // config for your database
@@ -71,7 +77,7 @@ io.on('connect', function (socket) {
         io.emit('message', m);
     });
     socket.on('disconnect', function () {
-        console.log('Client is disconnected');
+        console.log('Client disconnected');
     });
 });
 
