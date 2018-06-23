@@ -24,8 +24,7 @@ router.get('/', function (req, res) {
     dateID = (year + "-" + month + "-" + date);
     timeID = dateID + " " + time; 
     level = req.query.level;
-    io.emit('message',JSON.parse('{"message": '+level+'}'));
-    io.emit('temperature', JSON.parse('{"temperature": ' + level + '}')); 
+    io.emit('level', JSON.parse('{"level": ' + level + '}')); 
 
     // query to the database and get the records
     request.query(`INSERT into test (level,timeID, dateID, ID) values (`+level+`,'`+timeID+`','`+ dateID + `',` + currentTime + ')', function (err, recordset) {

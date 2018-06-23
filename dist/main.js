@@ -2780,7 +2780,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
+var SERVER_URL = 'localhost:1337'; //'https://sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
@@ -2797,16 +2797,22 @@ var PostsService = /** @class */ (function () {
             _this.socket.on('message', function (data) { return observer.next(data); });
         });
     };
-    PostsService.prototype.onTemperature = function () {
+    PostsService.prototype.onLevel = function () {
         var _this = this;
         return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
-            _this.socket.on('temperature', function (data) { return observer.next(data); });
+            _this.socket.on('level', function (data) { return observer.next(data); });
         });
     };
     PostsService.prototype.onEvent = function (event) {
         var _this = this;
         return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
             _this.socket.on(event, function () { return observer.next(); });
+        });
+    };
+    PostsService.prototype.onWeek = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('weeklyWaterLevels', function (data) { return observer.next(data); });
         });
     };
     // Get all posts from the API
@@ -2826,8 +2832,8 @@ var PostsService = /** @class */ (function () {
         return this.http.get('/api/store', { params: { level: level } })
             .map(function (res) { return res.json(); });
     };
-    PostsService.prototype.getDays = function () {
-        return this.http.get('/api/getDays')
+    PostsService.prototype.getWeek = function () {
+        return this.http.get('/api/getWeek')
             .map(function (res) { return res.json(); });
     };
     PostsService = __decorate([
@@ -2982,7 +2988,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\src\main.ts */"./src/main.ts");
 
 
 /***/ }),

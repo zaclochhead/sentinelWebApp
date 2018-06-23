@@ -867,15 +867,15 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\bootstrap\dist\css\bootstrap.css */"./node_modules/bootstrap/dist/css/bootstrap.css");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\typeface-exo\index.css */"./node_modules/typeface-exo/index.css");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\roboto-fontface\css\roboto\roboto-fontface.css */"./node_modules/roboto-fontface/css/roboto/roboto-fontface.css");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\ionicons\scss\ionicons.scss */"./node_modules/ionicons/scss/ionicons.scss");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\font-awesome\scss\font-awesome.scss */"./node_modules/font-awesome/scss/font-awesome.scss");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\socicon\css\socicon.css */"./node_modules/socicon/css/socicon.css");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\nebular-icons\scss\nebular-icons.scss */"./node_modules/nebular-icons/scss/nebular-icons.scss");
-__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\node_modules\pace-js\templates\pace-theme-flash.tmpl.css */"./node_modules/pace-js/templates/pace-theme-flash.tmpl.css");
-module.exports = __webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\FrontEnd\ngx-admin-master\src\app\@theme\styles\styles.scss */"./src/app/@theme/styles/styles.scss");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\bootstrap\dist\css\bootstrap.css */"./node_modules/bootstrap/dist/css/bootstrap.css");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\typeface-exo\index.css */"./node_modules/typeface-exo/index.css");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\roboto-fontface\css\roboto\roboto-fontface.css */"./node_modules/roboto-fontface/css/roboto/roboto-fontface.css");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\ionicons\scss\ionicons.scss */"./node_modules/ionicons/scss/ionicons.scss");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\font-awesome\scss\font-awesome.scss */"./node_modules/font-awesome/scss/font-awesome.scss");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\socicon\css\socicon.css */"./node_modules/socicon/css/socicon.css");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\nebular-icons\scss\nebular-icons.scss */"./node_modules/nebular-icons/scss/nebular-icons.scss");
+__webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\node_modules\pace-js\templates\pace-theme-flash.tmpl.css */"./node_modules/pace-js/templates/pace-theme-flash.tmpl.css");
+module.exports = __webpack_require__(/*! C:\Users\Zac\Desktop\2018courses\sentinel\Sentinel\WebApplication\sentinelWeb\src\app\@theme\styles\styles.scss */"./src/app/@theme/styles/styles.scss");
 
 
 /***/ })

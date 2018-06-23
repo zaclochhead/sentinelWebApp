@@ -67226,27 +67226,15 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         var _this = this;
         this.theme = theme;
         this.postsService = postsService;
+        this.weeklyWaterLevels = [];
         this.weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             var colors = config.variables;
             var chartjs = config.variables.chartjs;
             _this.currentDayIndex = new Date().getDay() - 1;
             var currentDay = _this.weekdays[_this.currentDayIndex];
-            _this.postsService.getDays().subscribe(function (value) {
-                _this.mapData(value, _this.currentDayIndex);
-            });
-            _this.data = {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                datasets: [{
-                        label: 'Litres Used',
-                        data: [2, 100, 70, 60, 30, 12, 150],
-                        borderColor: "#27CFC3",
-                        backgroundColor: "#27CFC3",
-                        fill: false,
-                        pointRadius: 8,
-                        pointHoverRadius: 10,
-                    }],
-            };
+            _this.initIoConnection();
+            _this.setWeeklyWaterLevels();
             _this.options = {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -67295,15 +67283,55 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 },
             };
         });
-        this.initIoConnection();
     }
     ChartjsMultipleXaxisComponent.prototype.initIoConnection = function () {
         var _this = this;
         this.postsService.initSocket();
-        this.ioConnection = this.postsService.onTemperature()
+        this.ioWeeklyConnection = this.postsService.onWeek()
             .subscribe(function (message) {
-            var waterLevel = message.temperature;
-            _this.updateWaterLevel(waterLevel);
+            var day1 = message[0][0];
+            var day2 = message[1][0];
+            var day3 = message[2][0];
+            var day4 = message[3][0];
+            var day5 = message[4][0];
+            var day6 = message[5][0];
+            var day7 = message[6][0];
+            //let weeklyWaterLevels = [];
+            var tempWaterLevels = [day1[""], day2[""], day3[""], day4[""], day5[""], day6[""], day7[""]];
+            for (var i = 0; i < 7; i++) {
+                if ((_this.currentDayIndex - i) >= 0) {
+                    _this.weeklyWaterLevels[_this.currentDayIndex - i] = tempWaterLevels[i];
+                }
+            }
+            _this.data = {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: [{
+                        label: 'Litres Used',
+                        data: _this.weeklyWaterLevels,
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
+                        fill: false,
+                        pointRadius: 8,
+                        pointHoverRadius: 10,
+                    }],
+            };
+        });
+        this.ioTodayConnection = this.postsService.onLevel()
+            .subscribe(function (message) {
+            var weeklyWaterLevels = _this.weeklyWaterLevels;
+            weeklyWaterLevels[_this.currentDayIndex] = message.level;
+            _this.data = {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: [{
+                        label: 'Litres Used',
+                        data: weeklyWaterLevels,
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
+                        fill: false,
+                        pointRadius: 8,
+                        pointHoverRadius: 10,
+                    }],
+            };
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
             .subscribe(function () {
@@ -67315,28 +67343,18 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
     ChartjsMultipleXaxisComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
     };
-    ChartjsMultipleXaxisComponent.prototype.updateWaterLevel = function (waterLevel) {
-        var weeklyData = [2, 100, 70, 60, 30, 12, 150];
-        weeklyData[this.currentDayIndex] = waterLevel;
-        this.data = {
-            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-            datasets: [{
-                    label: 'Litres Used',
-                    data: weeklyData,
-                    borderColor: "#27CFC3",
-                    backgroundColor: "#27CFC3",
-                    fill: false,
-                    pointRadius: 8,
-                    pointHoverRadius: 10,
-                }],
-        };
+    ChartjsMultipleXaxisComponent.prototype.getDayIndex = function (currentDay, nextDay) {
+        if ((currentDay - nextDay) < 0) {
+            return 7 - (nextDay - currentDay);
+        }
+        else {
+            return nextDay;
+        }
     };
-    ChartjsMultipleXaxisComponent.prototype.mapData = function (object, currentDayIndex) {
-        console.log(object.recordset);
+    ChartjsMultipleXaxisComponent.prototype.setWeeklyWaterLevels = function () {
+        this.postsService.getWeek().subscribe(function (value) {
+        });
         return;
-    };
-    ChartjsMultipleXaxisComponent.prototype.random = function () {
-        return Math.round(Math.random() * 100);
     };
     ChartjsMultipleXaxisComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -67404,9 +67422,9 @@ var D3BarComponent = /** @class */ (function () {
     D3BarComponent.prototype.initIoConnection = function () {
         var _this = this;
         this.postsService.initSocket();
-        this.ioConnection = this.postsService.onTemperature()
+        this.ioConnection = this.postsService.onLevel()
             .subscribe(function (message) {
-            var waterLevel = message.temperature;
+            var waterLevel = message.level;
             _this.updateResults(waterLevel);
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
