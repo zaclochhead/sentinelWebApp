@@ -2780,7 +2780,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SERVER_URL = 'localhost:1337'; //'https://sentinelbeta.azurewebsites.net';
+var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
@@ -2815,6 +2815,18 @@ var PostsService = /** @class */ (function () {
             _this.socket.on('weeklyWaterLevels', function (data) { return observer.next(data); });
         });
     };
+    PostsService.prototype.onDay = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('dailyWaterLevels', function (data) { return observer.next(data); });
+        });
+    };
+    PostsService.prototype.onYear = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('yearlyWaterLevels', function (data) { return observer.next(data); });
+        });
+    };
     // Get all posts from the API
     PostsService.prototype.getAllPosts = function () {
         return this.http.get('/api/posts')
@@ -2832,8 +2844,16 @@ var PostsService = /** @class */ (function () {
         return this.http.get('/api/store', { params: { level: level } })
             .map(function (res) { return res.json(); });
     };
-    PostsService.prototype.getWeek = function () {
-        return this.http.get('/api/getWeek')
+    PostsService.prototype.getWeek = function (week) {
+        return this.http.get('/api/getWeek', { params: { week: week } })
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getYear = function (month) {
+        return this.http.get('/api/getYear', { params: { month: month } })
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getDay = function (day) {
+        return this.http.get('/api/getDay', { params: { day: day } })
             .map(function (res) { return res.json(); });
     };
     PostsService = __decorate([

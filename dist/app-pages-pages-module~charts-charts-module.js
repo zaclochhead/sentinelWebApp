@@ -67227,14 +67227,16 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         this.theme = theme;
         this.postsService = postsService;
         this.weeklyWaterLevels = [];
-        this.weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        this.dailyWaterLevels = [];
+        this.yearlyWaterLevels = [];
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             var colors = config.variables;
             var chartjs = config.variables.chartjs;
-            _this.currentDayIndex = new Date().getDay() - 1;
-            var currentDay = _this.weekdays[_this.currentDayIndex];
+            _this.currentDayIndex = new Date().getDay();
+            _this.currentMonthIndex = new Date().getMonth();
+            _this.currentHourIndex = new Date().getHours() - 1;
             _this.initIoConnection();
-            _this.setWeeklyWaterLevels();
+            _this.setWeeklyWaterLevels(0);
             _this.options = {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -67252,7 +67254,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                         {
                             display: true,
                             scaleLabel: {
-                                display: true,
+                                display: false,
                                 labelString: 'Day',
                             },
                             gridLines: {
@@ -67284,11 +67286,13 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             };
         });
     }
+    ;
     ChartjsMultipleXaxisComponent.prototype.initIoConnection = function () {
         var _this = this;
         this.postsService.initSocket();
         this.ioWeeklyConnection = this.postsService.onWeek()
             .subscribe(function (message) {
+            // average water levels from today to 7 days ago
             var day1 = message[0][0];
             var day2 = message[1][0];
             var day3 = message[2][0];
@@ -67296,11 +67300,18 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             var day5 = message[4][0];
             var day6 = message[5][0];
             var day7 = message[6][0];
-            //let weeklyWaterLevels = [];
+            var dayIndex;
             var tempWaterLevels = [day1[""], day2[""], day3[""], day4[""], day5[""], day6[""], day7[""]];
+            // need to use different logic for sundays
+            if (_this.currentDayIndex === 0) {
+                dayIndex = 6;
+            }
+            else {
+                dayIndex = _this.currentDayIndex - 1;
+            }
             for (var i = 0; i < 7; i++) {
-                if ((_this.currentDayIndex - i) >= 0) {
-                    _this.weeklyWaterLevels[_this.currentDayIndex - i] = tempWaterLevels[i];
+                if ((dayIndex - i) >= 0) {
+                    _this.weeklyWaterLevels[dayIndex - i] = tempWaterLevels[i];
                 }
             }
             _this.data = {
@@ -67316,15 +67327,33 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                     }],
             };
         });
-        this.ioTodayConnection = this.postsService.onLevel()
+        this.ioYearlyConnection = this.postsService.onYear()
             .subscribe(function (message) {
-            var weeklyWaterLevels = _this.weeklyWaterLevels;
-            weeklyWaterLevels[_this.currentDayIndex] = message.level;
+            // average water levels from today to 7 days ago
+            var month1 = message[0][0];
+            var month2 = message[1][0];
+            var month3 = message[2][0];
+            var month4 = message[3][0];
+            var month5 = message[4][0];
+            var month6 = message[5][0];
+            var month7 = message[6][0];
+            var month8 = message[7][0];
+            var month9 = message[8][0];
+            var month10 = message[9][0];
+            var month11 = message[10][0];
+            var month12 = message[11][0];
+            var tempWaterLevels = [month1[""], month2[""], month3[""], month4[""], month5[""], month6[""], month7[""], month8[""], month9[""], month10[""], month11[""], month12[""]];
+            // need to use different logic for sundays
+            for (var i = 0; i < 12; i++) {
+                if ((_this.currentMonthIndex - i) >= 0) {
+                    _this.yearlyWaterLevels[_this.currentMonthIndex - i] = tempWaterLevels[i];
+                }
+            }
             _this.data = {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [{
                         label: 'Litres Used',
-                        data: weeklyWaterLevels,
+                        data: _this.yearlyWaterLevels,
                         borderColor: "#27CFC3",
                         backgroundColor: "#27CFC3",
                         fill: false,
@@ -67332,6 +67361,59 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                         pointHoverRadius: 10,
                     }],
             };
+        });
+        this.ioDailyConnection = this.postsService.onDay()
+            .subscribe(function (message) {
+            // average water levels from today to 7 days ago
+            var hour1 = message[0][0];
+            var hour2 = message[1][0];
+            var hour3 = message[2][0];
+            var hour4 = message[3][0];
+            var hour5 = message[4][0];
+            var hour6 = message[5][0];
+            var hour7 = message[6][0];
+            var hour8 = message[7][0];
+            var hour9 = message[8][0];
+            var hour10 = message[9][0];
+            var hour11 = message[10][0];
+            var hour12 = message[11][0];
+            var hour13 = message[12][0];
+            var hour14 = message[13][0];
+            var hour15 = message[14][0];
+            var hour16 = message[15][0];
+            var hour17 = message[16][0];
+            var hour18 = message[17][0];
+            var hour19 = message[18][0];
+            var hour20 = message[19][0];
+            var hour21 = message[20][0];
+            var hour22 = message[21][0];
+            var hour23 = message[22][0];
+            var hour24 = message[23][0];
+            var tempWaterLevels = [hour1[""], hour2[""], hour3[""], hour4[""], hour5[""], hour6[""], hour7[""], hour8[""], hour9[""], hour10[""], hour11[""], hour12[""], hour13[""], hour14[""], hour15[""], hour16[""], hour17[""], hour18[""], hour19[""], hour20[""], hour21[""], hour22[""], hour23[""], hour24[""]];
+            console.log("here");
+            for (var i = 0; i < 24; i++) {
+                if ((_this.currentHourIndex - i) >= 0) {
+                    _this.dailyWaterLevels[_this.currentHourIndex - i] = tempWaterLevels[i];
+                }
+            }
+            _this.data = {
+                labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '00'],
+                datasets: [{
+                        label: 'Litres Used',
+                        data: _this.dailyWaterLevels,
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
+                        fill: false,
+                        pointRadius: 8,
+                        pointHoverRadius: 10,
+                    }],
+            };
+        });
+        this.ioTodayConnection = this.postsService.onLevel()
+            .subscribe(function (message) {
+            if (_this.weekOffset === 0 && _this.dayOffset === 0) {
+                _this.setWeeklyWaterLevels(0);
+            }
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
             .subscribe(function () {
@@ -67343,19 +67425,33 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
     ChartjsMultipleXaxisComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
     };
-    ChartjsMultipleXaxisComponent.prototype.getDayIndex = function (currentDay, nextDay) {
-        if ((currentDay - nextDay) < 0) {
-            return 7 - (nextDay - currentDay);
-        }
-        else {
-            return nextDay;
-        }
-    };
-    ChartjsMultipleXaxisComponent.prototype.setWeeklyWaterLevels = function () {
-        this.postsService.getWeek().subscribe(function (value) {
+    ChartjsMultipleXaxisComponent.prototype.setWeeklyWaterLevels = function (week) {
+        this.postsService.getWeek(week).subscribe(function (value) {
         });
         return;
     };
+    ChartjsMultipleXaxisComponent.prototype.setYearlyWaterLevels = function (month) {
+        this.postsService.getYear(month).subscribe(function (value) {
+        });
+        return;
+    };
+    ChartjsMultipleXaxisComponent.prototype.setDailyWaterLevels = function (day) {
+        this.postsService.getDay(day).subscribe(function (value) {
+        });
+        return;
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("weekOffset"),
+        __metadata("design:type", Object)
+    ], ChartjsMultipleXaxisComponent.prototype, "weekOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("dayOffset"),
+        __metadata("design:type", Object)
+    ], ChartjsMultipleXaxisComponent.prototype, "dayOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("dateMetric"),
+        __metadata("design:type", Object)
+    ], ChartjsMultipleXaxisComponent.prototype, "dateMetric", void 0);
     ChartjsMultipleXaxisComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-chartjs-multiple-xaxis',
