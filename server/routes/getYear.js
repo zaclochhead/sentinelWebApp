@@ -9,78 +9,45 @@ const router = express.Router();
 
 router.get('/', function (req, res) {
     const month = req.query.month;
+    const currentYear = new Date().getFullYear();
+    const currentMonth = 12;
+
     request.query(`
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(0-month*12)+`,GETDATE()),0)
-    AND dateID < dateadd(month,datediff(month,`+(-1-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+currentMonth+` AND YEAR(dateID) = `+ (currentYear-month)+`
     
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(1-month*12)+`,GETDATE()),0)
-    AND dateID < dateadd(month,datediff(month,`+(0-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-1)+` AND YEAR(dateID) = `+(currentYear-month)+`
     
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(2-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(1-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-2)+` AND YEAR(dateID) = `+(currentYear-month)+`
     
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(3-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(2-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-3)+` AND YEAR(dateID) = `+(currentYear-month)+`
 
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(4-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(3-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-4)+` AND YEAR(dateID) = `+(currentYear-month)+`
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(5-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(4-month*12)+`,GETDATE()),0) 
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-5)+` AND YEAR(dateID) = `+(currentYear-month)+`
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(6-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(5-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-6)+` AND YEAR(dateID) = `+(currentYear-month)+`
 
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(7-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(6-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-7)+` AND YEAR(dateID) = `+(currentYear-month)+`
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(8-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(7-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-8)+` AND YEAR(dateID) = `+(currentYear-month)+`
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(9-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(8-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-9)+` AND YEAR(dateID) = `+(currentYear-month)+`
 
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(10-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(9-month*12)+`,GETDATE()),0)
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-10)+` AND YEAR(dateID) = `+(currentYear-month)+`
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(month,datediff(month,`+(11-month*12)+`,GETDATE()),0)
-        AND dateID < dateadd(month,datediff(month,`+(10-month*12)+`,GETDATE()),0)`, function (err, recordset) {
+    SELECT avg(level) FROM test 
+    WHERE MONTH(dateID) = `+(currentMonth-11)+` AND YEAR(dateID) = `+(currentYear-month), function (err, recordset) {
 
         if (err) {
             res.send(err);

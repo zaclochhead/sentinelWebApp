@@ -2852,8 +2852,20 @@ var PostsService = /** @class */ (function () {
         return this.http.get('/api/getYear', { params: { month: month } })
             .map(function (res) { return res.json(); });
     };
-    PostsService.prototype.getDay = function (day) {
-        return this.http.get('/api/getDay', { params: { day: day } })
+    PostsService.prototype.getDay = function (hour) {
+        return this.http.get('/api/getDay', { params: { hour: hour } })
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getCurrentWeek = function () {
+        return this.http.get('/api/getCurrentWeek')
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getCurrentYear = function () {
+        return this.http.get('/api/getCurrentYear')
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getCurrentDay = function () {
+        return this.http.get('/api/getCurrentDay')
             .map(function (res) { return res.json(); });
     };
     PostsService = __decorate([

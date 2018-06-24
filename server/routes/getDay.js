@@ -8,151 +8,118 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
-    const hour = req.query.hour;
-    request.query(`
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(11-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(12-hour*24)+`, GETDATE())
-    
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(10-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(11-hour*24)+`, GETDATE())
-    
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(9-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(10-hour*24)+`, GETDATE())
-    
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(8-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(9-hour*24)+`, GETDATE())
+    const hour = request.query.hour;
 
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(7-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(8-hour*24)+`, GETDATE())
+    const date = new Date();
+    var currentHour = date.getHours();
+    var timeFormat; 
+
+    if(currentHour>=12){
+        timeFormat = " PM";
+    }
+    else{
+        timeFormat = " AM";
+    }
+
+    //get the number of hours until midnight
+    currentHour = currentHour - 24; 
+
+    request.query(`
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-1-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(0-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(8-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(9-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-2-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-1-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(7-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(8-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-3-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-2-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(6-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(7-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-4-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-3-currentHour - 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
+
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-5-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-4-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(5-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(4-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-6-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-5-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(4-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(3-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-7-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-6-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(3-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(2-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-8-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-7-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(1-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(0-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-9-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-8-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(0-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-1-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-10-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-9-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-1-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-2-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-11-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-10-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-2-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-3-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-12-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-11-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-3-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-4-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-13-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-12-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-4-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-5-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-14-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-13-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-5-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-6-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-15-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-14-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-6-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-7-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-16-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-15-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-7-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-8-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-17-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-16-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-8-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-9-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-18-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-17-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-9-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-10-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-19-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-18-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-10-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-11-hour*24)+`, GETDATE())
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-20-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-19-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
     
-    select 
-    avg(level)
-    from test
-    WHERE timeID >  DATEADD(HOUR, `+(-11-hour*24)+`, GETDATE())
-    AND timeID <  DATEADD(HOUR, `+(-12-hour*24)+`, GETDATE())`, function (err, recordset) {
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-21-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-20-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
+    
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-22-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-21-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
+    
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-23-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-22-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))
+    
+    select avg(level) from test
+    WHERE timeID >  DATEADD(HOUR,`+(-24-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '` + timeFormat +`', 126),11,1,' '),121))
+    AND timeID <  DATEADD(HOUR, `+(-23-currentHour- 24*hour)+`, CONVERT(VARCHAR(24),stuff(convert(varchar(19), Format(GetDate(), N'yyyy-MM-dd-HH:mm') + '`+ timeFormat +`', 126),11,1,' '),121))`, function (err, recordset) {
 
         if (err) {
             res.send(err);
@@ -162,7 +129,7 @@ router.get('/', function (req, res) {
         else {
            //
             res.send((recordset));
-            io.emit('dailyWaterLevels',recordset.recordsets);            
+            io.emit('dailyWaterLevels',recordset.recordsets);    
         } 
     });
 });

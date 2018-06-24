@@ -8,6 +8,7 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
+        
     currentTime = new Date().getTime()/1000; 
     year = new Date().getFullYear();
     month = new Date().getMonth()+1;
@@ -22,12 +23,12 @@ router.get('/', function (req, res) {
     seconds = (("0" + seconds).slice(-2));
     time = hours + ':' + minutes + ':' + seconds;
     dateID = (year + "-" + month + "-" + date);
-    timeID = dateID + " " + time; 
+    timeID = dateID + " " + time + ".000"; 
     level = req.query.level;
     io.emit('level', JSON.parse('{"level": ' + level + '}')); 
 
     // query to the database and get the records
-    request.query(`INSERT into test (level,timeID, dateID, ID) values (`+level+`,'`+timeID+`','`+ dateID + `',` + currentTime + ')', function (err, recordset) {
+    request.query(`INSERT into test (level, dateID, ID, timeID) values (`+level+`,'`+ dateID + `',` + currentTime + `,'`+timeID+`')`, function (err, recordset) {
         //I added these 2 lines
         if (err) res.send(err);
         // sql.close();

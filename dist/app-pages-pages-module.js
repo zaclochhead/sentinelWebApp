@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-lg-6\">\n    <nb-card>\n      <nb-card-header class=\"nb-card-header\">{{DateMetric}} water usage</nb-card-header>\n      <nb-card-body>\n          <span class=\"border\" (click) = \"changeUnits(1)\">Daily</span>\n          <span class=\"border\" (click) = \"changeUnits(2)\">Weekly</span>\n          <span class=\"border\" (click) = \"changeUnits(3)\">Yearly</span>   \n\n          <i class=\"left\" (click) = \"onLeft()\"></i>\n            <span *ngIf = \"dateSetting === 1\" class = \"dateHeading\">{{currentDate}}</span> \n            <span *ngIf = \"dateSetting === 2\" class = \"dateHeading\">{{fullDate}} to {{endFullDate}}</span> \n            <span *ngIf = \"dateSetting === 3\" class = \"dateHeading\">{{currentYear}}</span>             \n          <i class=\"right\" (click) = \"onRight()\"></i>\n          <ngx-chartjs-multiple-xaxis #multiChart [weekOffset] = \"weekCount\" [dayOffset] = \"dayCount\" [dateMetric]=\"dateMetric\"></ngx-chartjs-multiple-xaxis>\n      </nb-card-body>\n    </nb-card>\n  </div>\n\n  <div class=\"col-lg-6\">\n    <nb-card>\n      <nb-card-header class=\"nb-card-header\" >Tank level</nb-card-header>\n      <nb-card-body>\n        <ngx-d3-bar></ngx-d3-bar>\n      </nb-card-body>\n    </nb-card>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-lg-6\">\n    <nb-card>\n      <nb-card-header class=\"nb-card-header\">{{DateMetric}} water usage</nb-card-header>\n      <nb-card-body>\n          <span class=\"border\" (click) = \"changeUnits(1)\">Daily</span>\n          <span class=\"border\" (click) = \"changeUnits(2)\">Weekly</span>\n          <span class=\"border\" (click) = \"changeUnits(3)\">Yearly</span>   \n\n          <i class=\"left\" (click) = \"onLeft()\"></i>\n            <span *ngIf = \"dateSetting === 1\" class = \"dateHeading\">{{fullCurrentDate}}</span> \n            <span *ngIf = \"dateSetting === 2\" class = \"dateHeading\">{{fullDate}} to {{endFullDate}}</span> \n            <span *ngIf = \"dateSetting === 3\" class = \"dateHeading\">{{currentYear}}</span>             \n          <i class=\"right\" (click) = \"onRight()\"></i>\n          <ngx-chartjs-multiple-xaxis #multiChart [weekOffset] = \"weekCount\" [dayOffset] = \"dayCount\" [yearOffset] = \"yearCount\" [dateMetric]=\"DateMetric\"></ngx-chartjs-multiple-xaxis>\n      </nb-card-body>\n    </nb-card>\n  </div>\n\n  <div class=\"col-lg-6\">\n    <nb-card>\n      <nb-card-header class=\"nb-card-header\" >Tank level</nb-card-header>\n      <nb-card-body>\n        <ngx-d3-bar></ngx-d3-bar>\n      </nb-card-body>\n    </nb-card>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -47,6 +47,8 @@ var DashboardComponent = /** @class */ (function () {
     function DashboardComponent() {
         this.DateMetric = "Weekly";
         this.weekCount = 0;
+        this.dayCount = 0;
+        this.yearCount = 0;
         // 1 for day, 2 for week and 3 for month
         this.dateSetting = 2;
         this.getPreviousMonday();
@@ -54,7 +56,7 @@ var DashboardComponent = /** @class */ (function () {
         this.getCurrentDate();
         this.fullDate = this.date + "-" + this.month + "-" + this.year;
         this.endFullDate = this.endDate + "-" + this.endMonth + "-" + this.endYear;
-        this.currentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
+        this.fullCurrentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
     }
     DashboardComponent.prototype.getPreviousMonday = function () {
         var date = new Date();
@@ -87,8 +89,8 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.getNextSunday = function () {
         var date = new Date();
-        var day = date.getDay();
         var nextSunday;
+        var day = date.getDay();
         //if the current date is a sunday
         if (date.getDay() === 0) {
             nextSunday = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7 * this.weekCount);
@@ -109,22 +111,26 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.getCurrentDate = function () {
         var date = new Date();
-        var day = date.getDay();
         var current;
         //if the current date is a sunday
-        current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        current = new Date(date.getFullYear(), date.getMonth(), date.getDate() - this.dayCount);
         this.currentYear = current.getFullYear();
         this.currentMonth = current.getMonth() + 1;
-        this.currentMonth = (("0" + this.endMonth).slice(-2));
+        this.currentMonth = (("0" + this.currentMonth).slice(-2));
         this.currentDate = current.getDate();
-        this.currentDate = (("0" + this.endDate).slice(-2));
+        this.currentDate = (("0" + this.currentDate).slice(-2));
     };
     DashboardComponent.prototype.onLeft = function () {
         if (this.dateSetting === 1) {
             this.dayCount++;
             this.getCurrentDate();
-            this.currentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
-            this.multiChart.setDailyWaterLevels(this.dayCount);
+            this.fullCurrentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
+            if (this.dayCount === 0) {
+                this.multiChart.setCurrentDailyWaterLevels();
+            }
+            else {
+                this.multiChart.setDailyWaterLevels(this.dayCount);
+            }
         }
         else if (this.dateSetting === 2) {
             this.weekCount++;
@@ -132,20 +138,35 @@ var DashboardComponent = /** @class */ (function () {
             this.getNextSunday();
             this.fullDate = this.date + "-" + this.month + "-" + this.year;
             this.endFullDate = this.endDate + "-" + this.endMonth + "-" + this.endYear;
-            this.multiChart.setWeeklyWaterLevels(this.weekCount);
+            if (this.weekCount === 0) {
+                this.multiChart.setCurrentWeeklyWaterLevels();
+            }
+            else {
+                this.multiChart.setWeeklyWaterLevels(this.weekCount);
+            }
         }
         else {
             this.yearCount++;
             this.currentYear--;
-            this.multiChart.setYearlyWaterLevels(this.yearCount);
+            if (this.yearCount === 0) {
+                this.multiChart.setCurrentYearlyWaterLevels();
+            }
+            else {
+                this.multiChart.setYearlyWaterLevels(this.yearCount);
+            }
         }
     };
     DashboardComponent.prototype.onRight = function () {
         if (this.dateSetting === 1) {
             this.dayCount--;
             this.getCurrentDate();
-            this.currentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
-            this.multiChart.setDailyWaterLevels(this.dayCount);
+            this.fullCurrentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
+            if (this.dayCount === 0) {
+                this.multiChart.setCurrentDailyWaterLevels();
+            }
+            else {
+                this.multiChart.setDailyWaterLevels(this.dayCount);
+            }
         }
         else if (this.dateSetting === 2) {
             this.weekCount--;
@@ -153,12 +174,22 @@ var DashboardComponent = /** @class */ (function () {
             this.getNextSunday();
             this.fullDate = this.date + "-" + this.month + "-" + this.year;
             this.endFullDate = this.endDate + "-" + this.endMonth + "-" + this.endYear;
-            this.multiChart.setWeeklyWaterLevels(this.weekCount);
+            if (this.weekCount === 0) {
+                this.multiChart.setCurrentWeeklyWaterLevels();
+            }
+            else {
+                this.multiChart.setWeeklyWaterLevels(this.weekCount);
+            }
         }
         else {
             this.yearCount--;
             this.currentYear++;
-            this.multiChart.setYearlyWaterLevels(this.yearCount);
+            if (this.yearCount === 0) {
+                this.multiChart.setCurrentYearlyWaterLevels();
+            }
+            else {
+                this.multiChart.setYearlyWaterLevels(this.yearCount);
+            }
         }
     };
     DashboardComponent.prototype.changeUnits = function (unit) {
@@ -167,22 +198,33 @@ var DashboardComponent = /** @class */ (function () {
             this.dayCount = 0;
             this.weekCount = 0;
             this.yearCount = 0;
+            this.getCurrentDate();
+            this.fullCurrentDate = this.currentDate + "-" + this.currentMonth + "-" + this.currentYear;
             this.DateMetric = "Daily";
-            this.multiChart.setDailyWaterLevels(0);
+            this.multiChart.setCurrentDailyWaterLevels();
         }
         else if (unit === 2) {
             this.weekCount = 0;
             this.dayCount = 0;
             this.yearCount = 0;
+            this.getNextSunday();
+            this.getPreviousMonday();
+            this.fullDate = this.date + "-" + this.month + "-" + this.year;
+            this.endFullDate = this.endDate + "-" + this.endMonth + "-" + this.endYear;
             this.DateMetric = "Weekly";
-            this.multiChart.setWeeklyWaterLevels(0);
+            this.multiChart.setCurrentWeeklyWaterLevels();
         }
         else {
+            var current;
+            var date = new Date();
+            //if the current date is a sunday
+            current = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            this.currentYear = current.getFullYear();
             this.yearCount = 0;
             this.weekCount = 0;
             this.dayCount = 0;
             this.DateMetric = "Yearly";
-            this.multiChart.setYearlyWaterLevels(0);
+            this.multiChart.setCurrentYearlyWaterLevels();
         }
     };
     __decorate([

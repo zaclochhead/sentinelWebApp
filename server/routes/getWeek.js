@@ -8,49 +8,43 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
+    var dayOfWeek = new Date().getDay();
+
+    if(dayOfWeek === 0){
+        dayOfWeek = 7;
+    }
+
+    const daysUntilSunday = 7-dayOfWeek;
+
     const week = req.query.week;
     request.query(`
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(-1-week*7)+`,GETDATE()),0)
-    AND dateID < dateadd(day,datediff(day,`+(-2-week*7)+`,GETDATE()),0)
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(0-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(1-week*7 + daysUntilSunday)+`,GETDATE())
     
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(0-week*7)+`,GETDATE()),0)
-    AND dateID < dateadd(day,datediff(day,`+(-1-week*7)+`,GETDATE()),0)
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(-1-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(0-week*7 + daysUntilSunday)+`,GETDATE())
     
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(1-week*7)+`,GETDATE()),0)
-        AND dateID < dateadd(day,datediff(day,`+(0-week*7)+`,GETDATE()),0)
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(-2-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(-1-week*7 + daysUntilSunday)+`,GETDATE())
     
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(2-week*7)+`,GETDATE()),0)
-        AND dateID < dateadd(day,datediff(day,`+(1-week*7)+`,GETDATE()),0)
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(-3-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(-2-week*7 + daysUntilSunday)+`,GETDATE())
 
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(3-week*7)+`,GETDATE()),0)
-        AND dateID < dateadd(day,datediff(day,`+(2-week*7)+`,GETDATE()),0)
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(-4-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(-3-week*7 + daysUntilSunday)+`,GETDATE())
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(4-week*7)+`,GETDATE()),0)
-        AND dateID < dateadd(day,datediff(day,`+(3-week*7)+`,GETDATE()),0) 
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(-5-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(-4-week*7 + daysUntilSunday)+`,GETDATE())
         
-    select 
-    avg(level)
-    from test
-    WHERE dateID >= dateadd(day,datediff(day,`+(5-week*7)+`,GETDATE()),0)
-        AND dateID < dateadd(day,datediff(day,`+(4-week*7)+`,GETDATE()),0)`, function (err, recordset) {
+    select avg (level) from test
+    WHERE dateID > dateadd(day,`+(-6-week*7 + daysUntilSunday)+`,getdate())
+    AND dateID < dateadd(day,`+(-5-week*7 + daysUntilSunday)+`,GETDATE())`, function (err, recordset) {
 
         if (err) {
             res.send(err);

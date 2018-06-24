@@ -67234,9 +67234,9 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             var chartjs = config.variables.chartjs;
             _this.currentDayIndex = new Date().getDay();
             _this.currentMonthIndex = new Date().getMonth();
-            _this.currentHourIndex = new Date().getHours() - 1;
+            _this.currentHourIndex = new Date().getHours();
             _this.initIoConnection();
-            _this.setWeeklyWaterLevels(0);
+            _this.setCurrentWeeklyWaterLevels();
             _this.options = {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -67302,6 +67302,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             var day7 = message[6][0];
             var dayIndex;
             var tempWaterLevels = [day1[""], day2[""], day3[""], day4[""], day5[""], day6[""], day7[""]];
+            _this.weeklyWaterLevels = [];
             // need to use different logic for sundays
             if (_this.currentDayIndex === 0) {
                 dayIndex = 6;
@@ -67309,9 +67310,16 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             else {
                 dayIndex = _this.currentDayIndex - 1;
             }
-            for (var i = 0; i < 7; i++) {
-                if ((dayIndex - i) >= 0) {
-                    _this.weeklyWaterLevels[dayIndex - i] = tempWaterLevels[i];
+            if (_this.weekOffset === 0) {
+                for (var i = 0; i < 7; i++) {
+                    if ((dayIndex - i) >= 0) {
+                        _this.weeklyWaterLevels[dayIndex - i] = tempWaterLevels[i];
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < 7; i++) {
+                    _this.weeklyWaterLevels[i] = tempWaterLevels[6 - i];
                 }
             }
             _this.data = {
@@ -67342,11 +67350,19 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             var month10 = message[9][0];
             var month11 = message[10][0];
             var month12 = message[11][0];
+            _this.yearlyWaterLevels = [];
             var tempWaterLevels = [month1[""], month2[""], month3[""], month4[""], month5[""], month6[""], month7[""], month8[""], month9[""], month10[""], month11[""], month12[""]];
             // need to use different logic for sundays
-            for (var i = 0; i < 12; i++) {
-                if ((_this.currentMonthIndex - i) >= 0) {
-                    _this.yearlyWaterLevels[_this.currentMonthIndex - i] = tempWaterLevels[i];
+            if (_this.yearOffset === 0) {
+                for (var i = 0; i < 12; i++) {
+                    if ((_this.currentMonthIndex - i) >= 0) {
+                        _this.yearlyWaterLevels[_this.currentMonthIndex - i] = tempWaterLevels[i];
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < 12; i++) {
+                    _this.yearlyWaterLevels[i] = tempWaterLevels[12 - i];
                 }
             }
             _this.data = {
@@ -67390,10 +67406,17 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             var hour23 = message[22][0];
             var hour24 = message[23][0];
             var tempWaterLevels = [hour1[""], hour2[""], hour3[""], hour4[""], hour5[""], hour6[""], hour7[""], hour8[""], hour9[""], hour10[""], hour11[""], hour12[""], hour13[""], hour14[""], hour15[""], hour16[""], hour17[""], hour18[""], hour19[""], hour20[""], hour21[""], hour22[""], hour23[""], hour24[""]];
-            console.log("here");
-            for (var i = 0; i < 24; i++) {
-                if ((_this.currentHourIndex - i) >= 0) {
-                    _this.dailyWaterLevels[_this.currentHourIndex - i] = tempWaterLevels[i];
+            _this.dailyWaterLevels = [];
+            if (_this.dayOffset === 0) {
+                for (var i = 0; i < 24; i++) {
+                    if ((_this.currentHourIndex - i) >= 0) {
+                        _this.dailyWaterLevels[_this.currentHourIndex - i] = tempWaterLevels[i];
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < 24; i++) {
+                    _this.dailyWaterLevels[i] = tempWaterLevels[24 - i];
                 }
             }
             _this.data = {
@@ -67412,7 +67435,12 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         this.ioTodayConnection = this.postsService.onLevel()
             .subscribe(function (message) {
             if (_this.weekOffset === 0 && _this.dayOffset === 0) {
-                _this.setWeeklyWaterLevels(0);
+                if (_this.dateMetric === "Weekly") {
+                    _this.setCurrentDailyWaterLevels();
+                }
+                else if (_this.dateMetric === "Daily") {
+                    _this.setCurrentWeeklyWaterLevels();
+                }
             }
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
@@ -67425,6 +67453,21 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
     ChartjsMultipleXaxisComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
     };
+    ChartjsMultipleXaxisComponent.prototype.setCurrentWeeklyWaterLevels = function () {
+        this.postsService.getCurrentWeek().subscribe(function (value) {
+        });
+        return;
+    };
+    ChartjsMultipleXaxisComponent.prototype.setCurrentYearlyWaterLevels = function () {
+        this.postsService.getCurrentYear().subscribe(function (value) {
+        });
+        return;
+    };
+    ChartjsMultipleXaxisComponent.prototype.setCurrentDailyWaterLevels = function () {
+        this.postsService.getCurrentDay().subscribe(function (value) {
+        });
+        return;
+    };
     ChartjsMultipleXaxisComponent.prototype.setWeeklyWaterLevels = function (week) {
         this.postsService.getWeek(week).subscribe(function (value) {
         });
@@ -67435,8 +67478,8 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         });
         return;
     };
-    ChartjsMultipleXaxisComponent.prototype.setDailyWaterLevels = function (day) {
-        this.postsService.getDay(day).subscribe(function (value) {
+    ChartjsMultipleXaxisComponent.prototype.setDailyWaterLevels = function (hour) {
+        this.postsService.getDay(hour).subscribe(function (value) {
         });
         return;
     };
@@ -67452,6 +67495,10 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("dateMetric"),
         __metadata("design:type", Object)
     ], ChartjsMultipleXaxisComponent.prototype, "dateMetric", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("yearOffset"),
+        __metadata("design:type", Object)
+    ], ChartjsMultipleXaxisComponent.prototype, "yearOffset", void 0);
     ChartjsMultipleXaxisComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-chartjs-multiple-xaxis',

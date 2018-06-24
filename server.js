@@ -12,6 +12,9 @@ const storeData = require('./server/routes/storeData');
 const getDay = require('./server/routes/getDay');
 const getWeek = require('./server/routes/getWeek');
 const getYear = require('./server/routes/getYear');
+const getCurrentDay = require('./server/routes/getCurrentDay');
+const getCurrentWeek = require('./server/routes/getCurrentWeek');
+const getCurrentYear = require('./server/routes/getCurrentYear');
 const app = express();
 var sql = require('mssql'); // MS Sql Server client
 
@@ -29,7 +32,9 @@ app.use('/api/store', storeData);
 app.use('/api/getWeek', getWeek);
 app.use('/api/getYear', getYear);
 app.use('/api/getDay', getDay);
-
+app.use('/api/getCurrentWeek', getCurrentWeek);
+app.use('/api/getCurrentYear', getCurrentYear);
+app.use('/api/getCurrentDay', getCurrentDay);
 
 // config for your database
 var config = {
