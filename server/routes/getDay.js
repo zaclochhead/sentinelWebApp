@@ -11,18 +11,19 @@ router.get('/', function (req, res) {
     const hour = request.query.hour;
 
     const date = new Date();
-    var currentHour = date.getHours();
+
+    //get the number of hours until midnight
+    var currentHour = date.getHours()-24;
     var timeFormat; 
 
-    if(currentHour>=12){
+
+    timeFormat = "AM";
+    /* if((currentHour-24*hour)>=12){
         timeFormat = " PM";
     }
     else{
         timeFormat = " AM";
-    }
-
-    //get the number of hours until midnight
-    currentHour = currentHour - 24; 
+    } */
 
     request.query(`
     select avg(level) from test

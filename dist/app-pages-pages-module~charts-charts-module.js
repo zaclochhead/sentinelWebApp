@@ -67436,10 +67436,10 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             .subscribe(function (message) {
             if (_this.weekOffset === 0 && _this.dayOffset === 0) {
                 if (_this.dateMetric === "Weekly") {
-                    _this.setCurrentDailyWaterLevels();
+                    _this.setCurrentWeeklyWaterLevels();
                 }
                 else if (_this.dateMetric === "Daily") {
-                    _this.setCurrentWeeklyWaterLevels();
+                    _this.setCurrentDailyWaterLevels();
                 }
             }
         });
