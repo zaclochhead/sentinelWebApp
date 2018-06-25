@@ -9,34 +9,49 @@ const router = express.Router();
 
 router.get('/', function (req, res) {
 
+    year = new Date().getFullYear();
+    month = new Date().getMonth()+1;
+    month = (("0" + month).slice(-2));
+    date = new Date().getDate();
+    date = (("0" + date).slice(-2));
+    hours = new Date().getHours();
+    hours = (("0" + hours).slice(-2));
+    minutes = new Date().getMinutes();
+    minutes = (("0" + minutes).slice(-2));
+    seconds = new Date().getSeconds();
+    seconds = (("0" + seconds).slice(-2));
+    time = hours + ':' + minutes + ':' + seconds;
+    dateID = (year + "-" + month + "-" + date);
+    timeID = dateID + " " + time + ".000"; 
+
     request.query(`
     select avg (level) from test
-    WHERE dateID > dateadd(day,0,getdate())
-    AND dateID < dateadd(day,1,GETDATE())
+    WHERE dateID > dateadd(day,0,'`+timeID+`')
+    AND dateID < dateadd(day,1,'`+timeID+`')
     
     select avg (level) from test
-    WHERE dateID > dateadd(day,-1,getdate())
-    AND dateID < dateadd(day,0,GETDATE())
+    WHERE dateID > dateadd(day,-1,'`+timeID+`')
+    AND dateID < dateadd(day,0,'`+timeID+`')
     
     select avg (level) from test
-    WHERE dateID > dateadd(day,-2,getdate())
-    AND dateID < dateadd(day,-1,GETDATE())
+    WHERE dateID > dateadd(day,-2,'`+timeID+`')
+    AND dateID < dateadd(day,-1,'`+timeID+`')
     
     select avg (level) from test
-    WHERE dateID > dateadd(day,-3,getdate())
-    AND dateID < dateadd(day,-2,GETDATE())
+    WHERE dateID > dateadd(day,-3,'`+timeID+`')
+    AND dateID < dateadd(day,-2,'`+timeID+`')
 
     select avg (level) from test
-    WHERE dateID > dateadd(day,-4,getdate())
-    AND dateID < dateadd(day,-3,GETDATE())
+    WHERE dateID > dateadd(day,-4,'`+timeID+`')
+    AND dateID < dateadd(day,-3,'`+timeID+`')
         
     select avg (level) from test
-    WHERE dateID > dateadd(day,-5,getdate())
-    AND dateID < dateadd(day,-4,GETDATE())
+    WHERE dateID > dateadd(day,-5,'`+timeID+`')
+    AND dateID < dateadd(day,-4,'`+timeID+`')
         
     select avg (level) from test
-    WHERE dateID > dateadd(day,-6,getdate())
-    AND dateID < dateadd(day,-5,GETDATE())`, function (err, recordset) {
+    WHERE dateID > dateadd(day,-6,'`+timeID+`')
+    AND dateID < dateadd(day,-5,'`+timeID+`')`, function (err, recordset) {
 
         if (err) {
             res.send(err);
