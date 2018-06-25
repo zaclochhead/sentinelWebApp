@@ -2845,7 +2845,7 @@ var PostsService = /** @class */ (function () {
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getWeek = function (week) {
-        return this.http.get('/api/getWeek', { params: { week: week, timeID: this.getTimeID() } })
+        return this.http.get('/api/getWeek', { params: { week: week, dateID: this.getDateID(), daysUntilSunday: this.getDaysUntilSunday() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getYear = function (month) {
@@ -2857,7 +2857,7 @@ var PostsService = /** @class */ (function () {
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getCurrentWeek = function () {
-        return this.http.get('/api/getCurrentWeek', { params: { timeID: this.getTimeID() } })
+        return this.http.get('/api/getCurrentWeek', { params: { dateID: this.getDateID() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getCurrentYear = function () {
@@ -2881,7 +2881,7 @@ var PostsService = /** @class */ (function () {
         var seconds = new Date().getSeconds();
         var extendedSeconds = (("0" + seconds).slice(-2));
         var time = extendedHours + ':' + extendedMinutes + ':' + extendedSeconds;
-        var dateID = (year + "-" + extendedMonth + "-" + date);
+        var dateID = (year + "-" + extendedMonth + "-" + extendedDate);
         var timeID = dateID + " " + time + ".000";
         return timeID;
     };
@@ -2891,14 +2891,8 @@ var PostsService = /** @class */ (function () {
         var extendedMonth = (("0" + month).slice(-2));
         var date = new Date().getDate();
         var extendedDate = (("0" + date).slice(-2));
-        var hours = new Date().getHours();
-        var extendedHours = (("0" + hours).slice(-2));
-        var minutes = new Date().getMinutes();
-        var extendedMinutes = (("0" + minutes).slice(-2));
-        var seconds = new Date().getSeconds();
-        var extendedSeconds = (("0" + seconds).slice(-2));
-        var time = extendedHours + ':' + extendedMinutes + ':' + extendedSeconds;
-        var dateID = (year + "-" + extendedMonth + "-" + date);
+        var dateID = (year + "-" + extendedMonth + "-" + extendedDate);
+        console.log(dateID);
         return dateID;
     };
     //get the number of hours until midnight
@@ -2914,6 +2908,14 @@ var PostsService = /** @class */ (function () {
         else {
             return "AM";
         }
+    };
+    PostsService.prototype.getDaysUntilSunday = function () {
+        var dayOfWeek = new Date().getDay();
+        if (dayOfWeek === 0) {
+            dayOfWeek = 7;
+        }
+        var daysUntilSunday = 7 - dayOfWeek;
+        return daysUntilSunday;
     };
     PostsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),

@@ -8,45 +8,41 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
-    var dayOfWeek = new Date().getDay();
 
-    timeID = req.query.timeID;
+    dateID = req.query.dateID;
 
-    if(dayOfWeek === 0){
-        dayOfWeek = 7;
-    }
-
-    const daysUntilSunday = 7-dayOfWeek;
+    const daysUntilSunday = parseInt(req.query.daysUntilSunday);
 
     const week = req.query.week;
+
     request.query(`
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(0-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(1-week*7 + daysUntilSunday)+`,'`+timeID+`')
+    WHERE dateID > dateadd(day,`+(-1-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(1-week*7 + daysUntilSunday)+`,'`+dateID+`')
     
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(-1-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(0-week*7 + daysUntilSunday)+`,'`+timeID+`')
+    WHERE dateID > dateadd(day,`+(-2-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(0-week*7 + daysUntilSunday)+`,'`+dateID+`')
     
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(-2-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(-1-week*7 + daysUntilSunday)+`,'`+timeID+`')
+    WHERE dateID > dateadd(day,`+(-3-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(-1-week*7 + daysUntilSunday)+`,'`+dateID+`')
     
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(-3-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(-2-week*7 + daysUntilSunday)+`,'`+timeID+`')
+    WHERE dateID > dateadd(day,`+(-4-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(-2-week*7 + daysUntilSunday)+`,'`+dateID+`')
 
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(-4-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(-3-week*7 + daysUntilSunday)+`,'`+timeID+`')
+    WHERE dateID > dateadd(day,`+(-5-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(-3-week*7 + daysUntilSunday)+`,'`+dateID+`')
         
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(-5-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(-4-week*7 + daysUntilSunday)+`,'`+timeID+`')
+    WHERE dateID > dateadd(day,`+(-6-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(-4-week*7 + daysUntilSunday)+`,'`+dateID+`')
         
     select avg (level) from test
-    WHERE dateID > dateadd(day,`+(-6-week*7 + daysUntilSunday)+`,'`+timeID+`')
-    AND dateID < dateadd(day,`+(-5-week*7 + daysUntilSunday)+`,'`+timeID+`')`, function (err, recordset) {
+    WHERE dateID > dateadd(day,`+(-7-week*7 + daysUntilSunday)+`,'`+dateID+`')
+    AND dateID < dateadd(day,`+(-5-week*7 + daysUntilSunday)+`,'`+dateID+`')`, function (err, recordset) {
 
         if (err) {
             res.send(err);
@@ -56,7 +52,7 @@ router.get('/', function (req, res) {
         else {
            //
             res.send((recordset));
-            io.emit('weeklyWaterLevels',recordset.recordsets);            
+            io.emit('weeklyWaterLevels',recordset.recordsets);  
         } 
     });
 });

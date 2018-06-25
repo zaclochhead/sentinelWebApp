@@ -67362,7 +67362,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             }
             else {
                 for (var i = 0; i < 12; i++) {
-                    _this.yearlyWaterLevels[i] = tempWaterLevels[12 - i];
+                    _this.yearlyWaterLevels[i] = tempWaterLevels[11 - i];
                 }
             }
             _this.data = {
@@ -67416,7 +67416,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             }
             else {
                 for (var i = 0; i < 24; i++) {
-                    _this.dailyWaterLevels[i] = tempWaterLevels[24 - i];
+                    _this.dailyWaterLevels[i] = tempWaterLevels[23 - i];
                 }
             }
             _this.data = {

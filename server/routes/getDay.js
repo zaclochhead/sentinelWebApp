@@ -8,13 +8,12 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
-    const hour = req.query.hour;
+    const hour = parseInt(req.query.hour);
     timeID = req.query.timeID;
     var timeFormat; 
     timeFormat = req.query.timeFormat;
 
-    currentHour = req.query.currentTime;
-    
+    currentHour = parseInt(req.query.currentTime);
 
     request.query(`
     select avg(level) from test
