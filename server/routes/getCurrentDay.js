@@ -8,15 +8,12 @@ const router = express.Router();
 // config for your database
 
 router.get('/', function (req, res) {
-    const date = new Date();
-    var timeFormat; 
 
-    if(date.getHours()>=12){
-        timeFormat = " PM";
-    }
-    else{
-        timeFormat = " AM";
-    }
+    var timeFormat; 
+    timeFormate = req.query.timeFormat;
+    timeID = req.query.timeID;
+    
+    
 
     request.query(`
     select avg(level) from test

@@ -2841,11 +2841,11 @@ var PostsService = /** @class */ (function () {
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.storeData = function (level) {
-        return this.http.get('/api/store', { params: { level: level } })
+        return this.http.get('/api/store', { params: { level: level, timeID: this.getTimeID(), dateID: this.getDateID() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getWeek = function (week) {
-        return this.http.get('/api/getWeek', { params: { week: week } })
+        return this.http.get('/api/getWeek', { params: { week: week, timeID: this.getTimeID() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getYear = function (month) {
@@ -2853,20 +2853,67 @@ var PostsService = /** @class */ (function () {
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getDay = function (hour) {
-        return this.http.get('/api/getDay', { params: { hour: hour } })
+        return this.http.get('/api/getDay', { params: { hour: hour, timeID: this.getTimeID(), timeFormat: this.getTimeFormat(), currentTime: this.getCurrentTime() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getCurrentWeek = function () {
-        return this.http.get('/api/getCurrentWeek')
+        return this.http.get('/api/getCurrentWeek', { params: { timeID: this.getTimeID() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getCurrentYear = function () {
-        return this.http.get('/api/getCurrentYear')
+        return this.http.get('/api/getCurrentYear', { params: { timeID: this.getTimeID() } })
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getCurrentDay = function () {
-        return this.http.get('/api/getCurrentDay')
+        return this.http.get('/api/getCurrentDay', { params: { timeID: this.getTimeID(), timeFormat: this.getTimeFormat() } })
             .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getTimeID = function () {
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth() + 1;
+        var extendedMonth = (("0" + month).slice(-2));
+        var date = new Date().getDate();
+        var extendedDate = (("0" + date).slice(-2));
+        var hours = new Date().getHours();
+        var extendedHours = (("0" + hours).slice(-2));
+        var minutes = new Date().getMinutes();
+        var extendedMinutes = (("0" + minutes).slice(-2));
+        var seconds = new Date().getSeconds();
+        var extendedSeconds = (("0" + seconds).slice(-2));
+        var time = extendedHours + ':' + extendedMinutes + ':' + extendedSeconds;
+        var dateID = (year + "-" + extendedMonth + "-" + date);
+        var timeID = dateID + " " + time + ".000";
+        return timeID;
+    };
+    PostsService.prototype.getDateID = function () {
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth() + 1;
+        var extendedMonth = (("0" + month).slice(-2));
+        var date = new Date().getDate();
+        var extendedDate = (("0" + date).slice(-2));
+        var hours = new Date().getHours();
+        var extendedHours = (("0" + hours).slice(-2));
+        var minutes = new Date().getMinutes();
+        var extendedMinutes = (("0" + minutes).slice(-2));
+        var seconds = new Date().getSeconds();
+        var extendedSeconds = (("0" + seconds).slice(-2));
+        var time = extendedHours + ':' + extendedMinutes + ':' + extendedSeconds;
+        var dateID = (year + "-" + extendedMonth + "-" + date);
+        return dateID;
+    };
+    //get the number of hours until midnight
+    PostsService.prototype.getCurrentTime = function () {
+        var currentTime = new Date().getHours() - 24;
+        return currentTime;
+    };
+    PostsService.prototype.getTimeFormat = function () {
+        var date = new Date();
+        if (date.getHours() >= 12) {
+            return "PM";
+        }
+        else {
+            return "AM";
+        }
     };
     PostsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),

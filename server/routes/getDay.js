@@ -9,37 +9,12 @@ const router = express.Router();
 
 router.get('/', function (req, res) {
     const hour = req.query.hour;
-
-    year = new Date().getFullYear();
-    month = new Date().getMonth()+1;
-    month = (("0" + month).slice(-2));
-    date = new Date().getDate();
-    date = (("0" + date).slice(-2));
-    hours = new Date().getHours();
-    hours = (("0" + hours).slice(-2));
-    minutes = new Date().getMinutes();
-    minutes = (("0" + minutes).slice(-2));
-    seconds = new Date().getSeconds();
-    seconds = (("0" + seconds).slice(-2));
-    time = hours + ':' + minutes + ':' + seconds;
-    dateID = (year + "-" + month + "-" + date);
-    timeID = dateID + " " + time + ".000"; 
-
-    const day = new Date();
-
-    //get the number of hours until midnight
-    var currentHour = day.getHours();
+    timeID = req.query.timeID;
     var timeFormat; 
+    timeFormat = req.query.timeFormat;
 
-
-    if(currentHour>=12){
-        timeFormat = " PM";
-    }
-    else{
-        timeFormat = " AM";
-    } 
-
-    currentHour = currentHour -24;
+    currentHour = req.query.currentTime;
+    
 
     request.query(`
     select avg(level) from test
