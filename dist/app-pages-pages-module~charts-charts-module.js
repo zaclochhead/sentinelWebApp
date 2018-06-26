@@ -67292,6 +67292,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         this.postsService.initSocket();
         this.ioWeeklyConnection = this.postsService.onWeek()
             .subscribe(function (message) {
+            _this.currentDayIndex = new Date().getDay();
             // average water levels from today to 7 days ago
             var day1 = message[0][0];
             var day2 = message[1][0];
@@ -67337,6 +67338,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         });
         this.ioYearlyConnection = this.postsService.onYear()
             .subscribe(function (message) {
+            _this.currentMonthIndex = new Date().getMonth();
             // average water levels from today to 7 days ago
             var month1 = message[0][0];
             var month2 = message[1][0];
@@ -67380,6 +67382,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         });
         this.ioDailyConnection = this.postsService.onDay()
             .subscribe(function (message) {
+            _this.currentHourIndex = new Date().getHours();
             // average water levels from today to 7 days ago
             var hour1 = message[0][0];
             var hour2 = message[1][0];
@@ -67507,6 +67510,131 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_2__["PostsService"]])
     ], ChartjsMultipleXaxisComponent);
     return ChartjsMultipleXaxisComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/charts/chartjs/chartjs-pie.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/pages/charts/chartjs/chartjs-pie.component.ts ***!
+  \***************************************************************/
+/*! exports provided: ChartjsPieComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChartjsPieComponent", function() { return ChartjsPieComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
+/* harmony import */ var _app_posts_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../app/posts.service */ "./src/app/posts.service.ts");
+/* harmony import */ var _app_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../app/event */ "./src/app/event.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ChartjsPieComponent = /** @class */ (function () {
+    function ChartjsPieComponent(theme, postsService) {
+        var _this = this;
+        this.theme = theme;
+        this.postsService = postsService;
+        this.waterUsage = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
+            var colors = config.variables;
+            var chartjs = config.variables.chartjs;
+            _this.data = {
+                labels: [],
+                datasets: [{
+                        data: [100],
+                        backgroundColor: ['#27CFC3'],
+                    }],
+            };
+            _this.options = {
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    xAxes: [
+                        {
+                            display: false,
+                        },
+                    ],
+                    yAxes: [
+                        {
+                            display: false,
+                        },
+                    ],
+                },
+                legend: {
+                    labels: {
+                        fontColor: chartjs.textColor,
+                    },
+                },
+            };
+        });
+        this.initIoConnection();
+    }
+    ChartjsPieComponent.prototype.initIoConnection = function () {
+        var _this = this;
+        this.postsService.initSocket();
+        this.ioConnection = this.postsService.onLevel()
+            .subscribe(function (message) {
+            var waterLevel = message.level;
+            _this.updateResults(waterLevel);
+        });
+        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
+            .subscribe(function () {
+        });
+        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].DISCONNECT)
+            .subscribe(function () {
+        });
+    };
+    ChartjsPieComponent.prototype.updateResults = function (waterLevel) {
+        var emptyData = 100 - waterLevel;
+        if (emptyData > 0) {
+            this.data = {
+                labels: [],
+                datasets: [{
+                        data: [waterLevel, emptyData],
+                        backgroundColor: ['#27CFC3', 'white'],
+                    }],
+            };
+        }
+        else {
+            this.data = {
+                labels: [],
+                datasets: [{
+                        data: [waterLevel],
+                        backgroundColor: ['#27CFC3'],
+                    }],
+            };
+        }
+        this.waterUsage.emit(waterLevel);
+    };
+    ChartjsPieComponent.prototype.ngOnDestroy = function () {
+        this.themeSubscription.unsubscribe();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], ChartjsPieComponent.prototype, "waterUsage", void 0);
+    ChartjsPieComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'ngx-chartjs-pie',
+            template: "\n    <chart type=\"pie\" [data]=\"data\" [options]=\"options\"></chart>\n  ",
+        }),
+        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_2__["PostsService"]])
+    ], ChartjsPieComponent);
+    return ChartjsPieComponent;
 }());
 
 

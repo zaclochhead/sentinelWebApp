@@ -2892,7 +2892,6 @@ var PostsService = /** @class */ (function () {
         var date = new Date().getDate();
         var extendedDate = (("0" + date).slice(-2));
         var dateID = (year + "-" + extendedMonth + "-" + extendedDate);
-        console.log(dateID);
         return dateID;
     };
     //get the number of hours until midnight
