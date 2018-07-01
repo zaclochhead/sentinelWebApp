@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-lg-6\">\n    <nb-card>\n      <nb-card-header class=\"nb-card-header\">{{DateMetric}} water usage</nb-card-header>\n      <nb-card-body>\n          <span class=\"border\" (click) = \"changeUnits(1)\">Daily</span>\n          <span class=\"border\" (click) = \"changeUnits(2)\">Weekly</span>\n          <span class=\"border\" (click) = \"changeUnits(3)\">Yearly</span>   \n\n          <i class=\"left\" (click) = \"onLeft()\"></i>\n            <span *ngIf = \"dateSetting === 1\" class = \"dateHeading\">{{fullCurrentDate}}</span> \n            <span *ngIf = \"dateSetting === 2\" class = \"dateHeading\">{{fullDate}} to {{endFullDate}}</span> \n            <span *ngIf = \"dateSetting === 3\" class = \"dateHeading\">{{currentYear}}</span>             \n          <i class=\"right\" (click) = \"onRight()\"></i>\n          <ngx-chartjs-multiple-xaxis #multiChart [weekOffset] = \"weekCount\" [dayOffset] = \"dayCount\" [yearOffset] = \"yearCount\" [dateMetric]=\"DateMetric\"></ngx-chartjs-multiple-xaxis>\n      </nb-card-body>\n    </nb-card>\n  </div>\n\n  <div class=\"col-lg-6\">\n    <nb-card>\n      <nb-card-header class=\"nb-card-header\" >Tank level</nb-card-header>\n      <nb-card-body>\n        <ngx-d3-bar></ngx-d3-bar>\n      </nb-card-body>\n    </nb-card>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col-lg-6\">\n      <nb-card>\n          <nb-card-header class=\"nb-card-header\" >Charlton Tank</nb-card-header>\n          <nb-card-body>\n              <span class = \"tankPercentage\">{{tankPercentage}}%</span>              \n            <ngx-chartjs-pie (waterUsage)=\"updateWaterUsage($event)\"  #pieComponent></ngx-chartjs-pie>\n              <span class = \"waterUsage\">{{remainingWater}}L Of {{totalWater}}L Remaining</span>\n        </nb-card-body>\n      </nb-card>\n  </div>\n</div>\n"
+module.exports = "<!-- <div class=\"row\"> -->\n\n<div class=\"col-lg-4\">\n  <nb-card>\n    <nb-card-header class=\"nb-card-header\" >Home Tank</nb-card-header>\n    <nb-card-body>\n      <ngx-d3-bar></ngx-d3-bar>\n    </nb-card-body>\n  </nb-card>\n  <nb-card style = \"height: 425px\">\n      <nb-card-header class=\"nb-card-header\" >Sustainability Goals</nb-card-header>\n      <nb-card-body>            \n        <div class=\"centerRow\">\n          <span>aim to use less than 10L of water a day</span>\n          <ngx-chartjs-pie (waterUsage)=\"updateWaterUsage($event)\"  #pieComponent></ngx-chartjs-pie>\n        </div>\n        <div class = \"centerRow\">\n            <span>aim to use less than 10L of water a day</span>            \n          <ngx-chartjs-pie (waterUsage)=\"updateWaterUsage($event)\"  #pieComponent></ngx-chartjs-pie>\n        </div>\n        <div class=\"centerRow\">\n            <span>aim to use less than 10L of water a day</span>            \n           <ngx-chartjs-pie (waterUsage)=\"updateWaterUsage($event)\"  #pieComponent></ngx-chartjs-pie>\n        </div>     \n    </nb-card-body>\n  </nb-card>\n</div>\n\n<div class=\"col-lg-8\">\n  <nb-card style=\"height:350px; width:870px\">\n    <nb-card-header class=\"nb-card-header\">\n        <div class=\"header-stats\">            \n<!--           {{DateMetric}} water usage -->\n            <div class=\"stats-block\">\n              <div class=\"subtitle\">Total Used</div>\n              <div>\n                <span class=\"value\">816</span>\n                <span class=\"unit\">Litres</span>\n              </div>\n            </div>\n    \n            <div class=\"stats-block currency\">\n              <div class=\"subtitle\">Total Cost</div>\n              <div>\n                <span class=\"value\">291</span>\n                <span class=\"unit\">USD</span>\n              </div>\n            </div>\n            <div class=\"dropdown\" ngbDropdown>\n                <button style = \"height:40px\" type=\"button\" ngbDropdownToggle class=\"btn\" [ngClass]=\"{ 'btn-outline-success': currentTheme != 'default', 'btn-primary': currentTheme == 'default'}\">\n                  {{ type }}\n                </button>\n                <ul class=\"dropdown-menu\" ngbDropdownMenu>\n                  <li class=\"dropdown-item\" *ngFor=\"let t of types\" (click)=\"changeUnits(t)\">{{ t }}</li>\n                </ul>\n            </div>\n        </div>\n    </nb-card-header>\n    <nb-card-body>\n      <div style = \"text-align:center\">\n        <i class=\"left\" (click) = \"onLeft()\"></i>\n          <span *ngIf = \"dateSetting === 1\" class = \"dateHeading\">{{fullCurrentDate}}</span> \n          <span *ngIf = \"dateSetting === 2\" class = \"dateHeading\">{{fullDate}} to {{endFullDate}}</span> \n          <span *ngIf = \"dateSetting === 3\" class = \"dateHeading\">{{currentYear}}</span>             \n        <i class=\"right\" (click) = \"onRight()\"></i>\n      </div>\n        <ngx-chartjs-multiple-xaxis #multiChart [weekOffset] = \"weekCount\" [dayOffset] = \"dayCount\" [yearOffset] = \"yearCount\" [dateMetric]=\"DateMetric\"></ngx-chartjs-multiple-xaxis>\n    </nb-card-body>\n  </nb-card>\n</div>\n<!-- </div> -->\n\n<!-- <div class=\"row\"> -->\n\n<div style =\"float:left; margin-left:16px\">\n    <ngx-weather></ngx-weather>\n</div>\n<div style =\"float:left\">        \n  <nb-card style = \"width:397px;height:320px; margin-left:30px\">\n      <nb-card-header class=\"nb-card-header\" >Alarms</nb-card-header>\n      <nb-card-body>\n      </nb-card-body>\n    </nb-card>\n</div>\n<!-- </div> -->\n<!--   <div class=\"col-xxxl-9 col-xxl-8 col-lg-7 col-md-6\">\n      <ngx-electricity #multiChart [weekOffset] = \"weekCount\" [dayOffset] = \"dayCount\" [yearOffset] = \"yearCount\" [dateMetric]=\"DateMetric\"></ngx-electricity>\n    </div> -->"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-lg-6\">\n    <nb-card>
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This is a starting point where we declare the maps of themes and globally available functions/mixins\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n.nb-card-header {\n  color: #27CFC3; }\nngx-chartjs-pie {\n  margin-right: 100px;\n  height: 355px;\n  width: 696px; }\nspan {\n  cursor: pointer; }\n.border {\n  border-style: solid;\n  border-color: #27CFC3;\n  font-style: bold; }\n.tankPercentage {\n  text-align: center;\n  font-size: 20px;\n  margin-left: 630px; }\n.waterUsage {\n  text-align: center;\n  font-size: 20px;\n  margin-left: 500px;\n  font-style: bold; }\ni {\n  border: solid #27CFC3;\n  border-width: 0 3px 3px 0;\n  display: inline-block;\n  padding: 5px;\n  cursor: pointer; }\n.right {\n  transform: rotate(-45deg);\n  margin-left: 20px;\n  -webkit-transform: rotate(-45deg); }\n.left {\n  margin-left: 110px;\n  transform: rotate(135deg);\n  margin-right: 20px;\n  -webkit-transform: rotate(135deg); }\n.dateHeading {\n  font-family: Exo;\n  font-size: 1;\n  font-weight: 400;\n  color: #27CFC3; }\n.sameLine {\n  display: inline-block;\n  margin-left: auto;\n  margin-right: auto; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host .solar-card nb-card-header {\n  border: none;\n  padding-bottom: 0; }\n@media (max-width: 767.98px) {\n  .nb-theme-default :host ngx-traffic {\n    display: none; } }\n@media (max-width: 575.98px) {\n  .nb-theme-default :host /deep/ nb-card.large-card {\n    height: 456px; } }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host .solar-card nb-card-header {\n  border: none;\n  padding-bottom: 0; }\n@media (max-width: 767.98px) {\n  .nb-theme-cosmic :host ngx-traffic {\n    display: none; } }\n@media (max-width: 575.98px) {\n  .nb-theme-cosmic :host /deep/ nb-card.large-card {\n    height: 456px; } }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host ngx-chartjs-pie,\n.nb-theme-default :host ngx-chartjs-bar,\n.nb-theme-default :host ngx-chartjs-line,\n.nb-theme-default :host ngx-chartjs-multiple-xaxis,\n.nb-theme-default :host ngx-chartjs-bar-horizontal,\n.nb-theme-default :host ngx-chartjs-radar {\n  display: block;\n  height: 456px;\n  width: 100%; }\n.nb-theme-default :host ngx-chartjs-pie /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-bar /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-line /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-multiple-xaxis /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-bar-horizontal /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-radar /deep/ chart {\n    display: block;\n    height: 100%;\n    width: 100%; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host ngx-chartjs-pie,\n.nb-theme-cosmic :host ngx-chartjs-bar,\n.nb-theme-cosmic :host ngx-chartjs-line,\n.nb-theme-cosmic :host ngx-chartjs-multiple-xaxis,\n.nb-theme-cosmic :host ngx-chartjs-bar-horizontal,\n.nb-theme-cosmic :host ngx-chartjs-radar {\n  display: block;\n  height: 456px;\n  width: 100%; }\n.nb-theme-cosmic :host ngx-chartjs-pie /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-bar /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-line /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-multiple-xaxis /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-bar-horizontal /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-radar /deep/ chart {\n    display: block;\n    height: 100%;\n    width: 100%; }\n"
+module.exports = "/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This is a starting point where we declare the maps of themes and globally available functions/mixins\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n.nb-card-header {\n  font-family: Exo;\n  font-size: 1.2rem;\n  font-weight: 600; }\n.dropdown {\n  width: 130px;\n  float: right;\n  margin-left: 390px; }\nngx-chartjs-pie {\n  float: right;\n  /*   height: 355px; */\n  width: 94px;\n  height: 94px; }\nngx-chartjs-pie .canvas {\n    height: 97px;\n    width: 97px; }\nspan {\n  cursor: pointer; }\n.waterHistory {\n  height: 20rem; }\n.border {\n  border-style: solid;\n  border-color: #27CFC3;\n  font-style: bold; }\n.tankPercentage {\n  text-align: center;\n  font-size: 20px;\n  margin-left: 630px; }\n.waterUsage {\n  text-align: center;\n  font-size: 20px;\n  margin-left: 400px;\n  font-style: bold; }\ni {\n  border: solid #40dc7e;\n  border-width: 0 3px 3px 0;\n  display: inline-block;\n  padding: 5px;\n  cursor: pointer; }\n.right {\n  transform: rotate(-45deg);\n  margin-left: 20px;\n  -webkit-transform: rotate(-45deg); }\n.left {\n  /*   margin-left: 350px;   */\n  transform: rotate(135deg);\n  margin-right: 20px;\n  -webkit-transform: rotate(135deg); }\n.dateHeading {\n  font-family: Exo;\n  font-size: 1rem;\n  font-weight: 600; }\n.sameLine {\n  display: inline-block;\n  margin-left: auto;\n  margin-right: auto; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host .solar-card nb-card-header {\n  border: none;\n  padding-bottom: 0; }\n@media (max-width: 767.98px) {\n  .nb-theme-default :host ngx-traffic {\n    display: none; } }\n@media (max-width: 575.98px) {\n  .nb-theme-default :host /deep/ nb-card.large-card {\n    height: 456px; } }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host .solar-card nb-card-header {\n  border: none;\n  padding-bottom: 0; }\n@media (max-width: 767.98px) {\n  .nb-theme-cosmic :host ngx-traffic {\n    display: none; } }\n@media (max-width: 575.98px) {\n  .nb-theme-cosmic :host /deep/ nb-card.large-card {\n    height: 456px; } }\n.centerRow {\n  display: flex;\n  flex-direction: row;\n  align-items: center; }\n.stats-block {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  color: #a1a1e5;\n  padding: 0 1.5rem;\n  /*   border-right: 1px solid nb-theme(separator); */ }\n.stats-block .subtitle {\n    font-size: 0.9rem;\n    font-weight: 300; }\n.stats-block .value {\n    font-family: Exo;\n    font-size: 1.3rem;\n    font-weight: 600;\n    color: black; }\n.stats-block .unit {\n    font-family: Exo;\n    font-size: 1.10rem;\n    font-weight: 300; }\n.header-stats {\n  display: flex;\n  align-items: center; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host ngx-chartjs-bar,\n.nb-theme-default :host ngx-chartjs-line,\n.nb-theme-default :host ngx-chartjs-multiple-xaxis,\n.nb-theme-default :host ngx-chartjs-bar-horizontal,\n.nb-theme-default :host ngx-chartjs-radar {\n  display: block;\n  height: 190px;\n  width: 780px;\n  margin-left: 50px; }\n.nb-theme-default :host ngx-chartjs-bar /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-line /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-multiple-xaxis /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-bar-horizontal /deep/ chart,\n  .nb-theme-default :host ngx-chartjs-radar /deep/ chart {\n    display: block;\n    height: 200px;\n    width: 100%; }\n.nb-theme-default :host ngx-d3-bar,\n.nb-theme-default :host ngx-d3-pie,\n.nb-theme-default :host ngx-d3-advanced-pie,\n.nb-theme-default :host ngx-d3-area-stack,\n.nb-theme-default :host ngx-d3-line,\n.nb-theme-default :host ngx-d3-polar {\n  display: block;\n  width: 300px;\n  height: 150px;\n  /* nb-theme(card-height-extra-small); */ }\n.nb-theme-default :host ngx-d3-bar /deep/ .pie-label,\n  .nb-theme-default :host ngx-d3-pie /deep/ .pie-label,\n  .nb-theme-default :host ngx-d3-advanced-pie /deep/ .pie-label,\n  .nb-theme-default :host ngx-d3-area-stack /deep/ .pie-label,\n  .nb-theme-default :host ngx-d3-line /deep/ .pie-label,\n  .nb-theme-default :host ngx-d3-polar /deep/ .pie-label {\n    fill: #2a2a2a; }\n.nb-theme-default :host ngx-d3-bar /deep/ .grid-line-path,\n  .nb-theme-default :host ngx-d3-pie /deep/ .grid-line-path,\n  .nb-theme-default :host ngx-d3-advanced-pie /deep/ .grid-line-path,\n  .nb-theme-default :host ngx-d3-area-stack /deep/ .grid-line-path,\n  .nb-theme-default :host ngx-d3-line /deep/ .grid-line-path,\n  .nb-theme-default :host ngx-d3-polar /deep/ .grid-line-path {\n    stroke: #ebeef2; }\n.nb-theme-default :host ngx-d3-bar /deep/ text,\n  .nb-theme-default :host ngx-d3-pie /deep/ text,\n  .nb-theme-default :host ngx-d3-advanced-pie /deep/ text,\n  .nb-theme-default :host ngx-d3-area-stack /deep/ text,\n  .nb-theme-default :host ngx-d3-line /deep/ text,\n  .nb-theme-default :host ngx-d3-polar /deep/ text {\n    fill: #2a2a2a; }\n.nb-theme-default :host ngx-d3-bar /deep/ .chart-legend .legend-labels,\n  .nb-theme-default :host ngx-d3-pie /deep/ .chart-legend .legend-labels,\n  .nb-theme-default :host ngx-d3-advanced-pie /deep/ .chart-legend .legend-labels,\n  .nb-theme-default :host ngx-d3-area-stack /deep/ .chart-legend .legend-labels,\n  .nb-theme-default :host ngx-d3-line /deep/ .chart-legend .legend-labels,\n  .nb-theme-default :host ngx-d3-polar /deep/ .chart-legend .legend-labels {\n    background: #ffffff; }\n.nb-theme-default :host ngx-d3-bar /deep/ .chart-legend .legend-label,\n  .nb-theme-default :host ngx-d3-pie /deep/ .chart-legend .legend-label,\n  .nb-theme-default :host ngx-d3-advanced-pie /deep/ .chart-legend .legend-label,\n  .nb-theme-default :host ngx-d3-area-stack /deep/ .chart-legend .legend-label,\n  .nb-theme-default :host ngx-d3-line /deep/ .chart-legend .legend-label,\n  .nb-theme-default :host ngx-d3-polar /deep/ .chart-legend .legend-label {\n    color: #2a2a2a; }\n.nb-theme-default :host ngx-d3-bar /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-default :host ngx-d3-pie /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-default :host ngx-d3-advanced-pie /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-default :host ngx-d3-area-stack /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-default :host ngx-d3-line /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-default :host ngx-d3-polar /deep/ .chart-legend .legend-label .active .legend-label-text {\n      color: #2a2a2a; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host ngx-chartjs-bar,\n.nb-theme-cosmic :host ngx-chartjs-line,\n.nb-theme-cosmic :host ngx-chartjs-multiple-xaxis,\n.nb-theme-cosmic :host ngx-chartjs-bar-horizontal,\n.nb-theme-cosmic :host ngx-chartjs-radar {\n  display: block;\n  height: 190px;\n  width: 780px;\n  margin-left: 50px; }\n.nb-theme-cosmic :host ngx-chartjs-bar /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-line /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-multiple-xaxis /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-bar-horizontal /deep/ chart,\n  .nb-theme-cosmic :host ngx-chartjs-radar /deep/ chart {\n    display: block;\n    height: 200px;\n    width: 100%; }\n.nb-theme-cosmic :host ngx-d3-bar,\n.nb-theme-cosmic :host ngx-d3-pie,\n.nb-theme-cosmic :host ngx-d3-advanced-pie,\n.nb-theme-cosmic :host ngx-d3-area-stack,\n.nb-theme-cosmic :host ngx-d3-line,\n.nb-theme-cosmic :host ngx-d3-polar {\n  display: block;\n  width: 300px;\n  height: 150px;\n  /* nb-theme(card-height-extra-small); */ }\n.nb-theme-cosmic :host ngx-d3-bar /deep/ .pie-label,\n  .nb-theme-cosmic :host ngx-d3-pie /deep/ .pie-label,\n  .nb-theme-cosmic :host ngx-d3-advanced-pie /deep/ .pie-label,\n  .nb-theme-cosmic :host ngx-d3-area-stack /deep/ .pie-label,\n  .nb-theme-cosmic :host ngx-d3-line /deep/ .pie-label,\n  .nb-theme-cosmic :host ngx-d3-polar /deep/ .pie-label {\n    fill: #ffffff; }\n.nb-theme-cosmic :host ngx-d3-bar /deep/ .grid-line-path,\n  .nb-theme-cosmic :host ngx-d3-pie /deep/ .grid-line-path,\n  .nb-theme-cosmic :host ngx-d3-advanced-pie /deep/ .grid-line-path,\n  .nb-theme-cosmic :host ngx-d3-area-stack /deep/ .grid-line-path,\n  .nb-theme-cosmic :host ngx-d3-line /deep/ .grid-line-path,\n  .nb-theme-cosmic :host ngx-d3-polar /deep/ .grid-line-path {\n    stroke: #342e73; }\n.nb-theme-cosmic :host ngx-d3-bar /deep/ text,\n  .nb-theme-cosmic :host ngx-d3-pie /deep/ text,\n  .nb-theme-cosmic :host ngx-d3-advanced-pie /deep/ text,\n  .nb-theme-cosmic :host ngx-d3-area-stack /deep/ text,\n  .nb-theme-cosmic :host ngx-d3-line /deep/ text,\n  .nb-theme-cosmic :host ngx-d3-polar /deep/ text {\n    fill: #ffffff; }\n.nb-theme-cosmic :host ngx-d3-bar /deep/ .chart-legend .legend-labels,\n  .nb-theme-cosmic :host ngx-d3-pie /deep/ .chart-legend .legend-labels,\n  .nb-theme-cosmic :host ngx-d3-advanced-pie /deep/ .chart-legend .legend-labels,\n  .nb-theme-cosmic :host ngx-d3-area-stack /deep/ .chart-legend .legend-labels,\n  .nb-theme-cosmic :host ngx-d3-line /deep/ .chart-legend .legend-labels,\n  .nb-theme-cosmic :host ngx-d3-polar /deep/ .chart-legend .legend-labels {\n    background: #3d3780; }\n.nb-theme-cosmic :host ngx-d3-bar /deep/ .chart-legend .legend-label,\n  .nb-theme-cosmic :host ngx-d3-pie /deep/ .chart-legend .legend-label,\n  .nb-theme-cosmic :host ngx-d3-advanced-pie /deep/ .chart-legend .legend-label,\n  .nb-theme-cosmic :host ngx-d3-area-stack /deep/ .chart-legend .legend-label,\n  .nb-theme-cosmic :host ngx-d3-line /deep/ .chart-legend .legend-label,\n  .nb-theme-cosmic :host ngx-d3-polar /deep/ .chart-legend .legend-label {\n    color: #ffffff; }\n.nb-theme-cosmic :host ngx-d3-bar /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-cosmic :host ngx-d3-pie /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-cosmic :host ngx-d3-advanced-pie /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-cosmic :host ngx-d3-area-stack /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-cosmic :host ngx-d3-line /deep/ .chart-legend .legend-label .active .legend-label-text,\n    .nb-theme-cosmic :host ngx-d3-polar /deep/ .chart-legend .legend-label .active .legend-label-text {\n      color: #ffffff; }\n"
 
 /***/ }),
 
@@ -52,6 +52,8 @@ var DashboardComponent = /** @class */ (function () {
         this.tankPercentage = 100;
         this.remainingWater = 5000;
         this.totalWater = 5000;
+        this.type = 'week';
+        this.types = ['day', 'week', 'year'];
         // 1 for day, 2 for week and 3 for month
         this.dateSetting = 2;
         this.getPreviousMonday();
@@ -196,8 +198,9 @@ var DashboardComponent = /** @class */ (function () {
         }
     };
     DashboardComponent.prototype.changeUnits = function (unit) {
-        this.dateSetting = unit;
-        if (unit === 1) {
+        this.type = unit;
+        if (unit === 'day') {
+            this.dateSetting = 1;
             this.dayCount = 0;
             this.weekCount = 0;
             this.yearCount = 0;
@@ -206,7 +209,8 @@ var DashboardComponent = /** @class */ (function () {
             this.DateMetric = "Daily";
             this.multiChart.setCurrentDailyWaterLevels();
         }
-        else if (unit === 2) {
+        else if (unit === 'week') {
+            this.dateSetting = 2;
             this.weekCount = 0;
             this.dayCount = 0;
             this.yearCount = 0;
@@ -218,6 +222,7 @@ var DashboardComponent = /** @class */ (function () {
             this.multiChart.setCurrentWeeklyWaterLevels();
         }
         else {
+            this.dateSetting = 3;
             var current;
             var date = new Date();
             //if the current date is a sunday
@@ -273,9 +278,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard.component */ "./src/app/pages/dashboard/dashboard.component.ts");
 /* harmony import */ var _temperature_temperature_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./temperature/temperature.component */ "./src/app/pages/dashboard/temperature/temperature.component.ts");
 /* harmony import */ var _temperature_temperature_dragger_temperature_dragger_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./temperature/temperature-dragger/temperature-dragger.component */ "./src/app/pages/dashboard/temperature/temperature-dragger/temperature-dragger.component.ts");
-/* harmony import */ var _charts_chartjs_chartjs_multiple_xaxis_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../charts/chartjs/chartjs-multiple-xaxis.component */ "./src/app/pages/charts/chartjs/chartjs-multiple-xaxis.component.ts");
-/* harmony import */ var _charts_d3_d3_bar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../charts/d3/d3-bar.component */ "./src/app/pages/charts/d3/d3-bar.component.ts");
-/* harmony import */ var _charts_chartjs_chartjs_pie_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../charts/chartjs/chartjs-pie.component */ "./src/app/pages/charts/chartjs/chartjs-pie.component.ts");
+/* harmony import */ var _electricity_electricity_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./electricity/electricity.component */ "./src/app/pages/dashboard/electricity/electricity.component.ts");
+/* harmony import */ var _electricity_electricity_chart_electricity_chart_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./electricity/electricity-chart/electricity-chart.component */ "./src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.ts");
+/* harmony import */ var _weather_weather_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./weather/weather.component */ "./src/app/pages/dashboard/weather/weather.component.ts");
+/* harmony import */ var _traffic_traffic_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./traffic/traffic.component */ "./src/app/pages/dashboard/traffic/traffic.component.ts");
+/* harmony import */ var _traffic_traffic_chart_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./traffic/traffic-chart.component */ "./src/app/pages/dashboard/traffic/traffic-chart.component.ts");
+/* harmony import */ var _charts_chartjs_chartjs_multiple_xaxis_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../charts/chartjs/chartjs-multiple-xaxis.component */ "./src/app/pages/charts/chartjs/chartjs-multiple-xaxis.component.ts");
+/* harmony import */ var _charts_d3_d3_bar_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../charts/d3/d3-bar.component */ "./src/app/pages/charts/d3/d3-bar.component.ts");
+/* harmony import */ var _charts_chartjs_chartjs_pie_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../charts/chartjs/chartjs-pie.component */ "./src/app/pages/charts/chartjs/chartjs-pie.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -300,13 +310,12 @@ import { RoomSelectorComponent } from './rooms/room-selector/room-selector.compo
 import { TeamComponent } from './team/team.component';
 import { KittenComponent } from './kitten/kitten.component';
 import { SecurityCamerasComponent } from './security-cameras/security-cameras.component';
-import { ElectricityComponent } from './electricity/electricity.component';
-import { ElectricityChartComponent } from './electricity/electricity-chart/electricity-chart.component';
-import { WeatherComponent } from './weather/weather.component';
-import { SolarComponent } from './solar/solar.component';
-import { PlayerComponent } from './rooms/player/player.component';
-import { TrafficComponent } from './traffic/traffic.component';
-import { TrafficChartComponent } from './traffic/traffic-chart.component'; */
+*/
+
+
+
+
+
 
 
 
@@ -322,12 +331,12 @@ var DashboardModule = /** @class */ (function () {
                 angular2_chartjs__WEBPACK_IMPORTED_MODULE_2__["ChartModule"]
             ],
             declarations: [
-                _charts_chartjs_chartjs_multiple_xaxis_component__WEBPACK_IMPORTED_MODULE_8__["ChartjsMultipleXaxisComponent"],
+                _charts_chartjs_chartjs_multiple_xaxis_component__WEBPACK_IMPORTED_MODULE_13__["ChartjsMultipleXaxisComponent"],
                 _dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
-                _charts_d3_d3_bar_component__WEBPACK_IMPORTED_MODULE_9__["D3BarComponent"],
+                _charts_d3_d3_bar_component__WEBPACK_IMPORTED_MODULE_14__["D3BarComponent"],
                 _temperature_temperature_dragger_temperature_dragger_component__WEBPACK_IMPORTED_MODULE_7__["TemperatureDraggerComponent"],
                 _temperature_temperature_component__WEBPACK_IMPORTED_MODULE_6__["TemperatureComponent"],
-                _charts_chartjs_chartjs_pie_component__WEBPACK_IMPORTED_MODULE_10__["ChartjsPieComponent"]
+                _charts_chartjs_chartjs_pie_component__WEBPACK_IMPORTED_MODULE_15__["ChartjsPieComponent"],
                 /*
                StatusCardComponent,
                ,
@@ -337,18 +346,736 @@ var DashboardModule = /** @class */ (function () {
                RoomsComponent,
                TeamComponent,
                KittenComponent,
-               SecurityCamerasComponent,
-               ElectricityComponent,
-               ElectricityChartComponent,
-               WeatherComponent,
-               PlayerComponent,
-               SolarComponent,
-               TrafficComponent,
-               TrafficChartComponent, */
+               SecurityCamerasComponent,*/
+                _electricity_electricity_component__WEBPACK_IMPORTED_MODULE_8__["ElectricityComponent"],
+                _electricity_electricity_chart_electricity_chart_component__WEBPACK_IMPORTED_MODULE_9__["ElectricityChartComponent"],
+                _weather_weather_component__WEBPACK_IMPORTED_MODULE_10__["WeatherComponent"],
+                //PlayerComponent,
+                //SolarComponent,
+                _traffic_traffic_component__WEBPACK_IMPORTED_MODULE_11__["TrafficComponent"],
+                _traffic_traffic_chart_component__WEBPACK_IMPORTED_MODULE_12__["TrafficChartComponent"]
             ],
         })
     ], DashboardModule);
     return DashboardModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.scss":
+/*!************************************************************************************************!*\
+  !*** ./src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.scss ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This is a starting point where we declare the maps of themes and globally available functions/mixins\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host {\n  display: block;\n  flex: 1;\n  position: relative; }\n.nb-theme-default :host .echart {\n    position: absolute;\n    width: 100%;\n    height: 100%; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host {\n  display: block;\n  flex: 1;\n  position: relative; }\n.nb-theme-cosmic :host .echart {\n    position: absolute;\n    width: 100%;\n    height: 100%; }\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.ts":
+/*!**********************************************************************************************!*\
+  !*** ./src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.ts ***!
+  \**********************************************************************************************/
+/*! exports provided: ElectricityChartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ElectricityChartComponent", function() { return ElectricityChartComponent; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
+/* harmony import */ var _app_posts_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../app/posts.service */ "./src/app/posts.service.ts");
+/* harmony import */ var _app_event__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../app/event */ "./src/app/event.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ElectricityChartComponent = /** @class */ (function () {
+    function ElectricityChartComponent(theme, postsService) {
+        this.theme = theme;
+        this.postsService = postsService;
+        this.weeklyWaterLevels = [];
+        this.dailyWaterLevels = [];
+        this.yearlyWaterLevels = [];
+        this.currentDayIndex = new Date().getDay();
+        this.currentMonthIndex = new Date().getMonth();
+        this.currentHourIndex = new Date().getHours();
+        this.initIoConnection();
+        this.setCurrentWeeklyWaterLevels();
+        var labels = ["one", "two", "three", "four"];
+        var datas = [1, 2, 3, 4];
+        this.data = datas.map(function (p, index) { return ({
+            label: labels[index],
+            value: p
+        }); });
+    }
+    ElectricityChartComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.themeSubscription = this.theme.getJsTheme().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["delay"])(1)).subscribe(function (config) {
+            var eTheme = config.variables.electricity;
+            _this.option = {
+                grid: {
+                    left: 0,
+                    top: 0,
+                    right: 0,
+                    bottom: 80,
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line',
+                        lineStyle: {
+                            color: eTheme.tooltipLineColor,
+                            width: eTheme.tooltipLineWidth,
+                        },
+                    },
+                    textStyle: {
+                        color: eTheme.tooltipTextColor,
+                        fontSize: 20,
+                        fontWeight: eTheme.tooltipFontWeight,
+                    },
+                    position: 'top',
+                    backgroundColor: eTheme.tooltipBg,
+                    borderColor: eTheme.tooltipBorderColor,
+                    borderWidth: 3,
+                    formatter: '{c0} kWh',
+                    extraCssText: eTheme.tooltipExtraCss,
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    offset: 25,
+                    data: _this.data.map(function (i) { return i.label; }),
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        color: eTheme.xAxisTextColor,
+                        fontSize: 18,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: eTheme.axisLineColor,
+                            width: '2',
+                        },
+                    },
+                },
+                yAxis: {
+                    boundaryGap: [0, '5%'],
+                    axisLine: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: eTheme.yAxisSplitLine,
+                            width: '1',
+                        },
+                    },
+                },
+                series: [
+                    {
+                        type: 'line',
+                        smooth: true,
+                        symbolSize: 20,
+                        itemStyle: {
+                            normal: {
+                                opacity: 0,
+                            },
+                            emphasis: {
+                                color: '#ffffff',
+                                borderColor: eTheme.itemBorderColor,
+                                borderWidth: 2,
+                                opacity: 1,
+                            },
+                        },
+                        lineStyle: {
+                            normal: {
+                                width: eTheme.lineWidth,
+                                type: eTheme.lineStyle,
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: eTheme.lineGradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: eTheme.lineGradTo,
+                                    }]),
+                                shadowColor: eTheme.lineShadow,
+                                shadowBlur: 6,
+                                shadowOffsetY: 12,
+                            },
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: eTheme.areaGradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: eTheme.areaGradTo,
+                                    }]),
+                            },
+                        },
+                        data: _this.data.map(function (i) { return i.value; }),
+                    },
+                    {
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        lineStyle: {
+                            normal: {
+                                width: eTheme.lineWidth,
+                                type: eTheme.lineStyle,
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: eTheme.lineGradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: eTheme.lineGradTo,
+                                    }]),
+                                shadowColor: eTheme.shadowLineDarkBg,
+                                shadowBlur: 14,
+                                opacity: 1,
+                            },
+                        },
+                        data: _this.data.map(function (i) { return i.value; }),
+                    },
+                ],
+            };
+        });
+    };
+    ElectricityChartComponent.prototype.ngOnDestroy = function () {
+        this.themeSubscription.unsubscribe();
+    };
+    ElectricityChartComponent.prototype.initIoConnection = function () {
+        var _this = this;
+        this.postsService.initSocket();
+        this.ioWeeklyConnection = this.postsService.onWeek()
+            .subscribe(function (message) {
+            _this.currentDayIndex = new Date().getDay();
+            // average water levels from today to 7 days ago
+            var day1 = message[0][0];
+            var day2 = message[1][0];
+            var day3 = message[2][0];
+            var day4 = message[3][0];
+            var day5 = message[4][0];
+            var day6 = message[5][0];
+            var day7 = message[6][0];
+            var dayIndex;
+            var tempWaterLevels = [day1[""], day2[""], day3[""], day4[""], day5[""], day6[""], day7[""]];
+            _this.weeklyWaterLevels = [];
+            // need to use different logic for sundays
+            if (_this.currentDayIndex === 0) {
+                dayIndex = 6;
+            }
+            else {
+                dayIndex = _this.currentDayIndex - 1;
+            }
+            if (_this.weekOffset === 0) {
+                for (var i = 0; i < 7; i++) {
+                    if ((dayIndex - i) >= 0) {
+                        _this.weeklyWaterLevels[dayIndex - i] = tempWaterLevels[i];
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < 7; i++) {
+                    _this.weeklyWaterLevels[i] = tempWaterLevels[6 - i];
+                }
+            }
+            var labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            _this.data = _this.weeklyWaterLevels.map(function (p, index) { return ({
+                label: labels[index],
+                value: p
+            }); });
+            _this.setOptions();
+        });
+        this.ioYearlyConnection = this.postsService.onYear()
+            .subscribe(function (message) {
+            _this.currentMonthIndex = new Date().getMonth();
+            // average water levels from today to 7 days ago
+            var month1 = message[0][0];
+            var month2 = message[1][0];
+            var month3 = message[2][0];
+            var month4 = message[3][0];
+            var month5 = message[4][0];
+            var month6 = message[5][0];
+            var month7 = message[6][0];
+            var month8 = message[7][0];
+            var month9 = message[8][0];
+            var month10 = message[9][0];
+            var month11 = message[10][0];
+            var month12 = message[11][0];
+            _this.yearlyWaterLevels = [];
+            var tempWaterLevels = [month1[""], month2[""], month3[""], month4[""], month5[""], month6[""], month7[""], month8[""], month9[""], month10[""], month11[""], month12[""]];
+            // need to use different logic for sundays
+            if (_this.yearOffset === 0) {
+                for (var i = 0; i < 12; i++) {
+                    if ((_this.currentMonthIndex - i) >= 0) {
+                        _this.yearlyWaterLevels[_this.currentMonthIndex - i] = tempWaterLevels[i];
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < 12; i++) {
+                    _this.yearlyWaterLevels[i] = tempWaterLevels[11 - i];
+                }
+            }
+            var labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            _this.data = _this.yearlyWaterLevels.map(function (p, index) { return ({
+                label: labels[index],
+                value: p
+            }); });
+            _this.setOptions();
+        });
+        this.ioDailyConnection = this.postsService.onDay()
+            .subscribe(function (message) {
+            _this.currentHourIndex = new Date().getHours();
+            // average water levels from today to 7 days ago
+            var hour1 = message[0][0];
+            var hour2 = message[1][0];
+            var hour3 = message[2][0];
+            var hour4 = message[3][0];
+            var hour5 = message[4][0];
+            var hour6 = message[5][0];
+            var hour7 = message[6][0];
+            var hour8 = message[7][0];
+            var hour9 = message[8][0];
+            var hour10 = message[9][0];
+            var hour11 = message[10][0];
+            var hour12 = message[11][0];
+            var hour13 = message[12][0];
+            var hour14 = message[13][0];
+            var hour15 = message[14][0];
+            var hour16 = message[15][0];
+            var hour17 = message[16][0];
+            var hour18 = message[17][0];
+            var hour19 = message[18][0];
+            var hour20 = message[19][0];
+            var hour21 = message[20][0];
+            var hour22 = message[21][0];
+            var hour23 = message[22][0];
+            var hour24 = message[23][0];
+            var tempWaterLevels = [hour1[""], hour2[""], hour3[""], hour4[""], hour5[""], hour6[""], hour7[""], hour8[""], hour9[""], hour10[""], hour11[""], hour12[""], hour13[""], hour14[""], hour15[""], hour16[""], hour17[""], hour18[""], hour19[""], hour20[""], hour21[""], hour22[""], hour23[""], hour24[""]];
+            _this.dailyWaterLevels = [];
+            if (_this.dayOffset === 0) {
+                for (var i = 0; i < 24; i++) {
+                    if ((_this.currentHourIndex - i) >= 0) {
+                        _this.dailyWaterLevels[_this.currentHourIndex - i] = tempWaterLevels[i];
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < 24; i++) {
+                    _this.dailyWaterLevels[i] = tempWaterLevels[23 - i];
+                }
+            }
+            var labels = ['1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00'];
+            _this.data = _this.yearlyWaterLevels.map(function (p, index) { return ({
+                label: labels[index],
+                value: p
+            }); });
+            _this.setOptions();
+        });
+        this.ioTodayConnection = this.postsService.onLevel()
+            .subscribe(function (message) {
+            /*       if(this.weekOffset === 0 && this.dayOffset === 0){
+                    if(this.dateMetric === "Weekly"){
+                      this.setCurrentWeeklyWaterLevels();
+                    }
+                    else if(this.dateMetric==="Daily"){
+                      this.setCurrentDailyWaterLevels();
+                    }
+                  } */
+        });
+        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_4__["Event"].CONNECT)
+            .subscribe(function () {
+        });
+        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_4__["Event"].DISCONNECT)
+            .subscribe(function () {
+        });
+    };
+    ElectricityChartComponent.prototype.setCurrentWeeklyWaterLevels = function () {
+        this.postsService.getCurrentWeek().subscribe(function (value) {
+        });
+        return;
+    };
+    ElectricityChartComponent.prototype.setCurrentYearlyWaterLevels = function () {
+        this.postsService.getCurrentYear().subscribe(function (value) {
+        });
+        return;
+    };
+    ElectricityChartComponent.prototype.setCurrentDailyWaterLevels = function () {
+        this.postsService.getCurrentDay().subscribe(function (value) {
+        });
+        return;
+    };
+    ElectricityChartComponent.prototype.setWeeklyWaterLevels = function (week) {
+        this.postsService.getWeek(week).subscribe(function (value) {
+        });
+        return;
+    };
+    ElectricityChartComponent.prototype.setYearlyWaterLevels = function (month) {
+        this.postsService.getYear(month).subscribe(function (value) {
+        });
+        return;
+    };
+    ElectricityChartComponent.prototype.setDailyWaterLevels = function (hour) {
+        this.postsService.getDay(hour).subscribe(function (value) {
+        });
+        return;
+    };
+    ElectricityChartComponent.prototype.setOptions = function () {
+        var _this = this;
+        this.themeSubscription = this.theme.getJsTheme().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["delay"])(1)).subscribe(function (config) {
+            var eTheme = config.variables.electricity;
+            _this.option = {
+                grid: {
+                    left: 0,
+                    top: 0,
+                    right: 0,
+                    bottom: 80,
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line',
+                        lineStyle: {
+                            color: eTheme.tooltipLineColor,
+                            width: eTheme.tooltipLineWidth,
+                        },
+                    },
+                    textStyle: {
+                        color: eTheme.tooltipTextColor,
+                        fontSize: 20,
+                        fontWeight: eTheme.tooltipFontWeight,
+                    },
+                    position: 'top',
+                    backgroundColor: eTheme.tooltipBg,
+                    borderColor: eTheme.tooltipBorderColor,
+                    borderWidth: 3,
+                    formatter: '{c0} kWh',
+                    extraCssText: eTheme.tooltipExtraCss,
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    offset: 25,
+                    data: _this.data.map(function (i) { return i.label; }),
+                    axisTick: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        color: eTheme.xAxisTextColor,
+                        fontSize: 18,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: eTheme.axisLineColor,
+                            width: '2',
+                        },
+                    },
+                },
+                yAxis: {
+                    boundaryGap: [0, '5%'],
+                    axisLine: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: eTheme.yAxisSplitLine,
+                            width: '1',
+                        },
+                    },
+                },
+                series: [
+                    {
+                        type: 'line',
+                        smooth: true,
+                        symbolSize: 20,
+                        itemStyle: {
+                            normal: {
+                                opacity: 0,
+                            },
+                            emphasis: {
+                                color: '#ffffff',
+                                borderColor: eTheme.itemBorderColor,
+                                borderWidth: 2,
+                                opacity: 1,
+                            },
+                        },
+                        lineStyle: {
+                            normal: {
+                                width: eTheme.lineWidth,
+                                type: eTheme.lineStyle,
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: eTheme.lineGradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: eTheme.lineGradTo,
+                                    }]),
+                                shadowColor: eTheme.lineShadow,
+                                shadowBlur: 6,
+                                shadowOffsetY: 12,
+                            },
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: eTheme.areaGradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: eTheme.areaGradTo,
+                                    }]),
+                            },
+                        },
+                        data: _this.data.map(function (i) { return i.value; }),
+                    },
+                    {
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        lineStyle: {
+                            normal: {
+                                width: eTheme.lineWidth,
+                                type: eTheme.lineStyle,
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: eTheme.lineGradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: eTheme.lineGradTo,
+                                    }]),
+                                shadowColor: eTheme.shadowLineDarkBg,
+                                shadowBlur: 14,
+                                opacity: 1,
+                            },
+                        },
+                        data: _this.data.map(function (i) { return i.value; }),
+                    },
+                ],
+            };
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("weekOffset"),
+        __metadata("design:type", Object)
+    ], ElectricityChartComponent.prototype, "weekOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("dayOffset"),
+        __metadata("design:type", Object)
+    ], ElectricityChartComponent.prototype, "dayOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("dateMetric"),
+        __metadata("design:type", Object)
+    ], ElectricityChartComponent.prototype, "dateMetric", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("yearOffset"),
+        __metadata("design:type", Object)
+    ], ElectricityChartComponent.prototype, "yearOffset", void 0);
+    ElectricityChartComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'ngx-electricity-chart',
+            styles: [__webpack_require__(/*! ./electricity-chart.component.scss */ "./src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.scss")],
+            template: "\n    <div echarts [options]=\"option\" class=\"echart\"></div>\n  ",
+        }),
+        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_3__["PostsService"]])
+    ], ElectricityChartComponent);
+    return ElectricityChartComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/electricity/electricity.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/pages/dashboard/electricity/electricity.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nb-card size=\"large\">\n  <div class=\"chart-container\">\n    <div class=\"chart-header\">\n      <div class=\"header-stats\">\n        <div class=\"stats-block\">\n          <div class=\"subtitle\">Consumed</div>\n          <div>\n            <span class=\"value\">{{kiloWatts}}</span>\n            <span class=\"unit\">kWh</span>\n          </div>\n        </div>\n\n        <div class=\"stats-block\">\n          <div class=\"subtitle\">Spent</div>\n          <div>\n            <span class=\"value\">291</span>\n            <span class=\"unit\">USD</span>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"dropdown\" ngbDropdown>\n        <button type=\"button\" ngbDropdownToggle class=\"btn\"\n                [ngClass]=\"{ 'btn-outline-success': currentTheme == 'default', 'btn-primary': currentTheme != 'default'}\">\n          {{ type }}\n        </button>\n        <ul class=\"dropdown-menu\" ngbDropdownMenu>\n          <li class=\"dropdown-item\" *ngFor=\"let t of types\" (click)=\"type = t\">{{ t }}</li>\n        </ul>\n      </div>\n\n    </div>\n    <ngx-electricity-chart #electricityChart [weekOffset] = \"weekCount\" [dayOffset] = \"dayCount\" [yearOffset] = \"yearCount\" [dateMetric]=\"DateMetric\"></ngx-electricity-chart>\n  </div>\n</nb-card>\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/electricity/electricity.component.scss":
+/*!************************************************************************!*\
+  !*** ./src/app/pages/dashboard/electricity/electricity.component.scss ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This is a starting point where we declare the maps of themes and globally available functions/mixins\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host nb-card {\n  display: flex;\n  flex-direction: row;\n  overflow-x: auto; }\n.nb-theme-default :host nb-card-body {\n  /* overflow: hidden; */\n  overflow-x: auto; }\n.nb-theme-default :host .consumption-table {\n  display: flex;\n  flex-direction: column;\n  width: 20rem;\n  height: 100%;\n  z-index: 2;\n  box-shadow: 0 2px 12px 0 #dfe3eb; }\n.nb-theme-default :host .table-header {\n  padding: 1.25rem;\n  border-bottom: 1px solid #ebeef2;\n  border-top-left-radius: 0.375rem;\n  border-top-right-radius: 0.375rem;\n  color: #2a2a2a;\n  font-family: Exo;\n  font-size: 1.125rem;\n  font-weight: 600;\n  font-size: 1.25rem; }\n.nb-theme-default :host .table-header h1 {\n    margin: 0; }\n.nb-theme-default :host .table-header h2 {\n    margin: 0; }\n.nb-theme-default :host .table-header h3 {\n    margin: 0; }\n.nb-theme-default :host .table-header h4 {\n    margin: 0; }\n.nb-theme-default :host .table-header h5 {\n    margin: 0; }\n.nb-theme-default :host .table-header h6 {\n    margin: 0; }\n.nb-theme-default :host .table-header .subtitle {\n    color: #a4abb3;\n    font-family: Roboto;\n    font-size: 1rem;\n    font-weight: 300; }\n.nb-theme-default :host nb-tabset /deep/ {\n  flex: 1;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column; }\n.nb-theme-default :host nb-tabset /deep/ ul {\n    align-items: center;\n    padding: 1rem; }\n.nb-theme-default :host nb-tabset /deep/ ul li a {\n    font-weight: 500;\n    padding: 0.75rem 1rem; }\n.nb-theme-default :host nb-tabset /deep/ ul li.active {\n    position: relative;\n    background-color: #ebeff5;\n    border-radius: 0.375rem 0.375rem 0 0; }\n.nb-theme-default :host nb-tabset /deep/ ul li.active::before {\n      position: absolute;\n      content: '';\n      width: 100%;\n      height: 5px;\n      border-radius: 2.5px;\n      bottom: 0;\n      left: 0;\n      background: #40dc7e; }\n.nb-theme-default :host nb-tabset /deep/ ul li.active a {\n      font-size: 1.5rem; }\n.nb-theme-default :host nb-tabset /deep/ ul li.active a::before {\n      display: none; }\n.nb-theme-default :host nb-tabset /deep/ nb-tab {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: auto; }\n.nb-theme-default :host .stats-month {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1.25rem;\n  color: #a4abb3; }\n.nb-theme-default :host .stats-month:not(:first-child) {\n    border-top: 1px solid #ebeef2; }\n.nb-theme-default :host .stats-month .month {\n    display: inline-block;\n    width: 2.75rem;\n    font-family: Exo;\n    font-size: 1.25rem;\n    font-weight: 500;\n    color: #2a2a2a; }\n.nb-theme-default :host .stats-month .delta {\n    position: relative;\n    display: inline-block;\n    padding-left: 1rem;\n    font-size: 0.75rem;\n    color: #ff6780; }\n.nb-theme-default :host .stats-month .delta::before {\n      position: absolute;\n      content: '';\n      bottom: 3px;\n      left: 2px;\n      border-left: 5px solid transparent;\n      border-right: 5px solid transparent;\n      border-bottom: 8px solid #ff6780; }\n.nb-theme-default :host .stats-month .delta.down {\n      color: #5de191; }\n.nb-theme-default :host .stats-month .delta.down::before {\n        top: 3px;\n        border-top: 8px solid #5de191;\n        border-bottom: none; }\n.nb-theme-default :host .stats-month .results {\n    font-size: 0.875rem;\n    font-weight: 300; }\n.nb-theme-default :host .stats-month .results b {\n      font-family: Exo;\n      font-size: 1rem;\n      font-weight: 500;\n      color: #2a2a2a; }\n.nb-theme-default :host .chart-container {\n  flex: 1;\n  height: 100%;\n  background-image: none;\n  display: flex;\n  flex-direction: column;\n  overflow-x: auto; }\n.nb-theme-default :host .chart-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1rem 1.75rem 1rem 1rem; }\n.nb-theme-default :host .header-stats {\n  display: flex;\n  align-items: center; }\n.nb-theme-default :host .stats-block {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  color: #a4abb3;\n  padding: 0 1.5rem;\n  border-right: 1px solid #ebeef2; }\n.nb-theme-default :host .stats-block .subtitle {\n    font-size: 1rem;\n    font-weight: 300; }\n.nb-theme-default :host .stats-block .value {\n    font-family: Exo;\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: #2a2a2a; }\n.nb-theme-default :host .stats-block .unit {\n    font-family: Exo;\n    font-size: 1.25rem;\n    font-weight: 300; }\n.nb-theme-default :host .dropdown {\n  min-width: 130px; }\n@media (max-width: 1599.98px) {\n  .nb-theme-default :host .stats-block {\n    border: none;\n    padding: 0 1rem; } }\n@media (min-width: 768px) and (max-width: 1399.98px) {\n  .nb-theme-default :host .consumption-table {\n    display: none; } }\n@media (max-width: 991.98px) {\n  .nb-theme-default :host .chart-header {\n    padding: 1rem; }\n  .nb-theme-default :host .dropdown {\n    min-width: 100px; }\n    .nb-theme-default :host .dropdown button {\n      padding-left: 0.75rem;\n      padding-right: 0.75rem; } }\n@media (max-width: 767.98px) {\n  .nb-theme-default :host .consumption-table {\n    display: none; } }\n@media (max-width: 399.98px) {\n  .nb-theme-default :host .stats-block {\n    padding: 0; }\n    .nb-theme-default :host .stats-block:first-child {\n      padding: 0 0.5rem; }\n    .nb-theme-default :host .stats-block .subtitle {\n      font-size: 1rem; }\n    .nb-theme-default :host .stats-block .value {\n      font-size: 1.5rem; }\n    .nb-theme-default :host .stats-block .unit {\n      display: none; } }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host nb-card {\n  display: flex;\n  flex-direction: row;\n  overflow-x: auto; }\n.nb-theme-cosmic :host nb-card-body {\n  /* overflow: hidden; */\n  overflow-x: auto; }\n.nb-theme-cosmic :host .consumption-table {\n  display: flex;\n  flex-direction: column;\n  width: 20rem;\n  height: 100%;\n  z-index: 2;\n  box-shadow: 0 8px 20px 0 rgba(40, 37, 89, 0.6); }\n.nb-theme-cosmic :host .table-header {\n  padding: 1.25rem;\n  border-bottom: 1px solid #342e73;\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  color: #ffffff;\n  font-family: Exo;\n  font-size: 1.125rem;\n  font-weight: 500;\n  font-size: 1.25rem; }\n.nb-theme-cosmic :host .table-header h1 {\n    margin: 0; }\n.nb-theme-cosmic :host .table-header h2 {\n    margin: 0; }\n.nb-theme-cosmic :host .table-header h3 {\n    margin: 0; }\n.nb-theme-cosmic :host .table-header h4 {\n    margin: 0; }\n.nb-theme-cosmic :host .table-header h5 {\n    margin: 0; }\n.nb-theme-cosmic :host .table-header h6 {\n    margin: 0; }\n.nb-theme-cosmic :host .table-header .subtitle {\n    color: #a1a1e5;\n    font-family: Roboto;\n    font-size: 1rem;\n    font-weight: 300; }\n.nb-theme-cosmic :host nb-tabset /deep/ {\n  flex: 1;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul {\n    align-items: center;\n    padding: 1rem; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li a {\n    font-weight: 500;\n    padding: 0.75rem 1rem; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li.active {\n    position: relative;\n    background-color: #2f296b;\n    border-radius: 0.5rem 0.5rem 0 0; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li.active::before {\n      position: absolute;\n      content: '';\n      width: 100%;\n      height: 5px;\n      border-radius: 2.5px;\n      bottom: 0;\n      left: 0;\n      background: #00d977; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li.active a {\n      font-size: 1.5rem; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li.active a::before {\n      display: none; }\n.nb-theme-cosmic :host nb-tabset /deep/ nb-tab {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: auto; }\n.nb-theme-cosmic :host .stats-month {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1.25rem;\n  color: #a1a1e5; }\n.nb-theme-cosmic :host .stats-month:not(:first-child) {\n    border-top: 1px solid #342e73; }\n.nb-theme-cosmic :host .stats-month .month {\n    display: inline-block;\n    width: 2.75rem;\n    font-family: Exo;\n    font-size: 1.25rem;\n    font-weight: 500;\n    color: #ffffff; }\n.nb-theme-cosmic :host .stats-month .delta {\n    position: relative;\n    display: inline-block;\n    padding-left: 1rem;\n    font-size: 0.75rem;\n    color: #ff5680; }\n.nb-theme-cosmic :host .stats-month .delta::before {\n      position: absolute;\n      content: '';\n      bottom: 3px;\n      left: 2px;\n      border-left: 5px solid transparent;\n      border-right: 5px solid transparent;\n      border-bottom: 8px solid #ff5680; }\n.nb-theme-cosmic :host .stats-month .delta.down {\n      color: #26df8b; }\n.nb-theme-cosmic :host .stats-month .delta.down::before {\n        top: 3px;\n        border-top: 8px solid #26df8b;\n        border-bottom: none; }\n.nb-theme-cosmic :host .stats-month .results {\n    font-size: 0.875rem;\n    font-weight: 300; }\n.nb-theme-cosmic :host .stats-month .results b {\n      font-family: Exo;\n      font-size: 1rem;\n      font-weight: 500;\n      color: #ffffff; }\n.nb-theme-cosmic :host .chart-container {\n  flex: 1;\n  height: 100%;\n  background-image: radial-gradient(circle at 50% 50%, #423f8c, #302c6e);\n  display: flex;\n  flex-direction: column;\n  overflow-x: auto; }\n.nb-theme-cosmic :host .chart-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 1rem 1.75rem 1rem 1rem; }\n.nb-theme-cosmic :host .header-stats {\n  display: flex;\n  align-items: center; }\n.nb-theme-cosmic :host .stats-block {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  color: #a1a1e5;\n  padding: 0 1.5rem;\n  border-right: 1px solid #342e73; }\n.nb-theme-cosmic :host .stats-block .subtitle {\n    font-size: 1rem;\n    font-weight: 300; }\n.nb-theme-cosmic :host .stats-block .value {\n    font-family: Exo;\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: #ffffff; }\n.nb-theme-cosmic :host .stats-block .unit {\n    font-family: Exo;\n    font-size: 1.25rem;\n    font-weight: 300; }\n.nb-theme-cosmic :host .dropdown {\n  min-width: 130px; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li.active {\n  background-color: #7659ff;\n  border-radius: 0.5rem; }\n.nb-theme-cosmic :host nb-tabset /deep/ ul li.active::before {\n    display: none; }\n.nb-theme-cosmic :host .stats-block .value {\n  font-weight: 500; }\n@media (max-width: 1599.98px) {\n  .nb-theme-cosmic :host .stats-block {\n    border: none;\n    padding: 0 1rem; } }\n@media (min-width: 768px) and (max-width: 1399.98px) {\n  .nb-theme-cosmic :host .consumption-table {\n    display: none; } }\n@media (max-width: 991.98px) {\n  .nb-theme-cosmic :host .chart-header {\n    padding: 1rem; }\n  .nb-theme-cosmic :host .dropdown {\n    min-width: 100px; }\n    .nb-theme-cosmic :host .dropdown button {\n      padding-left: 0.75rem;\n      padding-right: 0.75rem; } }\n@media (max-width: 767.98px) {\n  .nb-theme-cosmic :host .consumption-table {\n    display: none; } }\n@media (max-width: 399.98px) {\n  .nb-theme-cosmic :host .stats-block {\n    padding: 0; }\n    .nb-theme-cosmic :host .stats-block:first-child {\n      padding: 0 0.5rem; }\n    .nb-theme-cosmic :host .stats-block .subtitle {\n      font-size: 1rem; }\n    .nb-theme-cosmic :host .stats-block .value {\n      font-size: 1.5rem; }\n    .nb-theme-cosmic :host .stats-block .unit {\n      display: none; } }\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/electricity/electricity.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/pages/dashboard/electricity/electricity.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: ElectricityComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ElectricityComponent", function() { return ElectricityComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
+/* harmony import */ var _app_posts_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../app/posts.service */ "./src/app/posts.service.ts");
+/* harmony import */ var _app_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../app/event */ "./src/app/event.ts");
+/* harmony import */ var _core_data_electricity_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../@core/data/electricity.service */ "./src/app/@core/data/electricity.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ElectricityComponent = /** @class */ (function () {
+    function ElectricityComponent(eService, themeService, postsService) {
+        var _this = this;
+        this.eService = eService;
+        this.themeService = themeService;
+        this.postsService = postsService;
+        this.messages = [];
+        this.kiloWatts = 84;
+        this.type = 'week';
+        this.types = ['week', 'month', 'year'];
+        this.data = this.eService.getData();
+        this.themeSubscription = this.themeService.getJsTheme().subscribe(function (theme) {
+            _this.currentTheme = theme.name;
+            /*        this.refreshData();
+                  this.interval = setInterval(() => {
+                      this.refreshData();
+                  }, 100); */
+        });
+    }
+    ElectricityComponent.prototype.ngOnInit = function () {
+        this.initIoConnection();
+        var j;
+        /*     this.postsService.storeData(10).subscribe(value => {
+               this.kiloWatts = value.level;
+            }); */
+    };
+    /*   ngOnChanges(){
+        this.postsService.getData().subscribe(value => {
+          this.kiloWatts = value;
+       });
+      } */
+    ElectricityComponent.prototype.ngOnDestroy = function () {
+        this.themeSubscription.unsubscribe();
+    };
+    ElectricityComponent.prototype.initIoConnection = function () {
+        var _this = this;
+        this.postsService.initSocket();
+        this.ioConnection = this.postsService.onMessage()
+            .subscribe(function (message) {
+            //console.log(message)
+            _this.kiloWatts = message.message;
+            // console.log(this.messages);
+        });
+        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
+            .subscribe(function () {
+            console.log('connected');
+        });
+        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].DISCONNECT)
+            .subscribe(function () {
+            console.log('disconnected');
+        });
+    };
+    ElectricityComponent.prototype.sendMessage = function (message) {
+        if (!message) {
+            return;
+        }
+        this.postsService.send({
+            message: message
+        });
+        this.messageContent = null;
+    };
+    ElectricityComponent.prototype.setCurrentDailyWaterLevels = function () {
+        this.electricityChart.setCurrentDailyWaterLevels();
+    };
+    ElectricityComponent.prototype.setCurrentWeeklyWaterLevels = function () {
+        this.electricityChart.setCurrentWeeklyWaterLevels();
+    };
+    ElectricityComponent.prototype.setCurrentYearlyWaterLevels = function () {
+        this.electricityChart.setCurrentYearlyWaterLevels();
+    };
+    ElectricityComponent.prototype.setDailyWaterLevels = function (dayCount) {
+        this.electricityChart.setDailyWaterLevels(dayCount);
+    };
+    ElectricityComponent.prototype.setWeeklyWaterLevels = function (weeklyCount) {
+        this.electricityChart.setWeeklyWaterLevels(weeklyCount);
+    };
+    ElectricityComponent.prototype.setYearlyWaterLevels = function (yearCount) {
+        this.electricityChart.setYearlyWaterLevels(yearCount);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("weekOffset"),
+        __metadata("design:type", Object)
+    ], ElectricityComponent.prototype, "weekOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("dayOffset"),
+        __metadata("design:type", Object)
+    ], ElectricityComponent.prototype, "dayOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("dateMetric"),
+        __metadata("design:type", Object)
+    ], ElectricityComponent.prototype, "dateMetric", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("yearOffset"),
+        __metadata("design:type", Object)
+    ], ElectricityComponent.prototype, "yearOffset", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("electricityChart"),
+        __metadata("design:type", Object)
+    ], ElectricityComponent.prototype, "electricityChart", void 0);
+    ElectricityComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'ngx-electricity',
+            styles: [__webpack_require__(/*! ./electricity.component.scss */ "./src/app/pages/dashboard/electricity/electricity.component.scss")],
+            template: __webpack_require__(/*! ./electricity.component.html */ "./src/app/pages/dashboard/electricity/electricity.component.html"),
+        }),
+        __metadata("design:paramtypes", [_core_data_electricity_service__WEBPACK_IMPORTED_MODULE_4__["ElectricityService"], _nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_2__["PostsService"]])
+    ], ElectricityComponent);
+    return ElectricityComponent;
 }());
 
 
@@ -859,6 +1586,296 @@ var TemperatureComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/pages/dashboard/traffic/traffic-chart.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/pages/dashboard/traffic/traffic-chart.component.ts ***!
+  \********************************************************************/
+/*! exports provided: TrafficChartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrafficChartComponent", function() { return TrafficChartComponent; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var points = [300, 520, 435, 530, 730, 620, 660, 860];
+var TrafficChartComponent = /** @class */ (function () {
+    function TrafficChartComponent(theme) {
+        this.theme = theme;
+        this.type = 'month';
+        this.types = ['week', 'month', 'year'];
+        this.option = {};
+    }
+    TrafficChartComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.themeSubscription = this.theme.getJsTheme().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["delay"])(1)).subscribe(function (config) {
+            var trafficTheme = config.variables.traffic;
+            _this.option = Object.assign({}, {
+                grid: {
+                    left: 0,
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: points,
+                },
+                yAxis: {
+                    boundaryGap: [0, '5%'],
+                    axisLine: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: trafficTheme.colorBlack,
+                            opacity: 0.06,
+                            width: '1',
+                        },
+                    },
+                },
+                tooltip: {
+                    axisPointer: {
+                        type: 'shadow',
+                    },
+                    textStyle: {
+                        color: trafficTheme.tooltipTextColor,
+                        fontWeight: trafficTheme.tooltipFontWeight,
+                        fontSize: 16,
+                    },
+                    position: 'top',
+                    backgroundColor: trafficTheme.tooltipBg,
+                    borderColor: trafficTheme.tooltipBorderColor,
+                    borderWidth: 3,
+                    formatter: '{c0} MB',
+                    extraCssText: trafficTheme.tooltipExtraCss,
+                },
+                series: [
+                    {
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        sampling: 'average',
+                        silent: true,
+                        itemStyle: {
+                            normal: {
+                                color: trafficTheme.shadowLineDarkBg,
+                            },
+                            emphasis: {
+                                color: 'rgba(0,0,0,0)',
+                                borderColor: 'rgba(0,0,0,0)',
+                                borderWidth: 0,
+                            },
+                        },
+                        lineStyle: {
+                            normal: {
+                                width: 2,
+                                color: trafficTheme.shadowLineDarkBg,
+                            },
+                        },
+                        data: points.map(function (p) { return p - 15; }),
+                    },
+                    {
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 6,
+                        sampling: 'average',
+                        itemStyle: {
+                            normal: {
+                                color: trafficTheme.itemColor,
+                                borderColor: trafficTheme.itemBorderColor,
+                                borderWidth: 2,
+                            },
+                            emphasis: {
+                                color: 'white',
+                                borderColor: trafficTheme.itemEmphasisBorderColor,
+                                borderWidth: 2,
+                            },
+                        },
+                        lineStyle: {
+                            normal: {
+                                width: 2,
+                                color: trafficTheme.lineBg,
+                                shadowColor: trafficTheme.lineBg,
+                                shadowBlur: trafficTheme.lineShadowBlur,
+                            },
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: trafficTheme.gradFrom,
+                                    }, {
+                                        offset: 1,
+                                        color: trafficTheme.gradTo,
+                                    }]),
+                                opacity: 1,
+                            },
+                        },
+                        data: points,
+                    },
+                ],
+            });
+        });
+    };
+    TrafficChartComponent.prototype.ngOnDestroy = function () {
+        this.themeSubscription.unsubscribe();
+    };
+    TrafficChartComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'ngx-traffic-chart',
+            styles: [__webpack_require__(/*! ./traffic.component.scss */ "./src/app/pages/dashboard/traffic/traffic.component.scss")],
+            template: "\n    <div echarts [options]=\"option\" class=\"echart\"></div>\n  ",
+        }),
+        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbThemeService"]])
+    ], TrafficChartComponent);
+    return TrafficChartComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/traffic/traffic.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/pages/dashboard/traffic/traffic.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This is a starting point where we declare the maps of themes and globally available functions/mixins\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host nb-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0.675rem 0.5rem 0.5rem 1.25rem;\n  border: none; }\n.nb-theme-default :host nb-card-body {\n  overflow: hidden;\n  position: relative; }\n.nb-theme-default :host /deep/ canvas {\n  border-bottom-left-radius: 0.375rem;\n  border-bottom-right-radius: 0.375rem; }\n.nb-theme-default :host .echart {\n  position: absolute;\n  height: 100%;\n  width: 100%; }\n.nb-theme-default :host .dropdown {\n  min-width: 120px; }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host nb-card-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0.675rem 0.5rem 0.5rem 1.25rem;\n  border: none; }\n.nb-theme-cosmic :host nb-card-body {\n  overflow: hidden;\n  position: relative; }\n.nb-theme-cosmic :host /deep/ canvas {\n  border-bottom-left-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem; }\n.nb-theme-cosmic :host .echart {\n  position: absolute;\n  height: 100%;\n  width: 100%; }\n.nb-theme-cosmic :host .dropdown {\n  min-width: 120px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/traffic/traffic.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/pages/dashboard/traffic/traffic.component.ts ***!
+  \**************************************************************/
+/*! exports provided: TrafficComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrafficComponent", function() { return TrafficComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TrafficComponent = /** @class */ (function () {
+    function TrafficComponent(themeService) {
+        var _this = this;
+        this.themeService = themeService;
+        this.type = 'month';
+        this.types = ['week', 'month', 'year'];
+        this.themeSubscription = this.themeService.getJsTheme().subscribe(function (theme) {
+            _this.currentTheme = theme.name;
+        });
+    }
+    TrafficComponent.prototype.ngOnDestroy = function () {
+        this.themeSubscription.unsubscribe();
+    };
+    TrafficComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'ngx-traffic',
+            styles: [__webpack_require__(/*! ./traffic.component.scss */ "./src/app/pages/dashboard/traffic/traffic.component.scss")],
+            template: "\n    <nb-card size=\"xsmall\">\n      <nb-card-header>\n        <span>Traffic Consumption</span>\n        <div class=\"dropdown ghost-dropdown\" ngbDropdown>\n          <button type=\"button\" class=\"btn btn-sm\" ngbDropdownToggle\n                  [ngClass]=\"{ 'btn-success': currentTheme == 'default', 'btn-primary': currentTheme != 'default'}\">\n            {{ type }}\n          </button>\n          <ul ngbDropdownMenu class=\"dropdown-menu\">\n            <li class=\"dropdown-item\" *ngFor=\"let t of types\" (click)=\"type = t\">{{ t }}</li>\n          </ul>\n        </div>\n      </nb-card-header>\n      <nb-card-body class=\"p-0\">\n        <ngx-traffic-chart></ngx-traffic-chart>\n      </nb-card-body>\n    </nb-card>\n  ",
+        }),
+        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"]])
+    ], TrafficComponent);
+    return TrafficComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/weather/weather.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/pages/dashboard/weather/weather.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nb-card size=\"medium\" style=\"width:397px; height:320px; line-height:1\">\n  <nb-card-body>\n    <div class=\"location\">\n      <span>New York</span>\n    </div>\n    <div class=\"date\">\n      <span>Mon 29 May</span>\n    </div>\n    <div class=\"daily-forecast\">\n      <div class=\"info\">\n        <div class=\"temperature\">\n          <span>20&deg;</span>\n        </div>\n        <div class=\"icon\">\n          <i class=\"ion-ios-sunny-outline\"></i>\n        </div>\n      </div>\n      <div class=\"details\">\n        <div class=\"parameter\">\n          <span class=\"parameter-name\">max</span>\n          <span class=\"parameter-value\">23&deg;</span>\n        </div>\n        <div class=\"parameter\">\n          <span class=\"parameter-name\">min</span>\n          <span class=\"parameter-value\">19&deg;</span>\n        </div>\n        <div class=\"parameter\">\n          <span class=\"parameter-name\">wind</span>\n          <span class=\"parameter-value\">4 km/h</span>\n        </div>\n        <div class=\"parameter\">\n          <span class=\"parameter-name\">hum</span>\n          <span class=\"parameter-value\">87%</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"weekly-forecast\">\n      <div class=\"day\">\n        <span class=\"caption\">Sun</span>\n        <i class=\"ion-ios-cloudy-outline\"></i>\n        <span class=\"temperature\">17&deg;</span>\n      </div>\n      <div class=\"day\">\n        <span class=\"caption\">Mon</span>\n        <i class=\"ion-ios-sunny-outline\"></i>\n        <span class=\"temperature\">19&deg;</span>\n      </div>\n      <div class=\"day\">\n        <span class=\"caption\">Tue</span>\n        <i class=\"ion-ios-rainy-outline\"></i>\n        <span class=\"temperature\">22&deg;</span>\n      </div>\n      <div class=\"day\">\n        <span class=\"caption\">Wed</span>\n        <i class=\"ion-ios-partlysunny-outline\"></i>\n        <span class=\"temperature\">21&deg;</span>\n      </div>\n    </div>\n  </nb-card-body>\n</nb-card>\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/weather/weather.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/pages/dashboard/weather/weather.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This is a starting point where we declare the maps of themes and globally available functions/mixins\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/**\n * This mixin generates keyfames.\n * Because of all keyframes can't be scoped,\n * we need to puts unique name in each btn-pulse call.\n */\n/*\n\nAccording to the specification (https://www.w3.org/TR/css-scoping-1/#host-selector)\n:host and :host-context are pseudo-classes. So we assume they could be combined,\nlike other pseudo-classes, even same ones.\nFor example: ':nth-of-type(2n):nth-of-type(even)'.\n\nIdeal solution would be to prepend any selector with :host-context([dir=rtl]).\nThen nebular components will behave as an html element and respond to [dir] attribute on any level,\nso direction could be overridden on any component level.\n\nImplementation code:\n\n@mixin nb-rtl() {\n  // add # to scss interpolation statement.\n  // it works in comments and we can't use it here\n  @at-root {selector-append(':host-context([dir=rtl])', &)} {\n    @content;\n  }\n}\n\nAnd when we call it somewhere:\n\n:host {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n:host-context(...) {\n  .some-class {\n    @include nb-rtl() {\n      ...\n    }\n  }\n}\n\nResult will look like:\n\n:host-context([dir=rtl]):host .some-class {\n  ...\n}\n:host-context([dir=rtl]):host-context(...) .some-class {\n  ...\n}\n\n*\n  Side note:\n  :host-context():host selector are valid. https://lists.w3.org/Archives/Public/www-style/2015Feb/0305.html\n\n  :host-context([dir=rtl]):host-context(...) should match any permutation,\n  so order is not important.\n*\n\n\nCurrently, there're two problems with this approach:\n\nFirst, is that we can't combine :host, :host-context. Angular bugs #14349, #19199.\nFor the moment of writing, the only possible way is:\n:host {\n  :host-context(...) {\n    ...\n  }\n}\nIt doesn't work for us because mixin could be called somewhere deeper, like:\n:host {\n  p {\n    @include nb-rtl() { ... }\n  }\n}\nWe are not able to go up to :host level to place content passed to mixin.\n\nThe second problem is that we only can be sure that we appending :host-context([dir=rtl]) to another\n:host/:host-context pseudo-class when called in theme files (*.theme.scss).\n  *\n    Side note:\n    Currently, nb-install-component uses another approach where :host prepended with the theme name\n    (https://github.com/angular/angular/blob/5b96078624b0a4760f2dbcf6fdf0bd62791be5bb/packages/compiler/src/shadow_css.ts#L441),\n    but it was made to be able to use current realization of rtl and it can be rewritten back to\n    :host-context($theme) once we will be able to use multiple shadow selectors.\n  *\nBut when it's called in *.component.scss we can't be sure, that selector starts with :host/:host-context,\nbecause angular allows omitting pseudo-classes if we don't need to style :host component itself.\nWe can break such selectors, by just appending :host-context([dir=rtl]) to them.\n  ***\n    Possible solution\n    check if we in theme by some theme variables and if so append, otherwise nest like\n    @at-root :host-context([dir=rtl]) {\n      // add # to scss interpolation statement.\n      // it works in comments and we can't use it here\n      {&} {\n        @content;\n      }\n    }\n    What if :host specified? Can we add space in :host-context(...) :host?\n    Or maybe add :host selector anyway? If multiple :host selectors are allowed\n  ***\n\n\nProblems with the current approach.\n\n1. Direction can be applied only on document level, because mixin prepends theme class,\nwhich placed on the body.\n2. *.component.scss styles should be in :host selector. Otherwise angular will add host\nattribute to [dir=rtl] attribute as well.\n\n\nGeneral problems.\n\nLtr is default document direction, but for proper work of nb-ltr (means ltr only),\n[dir=ltr] should be specified at least somewhere. ':not([dir=rtl]' not applicable here,\nbecause it's satisfy any parent, that don't have [dir=rtl] attribute.\nPrevious approach was to use single rtl mixin and reset ltr properties to initial value.\nBut sometimes it's hard to find, what the previous value should be. And such mixin call looks too verbose.\n*/\n/**\n * @license\n * Copyright Akveo. All Rights Reserved.\n * Licensed under the MIT License. See License.txt in the project root for license information.\n */\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-default :host nb-card {\n  background-image: none; }\n.nb-theme-default :host nb-card-body {\n  height: 100%;\n  padding: 2rem;\n  color: #a4abb3; }\n.nb-theme-default :host .location {\n  font-family: Exo;\n  font-size: 2rem;\n  font-weight: 400;\n  color: #2a2a2a; }\n.nb-theme-default :host .date {\n  font-family: Roboto;\n  font-size: 1rem;\n  line-height: 1rem;\n  font-weight: 300; }\n.nb-theme-default :host .daily-forecast {\n  display: flex;\n  flex-direction: column;\n  margin-top: -1.5rem; }\n.nb-theme-default :host .daily-forecast .info {\n    display: flex;\n    justify-content: space-around; }\n.nb-theme-default :host .daily-forecast .info .temperature {\n      font-size: 3.5rem;\n      font-weight: 500;\n      font-family: Exo;\n      color: #2a2a2a;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      margin-top: 1.5rem; }\n.nb-theme-default :host .daily-forecast .info .icon {\n      font-size: 7rem;\n      line-height: 7rem;\n      color: #40dc7e; }\n.nb-theme-default :host .daily-forecast .details {\n    display: flex;\n    justify-content: space-around; }\n.nb-theme-default :host .daily-forecast .details .parameter {\n      display: flex;\n      flex-direction: column;\n      text-align: center; }\n.nb-theme-default :host .daily-forecast .details .parameter .parameter-name {\n        font-family: Roboto;\n        font-size: 1rem;\n        font-weight: 300;\n        line-height: 1rem; }\n.nb-theme-default :host .daily-forecast .details .parameter .parameter-value {\n        font-family: Exo;\n        color: #2a2a2a;\n        font-weight: 500; }\n.nb-theme-default :host .weekly-forecast {\n  display: flex;\n  justify-content: space-around;\n  margin-top: 1.15rem; }\n.nb-theme-default :host .weekly-forecast .day {\n    display: flex;\n    flex-direction: column;\n    text-align: center; }\n.nb-theme-default :host .weekly-forecast .day .caption {\n      text-transform: uppercase;\n      font-family: Exo;\n      color: #2a2a2a;\n      font-weight: 600;\n      font-size: 1.1rem; }\n.nb-theme-default :host .weekly-forecast .day i {\n      font-size: 1.7rem;\n      line-height: 1.7rem; }\n.nb-theme-default :host .weekly-forecast .day .temperature {\n      color: #2a2a2a;\n      font-family: Exo;\n      font-weight: 600;\n      font-size: 1.1rem; }\n@media (max-width: 399.98px) {\n  .nb-theme-default :host nb-card-body {\n    padding-left: 1rem;\n    padding-right: 1rem; } }\n/*\n      :host can be prefixed\n      https://github.com/angular/angular/blob/8d0ee34939f14c07876d222c25b405ed458a34d3/packages/compiler/src/shadow_css.ts#L441\n\n      We have to use :host insted of :host-context($theme), to be able to prefix theme class\n      with something defined inside of @content, by prefixing &.\n      For example this scss code:\n        .nb-theme-default {\n          .some-selector & {\n            ...\n          }\n        }\n      Will result in next css:\n        .some-selector .nb-theme-default {\n          ...\n        }\n\n      It doesn't work with :host-context because angular splitting it in two selectors and removes\n      prefix in one of the selectors.\n    */\n.nb-theme-cosmic :host nb-card {\n  background-image: radial-gradient(circle at 50% 50%, #423f8c, #302c6e); }\n.nb-theme-cosmic :host nb-card-body {\n  height: 100%;\n  padding: 2rem;\n  color: #a1a1e5; }\n.nb-theme-cosmic :host .location {\n  font-family: Exo;\n  font-size: 2rem;\n  font-weight: 400;\n  color: #ffffff; }\n.nb-theme-cosmic :host .date {\n  font-family: Roboto;\n  font-size: 1rem;\n  line-height: 1rem;\n  font-weight: 300; }\n.nb-theme-cosmic :host .daily-forecast {\n  display: flex;\n  flex-direction: column;\n  margin-top: -1.5rem; }\n.nb-theme-cosmic :host .daily-forecast .info {\n    display: flex;\n    justify-content: space-around; }\n.nb-theme-cosmic :host .daily-forecast .info .temperature {\n      font-size: 3.5rem;\n      font-weight: 500;\n      font-family: Exo;\n      color: #ffffff;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      margin-top: 1.5rem; }\n.nb-theme-cosmic :host .daily-forecast .info .icon {\n      font-size: 7rem;\n      line-height: 7rem;\n      color: #00d977;\n      color: #a1a1e5;\n      text-shadow: 0 3px 0 #665ebd, 0 4px 10px rgba(33, 7, 77, 0.5), 0 2px 10px #928dff; }\n.nb-theme-cosmic :host .daily-forecast .details {\n    display: flex;\n    justify-content: space-around; }\n.nb-theme-cosmic :host .daily-forecast .details .parameter {\n      display: flex;\n      flex-direction: column;\n      text-align: center; }\n.nb-theme-cosmic :host .daily-forecast .details .parameter .parameter-name {\n        font-family: Roboto;\n        font-size: 1rem;\n        font-weight: 300;\n        line-height: 1rem; }\n.nb-theme-cosmic :host .daily-forecast .details .parameter .parameter-value {\n        font-family: Exo;\n        color: #ffffff;\n        font-weight: 500; }\n.nb-theme-cosmic :host .weekly-forecast {\n  display: flex;\n  justify-content: space-around;\n  margin-top: 1.15rem; }\n.nb-theme-cosmic :host .weekly-forecast .day {\n    display: flex;\n    flex-direction: column;\n    text-align: center; }\n.nb-theme-cosmic :host .weekly-forecast .day .caption {\n      text-transform: uppercase;\n      font-family: Exo;\n      color: #ffffff;\n      font-weight: 600;\n      font-size: 1.1rem; }\n.nb-theme-cosmic :host .weekly-forecast .day i {\n      font-size: 1.7rem;\n      line-height: 1.7rem; }\n.nb-theme-cosmic :host .weekly-forecast .day .temperature {\n      color: #ffffff;\n      font-family: Exo;\n      font-weight: 600;\n      font-size: 1.1rem; }\n@media (max-width: 399.98px) {\n  .nb-theme-cosmic :host nb-card-body {\n    padding-left: 1rem;\n    padding-right: 1rem; } }\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/dashboard/weather/weather.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/pages/dashboard/weather/weather.component.ts ***!
+  \**************************************************************/
+/*! exports provided: WeatherComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WeatherComponent", function() { return WeatherComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WeatherComponent = /** @class */ (function () {
+    function WeatherComponent() {
+    }
+    WeatherComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'ngx-weather',
+            styles: [__webpack_require__(/*! ./weather.component.scss */ "./src/app/pages/dashboard/weather/weather.component.scss")],
+            template: __webpack_require__(/*! ./weather.component.html */ "./src/app/pages/dashboard/weather/weather.component.html"),
+        })
+    ], WeatherComponent);
+    return WeatherComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/pages/pages-menu.ts":
 /*!*************************************!*\
   !*** ./src/app/pages/pages-menu.ts ***!
@@ -871,176 +1888,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MENU_ITEMS", function() { return MENU_ITEMS; });
 var MENU_ITEMS = [
     {
-        title: 'Dashboard',
+        title: 'Home',
         icon: 'nb-home',
         link: '/pages/dashboard',
         home: true,
     },
     {
-        title: 'FEATURES',
-        group: true,
-    },
-    {
-        title: 'UI Features',
+        title: 'Analytics',
         icon: 'nb-keypad',
-        link: '/pages/ui-features',
-        children: [
-            {
-                title: 'Buttons',
-                link: '/pages/ui-features/buttons',
-            },
-            {
-                title: 'Grid',
-                link: '/pages/ui-features/grid',
-            },
-            {
-                title: 'Icons',
-                link: '/pages/ui-features/icons',
-            },
-            {
-                title: 'Modals',
-                link: '/pages/ui-features/modals',
-            },
-            {
-                title: 'Popovers',
-                link: '/pages/ui-features/popovers',
-            },
-            {
-                title: 'Typography',
-                link: '/pages/ui-features/typography',
-            },
-            {
-                title: 'Animated Searches',
-                link: '/pages/ui-features/search-fields',
-            },
-            {
-                title: 'Tabs',
-                link: '/pages/ui-features/tabs',
-            },
-        ],
     },
     {
-        title: 'Forms',
+        title: 'Manage Refills',
+        icon: 'nb-keypad',
+    },
+    {
+        title: 'Alarms',
         icon: 'nb-compose',
-        children: [
-            {
-                title: 'Form Inputs',
-                link: '/pages/forms/inputs',
-            },
-            {
-                title: 'Form Layouts',
-                link: '/pages/forms/layouts',
-            },
-        ],
     },
     {
-        title: 'Components',
+        title: 'Set up',
         icon: 'nb-gear',
-        children: [
-            {
-                title: 'Tree',
-                link: '/pages/components/tree',
-            }, {
-                title: 'Notifications',
-                link: '/pages/components/notifications',
-            },
-        ],
-    },
-    {
-        title: 'Maps',
-        icon: 'nb-location',
-        children: [
-            {
-                title: 'Google Maps',
-                link: '/pages/maps/gmaps',
-            },
-            {
-                title: 'Leaflet Maps',
-                link: '/pages/maps/leaflet',
-            },
-            {
-                title: 'Bubble Maps',
-                link: '/pages/maps/bubble',
-            },
-            {
-                title: 'Search Maps',
-                link: '/pages/maps/searchmap',
-            },
-        ],
-    },
-    {
-        title: 'Charts',
-        icon: 'nb-bar-chart',
-        children: [
-            {
-                title: 'Echarts',
-                link: '/pages/charts/echarts',
-            },
-            {
-                title: 'Charts.js',
-                link: '/pages/charts/chartjs',
-            },
-            {
-                title: 'D3',
-                link: '/pages/charts/d3',
-            },
-        ],
-    },
-    {
-        title: 'Editors',
-        icon: 'nb-title',
-        children: [
-            {
-                title: 'TinyMCE',
-                link: '/pages/editors/tinymce',
-            },
-            {
-                title: 'CKEditor',
-                link: '/pages/editors/ckeditor',
-            },
-        ],
-    },
-    {
-        title: 'Tables',
-        icon: 'nb-tables',
-        children: [
-            {
-                title: 'Smart Table',
-                link: '/pages/tables/smart-table',
-            },
-        ],
-    },
-    {
-        title: 'Miscellaneous',
-        icon: 'nb-shuffle',
-        children: [
-            {
-                title: '404',
-                link: '/pages/miscellaneous/404',
-            },
-        ],
-    },
-    {
-        title: 'Auth',
-        icon: 'nb-locked',
-        children: [
-            {
-                title: 'Login',
-                link: '/auth/login',
-            },
-            {
-                title: 'Register',
-                link: '/auth/register',
-            },
-            {
-                title: 'Request Password',
-                link: '/auth/request-password',
-            },
-            {
-                title: 'Reset Password',
-                link: '/auth/reset-password',
-            },
-        ],
     },
 ];
 

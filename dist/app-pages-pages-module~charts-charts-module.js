@@ -67230,6 +67230,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         this.dailyWaterLevels = [];
         this.yearlyWaterLevels = [];
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
+            _this.eTheme = config.variables.electricity;
             var colors = config.variables;
             var chartjs = config.variables.chartjs;
             _this.currentDayIndex = new Date().getDay();
@@ -67286,7 +67287,6 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
             };
         });
     }
-    ;
     ChartjsMultipleXaxisComponent.prototype.initIoConnection = function () {
         var _this = this;
         this.postsService.initSocket();
@@ -67328,8 +67328,8 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 datasets: [{
                         label: 'Litres Used',
                         data: _this.weeklyWaterLevels,
-                        borderColor: "#27CFC3",
-                        backgroundColor: "#27CFC3",
+                        borderColor: "#40dc7e",
+                        backgroundColor: "#40dc7e",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
@@ -67372,8 +67372,8 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 datasets: [{
                         label: 'Litres Used',
                         data: _this.yearlyWaterLevels,
-                        borderColor: "#27CFC3",
-                        backgroundColor: "#27CFC3",
+                        borderColor: "#40dc7e",
+                        backgroundColor: "#40dc7e",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
@@ -67423,12 +67423,12 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 }
             }
             _this.data = {
-                labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '00'],
+                labels: ['1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00'],
                 datasets: [{
                         label: 'Litres Used',
                         data: _this.dailyWaterLevels,
-                        borderColor: "#27CFC3",
-                        backgroundColor: "#27CFC3",
+                        borderColor: "#40dc7e",
+                        backgroundColor: "#40dc7e",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
@@ -67437,14 +67437,14 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         });
         this.ioTodayConnection = this.postsService.onLevel()
             .subscribe(function (message) {
-            if (_this.weekOffset === 0 && _this.dayOffset === 0) {
-                if (_this.dateMetric === "Weekly") {
-                    _this.setCurrentWeeklyWaterLevels();
-                }
-                else if (_this.dateMetric === "Daily") {
-                    _this.setCurrentDailyWaterLevels();
-                }
-            }
+            /*       if(this.weekOffset === 0 && this.dayOffset === 0){
+                    if(this.dateMetric === "Weekly"){
+                      this.setCurrentWeeklyWaterLevels();
+                    }
+                    else if(this.dateMetric==="Daily"){
+                      this.setCurrentDailyWaterLevels();
+                    }
+                  } */
         });
         this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
             .subscribe(function () {

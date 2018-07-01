@@ -1217,7 +1217,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-container\"\n     [class.left]=\"position === 'normal'\"\n     [class.right]=\"position === 'inverse'\">\n  <div class=\"logo-containter\">\n    <img class = \"img\" alt=\"Sentinel\" src=\"http://sentinelwater.co/wp-content/uploads/2018/06/sentinel_logo-e1529403298190.png\">   \n  </div>\n</div>\n\n<nb-actions\n  size=\"medium\"\n  class=\"header-container\"\n  [class.right]=\"position === 'normal'\"\n  [class.left]=\"position === 'inverse'\">\n  <nb-action icon=\"nb-gear\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n  <nb-action *nbIsGranted=\"['view', 'user']\" >\n  </nb-action>\n  <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action>\n  <nb-action class=\"control-item\" icon=\"nb-email\"></nb-action>\n  <nb-action class=\"control-item\">\n    <nb-search type=\"rotate-layout\" (click)=\"startSearch()\"></nb-search>\n  </nb-action>\n</nb-actions>\n"
+module.exports = "<div class=\"header-container\"\n     [class.left]=\"position === 'normal'\"\n     [class.right]=\"position === 'inverse'\">\n  <div class=\"logo-containter\">\n    <img class = \"img\" alt=\"Sentinel\" src=\"http://sentinelwater.co/wp-content/uploads/2018/06/logo_new_2.png\">   \n  </div>\n</div>\n\n<span style=\"text-align: center; font-size:20px; margin-top:11px\">{{time}}</span>\n\n<nb-actions\n  size=\"medium\"\n  class=\"header-container\"\n  [class.right]=\"position === 'normal'\"\n  [class.left]=\"position === 'inverse'\">\n  <nb-action icon=\"nb-gear\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n\n  <nb-action *nbIsGranted=\"['view', 'user']\" >\n      <nb-user [nbContextMenu]=\"userMenu\" [name]=\" \" [picture]=\"user?.picture\"></nb-user>\n    </nb-action>\n\n  <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action>\n  <nb-action class=\"control-item\">\n    <nb-search type=\"rotate-layout\" (click)=\"startSearch()\"></nb-search>\n  </nb-action>\n</nb-actions>\n"
 
 /***/ }),
 
@@ -1261,12 +1261,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(sidebarService, menuService, userService, analyticsService) {
+        var _this = this;
         this.sidebarService = sidebarService;
         this.menuService = menuService;
         this.userService = userService;
         this.analyticsService = analyticsService;
         this.position = 'normal';
         this.userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+        this.getTime();
+        this.interval = setInterval(function () {
+            _this.getTime();
+        }, 1000);
     }
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1283,6 +1288,23 @@ var HeaderComponent = /** @class */ (function () {
     };
     HeaderComponent.prototype.goToHome = function () {
         this.menuService.navigateHome();
+    };
+    HeaderComponent.prototype.getTime = function () {
+        var hours = new Date().getHours();
+        var format = "AM";
+        if (hours === 0) {
+            hours = 12;
+        }
+        else if (hours > 12) {
+            format = "PM";
+            hours = hours - 12;
+        }
+        else if (hours === 12) {
+            format = "PM";
+        }
+        var minutes = new Date().getMinutes();
+        var minutesTwo = (("0" + minutes).slice(-2));
+        this.time = hours + ":" + minutesTwo + format;
     };
     HeaderComponent.prototype.startSearch = function () {
         this.analyticsService.trackEvent('startSearch');
@@ -1981,7 +2003,7 @@ var SampleLayoutComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'ngx-sample-layout',
             styles: [__webpack_require__(/*! ./sample.layout.scss */ "./src/app/@theme/layouts/sample/sample.layout.scss")],
-            template: "\n    <nb-layout [center]=\"layout.id === 'center-column'\" windowMode>\n      <nb-layout-header fixed>\n        <ngx-header [position]=\"sidebar.id === 'start' ? 'normal': 'inverse'\"></ngx-header>\n      </nb-layout-header>\n\n      <nb-layout-column class=\"main-content\">\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-column start class=\"small\" *ngIf=\"layout.id === 'two-column' || layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-column class=\"small\" *ngIf=\"layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n\n      <nb-sidebar class=\"settings-sidebar\"\n                   tag=\"settings-sidebar\"\n                   state=\"collapsed\"\n                   fixed\n                   [end]=\"sidebar.id !== 'end'\">\n        <ngx-theme-settings></ngx-theme-settings>\n      </nb-sidebar>\n    </nb-layout>\n  ",
+            template: "\n    <nb-layout [center]=\"layout.id === 'center-column'\" windowMode>\n      <nb-layout-header fixed>\n        <ngx-header [position]=\"sidebar.id === 'start' ? 'normal': 'inverse'\"></ngx-header>\n      </nb-layout-header>\n\n      <nb-sidebar class=\"menu-sidebar\"\n      tag=\"menu-sidebar\"\n      responsive\n      [end]=\"sidebar.id === 'end'\">\n      <nb-sidebar-header *ngIf=\"currentTheme !== 'corporate'\">\n      \n      </nb-sidebar-header>\n      <ng-content select=\"nb-menu\"></ng-content>\n      </nb-sidebar>\n\n\n      <nb-layout-column class=\"main-content\">\n        <ng-content select=\"router-outlet\"></ng-content>\n      </nb-layout-column>\n\n      <nb-layout-column start class=\"small\" *ngIf=\"layout.id === 'two-column' || layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-column class=\"small\" *ngIf=\"layout.id === 'three-column'\">\n        <nb-menu [items]=\"subMenu\"></nb-menu>\n      </nb-layout-column>\n\n      <nb-layout-footer fixed>\n        <ngx-footer></ngx-footer>\n      </nb-layout-footer>\n\n      <nb-sidebar class=\"settings-sidebar\"\n                   tag=\"settings-sidebar\"\n                   state=\"collapsed\"\n                   fixed\n                   [end]=\"sidebar.id !== 'end'\">\n        <ngx-theme-settings></ngx-theme-settings>\n      </nb-sidebar>\n    </nb-layout>\n  ",
         }),
         __metadata("design:paramtypes", [_core_data_state_service__WEBPACK_IMPORTED_MODULE_3__["StateService"],
             _nebular_theme__WEBPACK_IMPORTED_MODULE_2__["NbMenuService"],
