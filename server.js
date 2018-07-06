@@ -15,6 +15,8 @@ const getYear = require('./server/routes/getYear');
 const getCurrentDay = require('./server/routes/getCurrentDay');
 const getCurrentWeek = require('./server/routes/getCurrentWeek');
 const getCurrentYear = require('./server/routes/getCurrentYear');
+const emailer = require('./server/routes/emailer');
+const weather = require('./server/routes/weather');
 const app = express();
 var sql = require('mssql'); // MS Sql Server client
 
@@ -35,7 +37,8 @@ app.use('/api/getDay', getDay);
 app.use('/api/getCurrentWeek', getCurrentWeek);
 app.use('/api/getCurrentYear', getCurrentYear);
 app.use('/api/getCurrentDay', getCurrentDay);
-
+app.use('/api/emailer', emailer);
+app.use('/api/weather', weather);
 // config for your database
 var config = {
     user: 'sentinelwater', // update me
