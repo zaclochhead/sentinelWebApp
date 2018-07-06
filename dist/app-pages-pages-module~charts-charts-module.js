@@ -67555,8 +67555,8 @@ var ChartjsPieComponent = /** @class */ (function () {
             _this.data = {
                 labels: [],
                 datasets: [{
-                        data: [100],
-                        backgroundColor: ['#27CFC3'],
+                        data: [90, 10],
+                        backgroundColor: ["rgba(0,0,0,0)", "white"],
                     }],
             };
             _this.options = {
@@ -67605,7 +67605,7 @@ var ChartjsPieComponent = /** @class */ (function () {
                 labels: [],
                 datasets: [{
                         data: [waterLevel, emptyData],
-                        backgroundColor: ['#27CFC3', 'white'],
+                        backgroundColor: ["rgba(0,0,0,0)", "white"],
                     }],
             };
         }
@@ -67614,7 +67614,7 @@ var ChartjsPieComponent = /** @class */ (function () {
                 labels: [],
                 datasets: [{
                         data: [waterLevel],
-                        backgroundColor: ['#27CFC3'],
+                        backgroundColor: ["rgba(0,0,0,0)", "white"],
                     }],
             };
         }

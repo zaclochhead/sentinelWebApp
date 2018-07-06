@@ -2870,6 +2870,10 @@ var PostsService = /** @class */ (function () {
         return this.http.get('/api/getWeek', { params: { week: week, dateID: this.getDateID(), daysUntilSunday: this.getDaysUntilSunday() } })
             .map(function (res) { return res.json(); });
     };
+    PostsService.prototype.sendEmail = function () {
+        return this.http.get('/api/emailer')
+            .map(function (res) { return res.json(); });
+    };
     PostsService.prototype.getYear = function (month) {
         return this.http.get('/api/getYear', { params: { month: month } })
             .map(function (res) { return res.json(); });
@@ -2888,6 +2892,10 @@ var PostsService = /** @class */ (function () {
     };
     PostsService.prototype.getCurrentDay = function () {
         return this.http.get('/api/getCurrentDay', { params: { timeID: this.getTimeID(), timeFormat: this.getTimeFormat() } })
+            .map(function (res) { return res.json(); });
+    };
+    PostsService.prototype.getWeather = function () {
+        return this.http.get('/api/weather')
             .map(function (res) { return res.json(); });
     };
     PostsService.prototype.getTimeID = function () {
