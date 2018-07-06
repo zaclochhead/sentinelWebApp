@@ -9,7 +9,6 @@
   "bugs": {
     "url": "https://github.com/akveo/ngx-admin/issues"
   },
-  
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
@@ -59,6 +58,7 @@
     "echarts": "^4.0.2",
     "express": "^4.16.3",
     "font-awesome": "4.7.0",
+    "immutable": "^3.8.2",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
     "jslint": "^0.12.0",
@@ -69,6 +69,7 @@
     "ng2-smart-table": "1.2.2",
     "ng2-tree": "2.0.0-rc.4",
     "ngx-echarts": "2.0.1",
+    "nodemailer": "^4.6.7",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
     "roboto-fontface": "0.8.0",
@@ -78,6 +79,7 @@
     "socket.io": "^2.1.1",
     "tinymce": "4.5.7",
     "typeface-exo": "0.0.22",
+    "weather-js": "^2.0.0",
     "web-animations-js": "2.2.5",
     "zone.js": "^0.8.26"
   },
