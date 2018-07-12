@@ -67382,6 +67382,7 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
         });
         this.ioDailyConnection = this.postsService.onDay()
             .subscribe(function (message) {
+            console.log("here");
             _this.currentHourIndex = new Date().getHours();
             // average water levels from today to 7 days ago
             var hour1 = message[0][0];

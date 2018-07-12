@@ -1889,7 +1889,6 @@ var WeatherComponent = /** @class */ (function () {
     WeatherComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.postsService.getWeather().subscribe(function (value) {
-            console.log(value[0]);
             _this.currentTemperature = value[0].current.temperature;
             _this.humidity = value[0].current.humidity;
             _this.location = value[0].location.name;
@@ -1934,10 +1933,6 @@ var WeatherComponent = /** @class */ (function () {
         else if (this.icon4 == "Light Rain") {
             this.icon4 = "rainy";
         }
-        console.log("icon1", this.icon1);
-        console.log("icon2", this.icon2);
-        console.log("icon3", this.icon3);
-        console.log("icon4", this.icon4);
         this.icon1 = this.icon1.replace(/\s/g, '');
         this.icon2 = this.icon2.replace(/\s/g, '');
         this.icon3 = this.icon3.replace(/\s/g, '');
