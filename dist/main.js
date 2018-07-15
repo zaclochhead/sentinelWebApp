@@ -1217,7 +1217,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-container\"\n     [class.left]=\"position === 'normal'\"\n     [class.right]=\"position === 'inverse'\">\n  <div class=\"logo-containter\">\n    <img class = \"img\" alt=\"Sentinel\" src=\"http://sentinelwater.co/wp-content/uploads/2018/06/logo_new_2.png\">   \n  </div>\n</div>\n\n<span style=\"text-align: center; font-size:20px; margin-top:11px\">{{time}}</span>\n\n<nb-actions\n  size=\"medium\"\n  class=\"header-container\"\n  [class.right]=\"position === 'normal'\"\n  [class.left]=\"position === 'inverse'\">\n  <nb-action icon=\"nb-gear\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n\n  <nb-action *nbIsGranted=\"['view', 'user']\" >\n      <nb-user [nbContextMenu]=\"userMenu\" [name]=\" \" [picture]=\"user?.picture\"></nb-user>\n    </nb-action>\n\n  <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action>\n  <nb-action class=\"control-item\">\n    <nb-search type=\"rotate-layout\" (click)=\"startSearch()\"></nb-search>\n  </nb-action>\n</nb-actions>\n"
+module.exports = "<div class=\"header-container\">\n  <div class=\"logo-containter\" style = \"margin:auto\">\n    <img class = \"img\" alt=\"Sentinel\" src=\"http://sentinelwater.co/wp-content/uploads/2018/06/logo_new_2.png\">   \n  </div>\n</div>\n\n<!-- <span style=\"text-align: center; font-size:20px; margin-top:11px\">{{time}}</span>\n\n<nb-actions\n  size=\"medium\"\n  class=\"header-container\"\n  [class.right]=\"position === 'normal'\"\n  [class.left]=\"position === 'inverse'\">\n  <nb-action icon=\"nb-gear\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n\n  <nb-action *nbIsGranted=\"['view', 'user']\" >\n      <nb-user [nbContextMenu]=\"userMenu\" [name]=\" \" [picture]=\"user?.picture\"></nb-user>\n    </nb-action>\n\n  <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action>\n  <nb-action class=\"control-item\">\n    <nb-search type=\"rotate-layout\" (click)=\"startSearch()\"></nb-search>\n  </nb-action>\n</nb-actions> -->\n"
 
 /***/ }),
 
@@ -2642,6 +2642,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _posts_posts_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./posts/posts.component */ "./src/app/posts/posts.component.ts");
 /* harmony import */ var _posts_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./posts.service */ "./src/app/posts.service.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var ngx_modal_dialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-modal-dialog */ "./node_modules/ngx-modal-dialog/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2668,6 +2669,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -2676,6 +2678,7 @@ var AppModule = /** @class */ (function () {
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _posts_posts_component__WEBPACK_IMPORTED_MODULE_12__["PostsComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+                ngx_modal_dialog__WEBPACK_IMPORTED_MODULE_15__["ModalDialogModule"].forRoot(),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_6__["HttpModule"],
