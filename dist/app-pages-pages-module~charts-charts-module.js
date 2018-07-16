@@ -67328,8 +67328,8 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 datasets: [{
                         label: 'Litres Used',
                         data: _this.weeklyWaterLevels,
-                        borderColor: "#40dc7e",
-                        backgroundColor: "#40dc7e",
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
@@ -67372,8 +67372,8 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 datasets: [{
                         label: 'Litres Used',
                         data: _this.yearlyWaterLevels,
-                        borderColor: "#40dc7e",
-                        backgroundColor: "#40dc7e",
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
@@ -67428,8 +67428,8 @@ var ChartjsMultipleXaxisComponent = /** @class */ (function () {
                 datasets: [{
                         label: 'Litres Used',
                         data: _this.dailyWaterLevels,
-                        borderColor: "#40dc7e",
-                        backgroundColor: "#40dc7e",
+                        borderColor: "#27CFC3",
+                        backgroundColor: "#27CFC3",
                         fill: false,
                         pointRadius: 8,
                         pointHoverRadius: 10,
