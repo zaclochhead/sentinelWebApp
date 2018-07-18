@@ -137,19 +137,25 @@ var printMessage = function (message) {
   console.log(JSON.stringify(message.annotations));
   console.log("waterLevel")
   console.log(message.body.waterLevel); */
-  io.emit('level', JSON.parse('{"level": ' + message.body.waterLevel + '}')); 
+  if(message.body.waterLevel != null){    
+    io.emit('level', JSON.parse('{"level": ' + message.body.waterLevel + '}')); 
+  }
+  if(message.body.waterLevelTwo != null){
+    io.emit('levelTwo', JSON.parse('{"level": ' + message.body.waterLevelTwo + '}')); 
+  }
   //console.log('');
+  //console.log("waterLevel");
 };
 
 // Connect to the partitions on the IoT Hub's Event Hubs-compatible endpoint.
 // This example only reads messages sent after this application started.
 var ehClient;
 EventHubClient.createFromIotHubConnectionString(connectionString).then(function (client) {
-  console.log("Successully created the EventHub Client from iothub connection string.");
+ // console.log("Successully created the EventHub Client from iothub connection string.");
   ehClient = client;
   return ehClient.getPartitionIds();
 }).then(function (ids) {
-  console.log("The partition ids are: ", ids);
+  //console.log("The partition ids are: ", ids);
   return ids.map(function (id) {
     return ehClient.receive(id, printMessage, printError, { eventPosition: EventPosition.fromEnqueuedTime(Date.now()) });
   });
