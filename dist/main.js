@@ -25,6 +25,8 @@ var map = {
 	],
 	"./forms/forms.module": [
 		"./src/app/pages/forms/forms.module.ts",
+		"app-pages-pages-module~forms-forms-module",
+		"common",
 		"forms-forms-module"
 	],
 	"./maps/maps.module": [
@@ -48,6 +50,7 @@ var map = {
 	"app/pages/pages.module": [
 		"./src/app/pages/pages.module.ts",
 		"app-pages-pages-module~charts-charts-module",
+		"app-pages-pages-module~forms-forms-module",
 		"common",
 		"app-pages-pages-module"
 	]
