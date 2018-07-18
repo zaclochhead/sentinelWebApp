@@ -2831,6 +2831,18 @@ var PostsService = /** @class */ (function () {
             _this.socket.on('level', function (data) { return observer.next(data); });
         });
     };
+    PostsService.prototype.onLevelTwo = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('levelTwo', function (data) { return observer.next(data); });
+        });
+    };
+    PostsService.prototype.onLevelThree = function () {
+        var _this = this;
+        return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
+            _this.socket.on('levelThree', function (data) { return observer.next(data); });
+        });
+    };
     PostsService.prototype.onEvent = function (event) {
         var _this = this;
         return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {

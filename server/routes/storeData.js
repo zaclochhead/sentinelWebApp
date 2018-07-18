@@ -11,6 +11,7 @@ router.get('/', function (req, res) {
         
     dateID = req.query.dateID;
     timeID = req.query.timeID;
+    deviceID = req.query.deviceID;
 
     if(dateID == null && timeID == null){
         currentTime = new Date().getTime()/1000; 
@@ -31,8 +32,15 @@ router.get('/', function (req, res) {
     }
     
     level = req.query.level;
-    io.emit('level', JSON.parse('{"level": ' + level + '}')); 
-
+    if(deviceID == null || deviceID == 1){
+        io.emit('level', JSON.parse('{"level": ' + level + '}')); 
+    }
+    else if(deviceID == 2){
+        io.emit('levelTwo', JSON.parse('{"level": ' + level + '}')); 
+    }
+    else if(deviceID == 3){
+        io.emit('levelTwo', JSON.parse('{"levelThree": ' + level + '}')); 
+    }
     // query to the database and get the records
     request.query(`INSERT into test (level, dateID, ID, timeID) values (`+level+`,'`+ dateID + `',` + currentTime + `,'`+timeID+`')`, function (err, recordset) {
         //I added these 2 lines
