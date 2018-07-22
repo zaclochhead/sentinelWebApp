@@ -2809,6 +2809,7 @@ var PostsService = /** @class */ (function () {
     function PostsService(http) {
         this.http = http;
         this._listners = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
+        this._page = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
     }
     PostsService.prototype.initSocket = function () {
         this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(SERVER_URL);
@@ -2818,6 +2819,12 @@ var PostsService = /** @class */ (function () {
     };
     PostsService.prototype.filter = function (filterBy) {
         this._listners.next(filterBy);
+    };
+    PostsService.prototype.page = function () {
+        return this._page.asObservable();
+    };
+    PostsService.prototype.pageSelect = function (filterBy) {
+        this._page.next(filterBy);
     };
     PostsService.prototype.send = function (message) {
         this.socket.emit('message', message);
