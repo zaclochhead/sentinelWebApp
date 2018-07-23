@@ -43333,6 +43333,21 @@ var DashboardComponent = /** @class */ (function () {
             }
         }
     };
+    DashboardComponent.prototype.ngAfterContentInit = function () {
+        this.weekCount++;
+        this.getPreviousMonday();
+        this.getNextSunday();
+        // this.fullDate = this.date + "-" + this.month + "-" + this.year;
+        //  this.endFullDate = this.endDate + "-" + this.endMonth + "-" + this.endYear; 
+        this.fullDate = this.date + "-";
+        this.endFullDate = this.endDate + " " + this.months[this.endMonth - 1];
+        if (this.weekCount === 0) {
+            this.multiChart.setCurrentWeeklyWaterLevels();
+        }
+        else {
+            this.multiChart.setWeeklyWaterLevels(this.weekCount);
+        }
+    };
     DashboardComponent.prototype.onScroll = function () {
         console.log("scrolled");
         this.page = "Analytics";
