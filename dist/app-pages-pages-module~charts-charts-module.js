@@ -67531,7 +67531,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
 /* harmony import */ var _app_posts_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../app/posts.service */ "./src/app/posts.service.ts");
-/* harmony import */ var _app_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../app/event */ "./src/app/event.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67544,7 +67543,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var ChartjsPieComponent = /** @class */ (function () {
     function ChartjsPieComponent(theme, postsService) {
         var _this = this;
@@ -67553,78 +67551,134 @@ var ChartjsPieComponent = /** @class */ (function () {
         this.waterUsage = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
             var colors = config.variables;
-            var chartjs = config.variables.chartjs;
-            _this.data = {
-                labels: [],
-                datasets: [{
-                        data: [90, 10],
-                        backgroundColor: ["rgba(0,0,0,0)", "white"],
-                    }],
-            };
-            _this.options = {
-                maintainAspectRatio: false,
-                responsive: true,
-                scales: {
-                    xAxes: [
-                        {
-                            display: false,
-                        },
-                    ],
-                    yAxes: [
-                        {
-                            display: false,
-                        },
-                    ],
-                },
-                legend: {
-                    labels: {
-                        fontColor: chartjs.textColor,
-                    },
-                },
-            };
+            _this.chartjs = config.variables.chartjs;
         });
-        this.initIoConnection();
     }
-    ChartjsPieComponent.prototype.initIoConnection = function () {
-        var _this = this;
-        this.postsService.initSocket();
-        this.ioConnection = this.postsService.onLevel()
-            .subscribe(function (message) {
-            var waterLevel = message.level;
-            _this.updateResults(waterLevel);
-        });
-        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].CONNECT)
-            .subscribe(function () {
-        });
-        this.postsService.onEvent(_app_event__WEBPACK_IMPORTED_MODULE_3__["Event"].DISCONNECT)
-            .subscribe(function () {
-        });
+    ChartjsPieComponent.prototype.ngAfterContentInit = function () {
+        if (this.id == 1) {
+            this.data = {
+                labels: [],
+                datasets: [{
+                        data: [this.percentOneFull, this.percentOneEmpty],
+                        backgroundColor: ["rgba(0,0,0,0)", "white"],
+                    }],
+            };
+        }
+        else if (this.id == 2) {
+            this.data = {
+                labels: [],
+                datasets: [{
+                        data: [this.percentTwoFull, this.percentTwoEmpty],
+                        backgroundColor: ["rgba(0,0,0,0)", "white"],
+                    }],
+            };
+        }
+        this.options = {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                xAxes: [
+                    {
+                        display: false,
+                    },
+                ],
+                yAxes: [
+                    {
+                        display: false,
+                    },
+                ],
+            },
+            legend: {
+                labels: {
+                    fontColor: this.chartjs.textColor,
+                },
+            },
+        };
     };
-    ChartjsPieComponent.prototype.updateResults = function (waterLevel) {
-        var emptyData = 100 - waterLevel;
-        if (emptyData > 0) {
-            this.data = {
-                labels: [],
-                datasets: [{
-                        data: [waterLevel, emptyData],
-                        backgroundColor: ["rgba(0,0,0,0)", "white"],
-                    }],
-            };
-        }
-        else {
-            this.data = {
-                labels: [],
-                datasets: [{
-                        data: [waterLevel],
-                        backgroundColor: ["rgba(0,0,0,0)", "white"],
-                    }],
-            };
-        }
-        this.waterUsage.emit(waterLevel);
+    ChartjsPieComponent.prototype.updateResultsOne = function () {
+        console.log("here");
+        this.data = {
+            labels: [],
+            datasets: [{
+                    data: [this.percentOneFull, this.percentOneEmpty],
+                    backgroundColor: ["rgba(0,0,0,0)", "white"],
+                }],
+        };
+        this.options = {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                xAxes: [
+                    {
+                        display: false,
+                    },
+                ],
+                yAxes: [
+                    {
+                        display: false,
+                    },
+                ],
+            },
+            legend: {
+                labels: {
+                    fontColor: this.chartjs.textColor,
+                },
+            },
+        };
+    };
+    ChartjsPieComponent.prototype.updateResultsTwo = function () {
+        this.data = {
+            labels: [],
+            datasets: [{
+                    data: [this.percentTwoFull, this.percentTwoEmpty],
+                    backgroundColor: ["rgba(0,0,0,0)", "white"],
+                }],
+        };
+        this.options = {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                xAxes: [
+                    {
+                        display: false,
+                    },
+                ],
+                yAxes: [
+                    {
+                        display: false,
+                    },
+                ],
+            },
+            legend: {
+                labels: {
+                    fontColor: this.chartjs.textColor,
+                },
+            },
+        };
     };
     ChartjsPieComponent.prototype.ngOnDestroy = function () {
         this.themeSubscription.unsubscribe();
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("id"),
+        __metadata("design:type", Object)
+    ], ChartjsPieComponent.prototype, "id", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("percentOneFull"),
+        __metadata("design:type", Object)
+    ], ChartjsPieComponent.prototype, "percentOneFull", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("percentTwoFull"),
+        __metadata("design:type", Object)
+    ], ChartjsPieComponent.prototype, "percentTwoFull", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("percentOneEmpty"),
+        __metadata("design:type", Object)
+    ], ChartjsPieComponent.prototype, "percentOneEmpty", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("percentTwoEmpty"),
+        __metadata("design:type", Object)
+    ], ChartjsPieComponent.prototype, "percentTwoEmpty", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
@@ -67637,6 +67691,71 @@ var ChartjsPieComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"], _app_posts_service__WEBPACK_IMPORTED_MODULE_2__["PostsService"]])
     ], ChartjsPieComponent);
     return ChartjsPieComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/charts/d3/d3-advanced-pie.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/pages/charts/d3/d3-advanced-pie.component.ts ***!
+  \**************************************************************/
+/*! exports provided: D3AdvancedPieComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D3AdvancedPieComponent", function() { return D3AdvancedPieComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _nebular_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nebular/theme */ "./node_modules/@nebular/theme/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var D3AdvancedPieComponent = /** @class */ (function () {
+    function D3AdvancedPieComponent(theme) {
+        var _this = this;
+        this.theme = theme;
+        this.single = [
+            {
+                name: 'Germany',
+                value: 8940000,
+            },
+            {
+                name: 'USA',
+                value: 5000000,
+            },
+            {
+                name: 'France',
+                value: 7200000,
+            },
+        ];
+        this.themeSubscription = this.theme.getJsTheme().subscribe(function (config) {
+            var colors = config.variables;
+            _this.colorScheme = {
+                domain: [colors.primaryLight, colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
+            };
+        });
+    }
+    D3AdvancedPieComponent.prototype.ngOnDestroy = function () {
+        this.themeSubscription.unsubscribe();
+    };
+    D3AdvancedPieComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'ngx-d3-advanced-pie',
+            template: "\n    <ngx-charts-advanced-pie-chart\n      [scheme]=\"colorScheme\"\n      [results]=\"single\">\n    </ngx-charts-advanced-pie-chart>\n  ",
+        }),
+        __metadata("design:paramtypes", [_nebular_theme__WEBPACK_IMPORTED_MODULE_1__["NbThemeService"]])
+    ], D3AdvancedPieComponent);
+    return D3AdvancedPieComponent;
 }());
 
 
