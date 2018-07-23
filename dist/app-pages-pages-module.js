@@ -43197,7 +43197,9 @@ var DashboardComponent = /** @class */ (function () {
                     _this.countTwo = 0;
                     _this.percentTwoEmpty += 1;
                     _this.percentTwoFull -= 1;
-                    _this.chart2.updateResultsTwo();
+                    if (_this.chart2 != null) {
+                        _this.chart2.updateResultsTwo();
+                    }
                 }
             }
             // }
