@@ -6,14 +6,14 @@ const router = express.Router();
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'zaclochhead@gmail.com',
-    pass: 'Chicka123'
+    user: 'email',
+    pass: 'pass'
   }
 });
 
 var mailOptions = {
-  from: 'zaclochhead@gmail.com',
-  to: 'zloc702@aucklanduni.ac.nz',
+  from: 'test',
+  to: 'test',
   subject: 'Water Tank',
   text: 'Water tank is running low'
 };

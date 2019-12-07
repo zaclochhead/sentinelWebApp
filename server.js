@@ -40,25 +40,25 @@ app.use('/api/getCurrentDay', getCurrentDay);
 app.use('/api/emailer', emailer);
 app.use('/api/weather', weather);
 // config for your database
-var config = {
-    user: 'sentinelwater', // update me
-    password: 'Imagine18', // update me
-    server: 'sentinelserver.database.windows.net', // update me
-    database: 'sentinelbeta',
-    options: {
-      encrypt: true
-    }
-};
+// var config = {
+//     user: 'sentinelwater', // update me
+//     password: 'Imagine18', // update me
+//     server: 'sentinelserver.database.windows.net', // update me
+//     database: 'sentinelbeta',
+//     options: {
+//       encrypt: true
+//     }
+// };
 
 
 // connect to your database
-sql.connect(config, function (err) {
-  if (err) console.log(err);
-});
+// sql.connect(config, function (err) {
+//   if (err) console.log(err);
+// });
   
-var request = new sql.Request();
+//var request = new sql.Request();
 
-global.request = request;
+//global.request = request;
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
@@ -112,7 +112,7 @@ global.io = io;
 //
 // Using the Azure CLI:
 // az iot hub show-connection-string --hub-name {YourIoTHubName} --output table
-var connectionString = 'HostName=sentinelIoT.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=HccsK+hrS8NqsFJCA7hut1ipeVK7cwR7/C3tOl+D7O8=';
+//var connectionString = 'HostName=sentinelIoT.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=HccsK+hrS8NqsFJCA7hut1ipeVK7cwR7/C3tOl+D7O8=';
 
 // Using the Node.js SDK for Azure Event hubs:
 //   https://github.com/Azure/azure-event-hubs-node
@@ -149,16 +149,16 @@ var printMessage = function (message) {
 
 // Connect to the partitions on the IoT Hub's Event Hubs-compatible endpoint.
 // This example only reads messages sent after this application started.
-var ehClient;
-EventHubClient.createFromIotHubConnectionString(connectionString).then(function (client) {
- // console.log("Successully created the EventHub Client from iothub connection string.");
-  ehClient = client;
-  return ehClient.getPartitionIds();
-}).then(function (ids) {
-  //console.log("The partition ids are: ", ids);
-  return ids.map(function (id) {
-    return ehClient.receive(id, printMessage, printError, { eventPosition: EventPosition.fromEnqueuedTime(Date.now()) });
-  });
-}).catch(printError);
+// var ehClient;
+// EventHubClient.createFromIotHubConnectionString(connectionString).then(function (client) {
+//  // console.log("Successully created the EventHub Client from iothub connection string.");
+//   ehClient = client;
+//   return ehClient.getPartitionIds();
+// }).then(function (ids) {
+//   //console.log("The partition ids are: ", ids);
+//   return ids.map(function (id) {
+//     return ehClient.receive(id, printMessage, printError, { eventPosition: EventPosition.fromEnqueuedTime(Date.now()) });
+//   });
+// }).catch(printError);
 
-module.exports = request;
+//module.exports = request;
