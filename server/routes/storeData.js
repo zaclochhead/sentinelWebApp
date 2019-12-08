@@ -51,5 +51,6 @@ router.get('/', function (req, res) {
     //     // send records as a response
     //     else res.send(recordset); 
     // });
+    res.send("done")
 });
 module.exports = router;
