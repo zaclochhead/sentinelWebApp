@@ -2803,7 +2803,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var SERVER_URL = 'https://sentinelbeta.azurewebsites.net';
+var SERVER_URL = 'http://localhost:1337';
 
 var PostsService = /** @class */ (function () {
     function PostsService(http) {
@@ -2836,6 +2836,7 @@ var PostsService = /** @class */ (function () {
         });
     };
     PostsService.prototype.onLevel = function () {
+        console.log("RECEIVED")
         var _this = this;
         return new rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
             _this.socket.on('level', function (data) { return observer.next(data); });

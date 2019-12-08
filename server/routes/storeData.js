@@ -32,6 +32,7 @@ router.get('/', function (req, res) {
     }
     
     level = req.query.level;
+    console.log(level)
     if(deviceID == null || deviceID == 1){
         io.emit('level', JSON.parse('{"level": ' + level + '}')); 
     }
@@ -41,13 +42,14 @@ router.get('/', function (req, res) {
     else if(deviceID == 3){
         io.emit('levelTwo', JSON.parse('{"levelThree": ' + level + '}')); 
     }
+    console.log("HERE")
     // query to the database and get the records
-    request.query(`INSERT into test (level, dateID, ID, timeID) values (`+level+`,'`+ dateID + `',` + currentTime + `,'`+timeID+`')`, function (err, recordset) {
-        //I added these 2 lines
-        if (err) res.send(err);
-        // sql.close();
-        // send records as a response
-        else res.send(recordset); 
-    });
+    // request.query(`INSERT into test (level, dateID, ID, timeID) values (`+level+`,'`+ dateID + `',` + currentTime + `,'`+timeID+`')`, function (err, recordset) {
+    //     //I added these 2 lines
+    //     if (err) res.send(err);
+    //     // sql.close();
+    //     // send records as a response
+    //     else res.send(recordset); 
+    // });
 });
 module.exports = router;
